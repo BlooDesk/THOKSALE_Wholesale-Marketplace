@@ -28,7 +28,8 @@ create index if not exists idx_industries_active_sort on industries(is_active, s
 
 -- ---------- 2. CATEGORIES: link to industry --------------------------------
 alter table categories add column if not exists industry_id uuid references industries(id) on delete set null;
-create index if not exists idx_categories_industry on categories(industry_id) where deleted_at is null;
+alter table categories add column if not exists deleted_at timestamptz;
+create index if not exists idx_categories_industry on categories(industry_id);
 
 -- ---------- 3. BRANDS -------------------------------------------------------
 create table if not exists brands (
@@ -183,9 +184,10 @@ alter table products add column if not exists subcategory_id      uuid reference
 alter table products add column if not exists brand_id            uuid references brands(id)     on delete set null;
 alter table products add column if not exists packaging_unit_id   uuid references units(id)      on delete set null;
 alter table products add column if not exists measurement_unit_id uuid references units(id)      on delete set null;
-create index if not exists idx_products_industry     on products(industry_id)         where deleted_at is null;
-create index if not exists idx_products_subcategory  on products(subcategory_id)      where deleted_at is null;
-create index if not exists idx_products_brand        on products(brand_id)            where deleted_at is null;
+alter table products add column if not exists deleted_at          timestamptz;
+create index if not exists idx_products_industry     on products(industry_id);
+create index if not exists idx_products_subcategory  on products(subcategory_id);
+create index if not exists idx_products_brand        on products(brand_id);
 
 -- ---------- 11. updated_at triggers ----------------------------------------
 do $$
