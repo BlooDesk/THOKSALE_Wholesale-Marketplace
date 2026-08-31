@@ -1,0 +1,174 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>THOKSALE - Mobile Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#bec6e0",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#7c839b",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#85f8c4",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "surface-tint": "#565e74",
+                    "primary-container": "#131b2e",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#c6c6cd",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#002114",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#069669",
+                    "surface-container": "#e5eeff",
+                    "on-surface": "#0b1c30",
+                    "secondary-fixed-dim": "#e8c177",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-surface-variant": "#45464d",
+                    "inverse-surface": "#213145",
+                    "primary": "#000000",
+                    "on-secondary-fixed": "#261900",
+                    "on-tertiary-fixed-variant": "#005137",
+                    "tertiary": "#000000",
+                    "surface-container-high": "#dce9ff",
+                    "tertiary-fixed-dim": "#68dba9",
+                    "surface-container-highest": "#d3e4fe",
+                    "outline": "#76777d",
+                    "surface-bright": "#f8f9ff",
+                    "primary-fixed": "#dae2fd",
+                    "surface-variant": "#d3e4fe",
+                    "secondary-fixed": "#ffdea4",
+                    "surface-dim": "#cbdbf5",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#bec6e0",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "on-secondary-container": "#785a1b",
+                    "on-primary-fixed": "#131b2e",
+                    "surface-container-low": "#eff4ff",
+                    "on-background": "#0b1c30",
+                    "surface": "#f8f9ff",
+                    "background": "#f8f9ff",
+                    "on-tertiary-fixed": "#002114",
+                    "secondary": "#775a1a",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#fdd488",
+                    // Brand specifics per prompt
+                    "brand-bg": "#F9F8F4",
+                    "brand-surface": "#FFFFFF",
+                    "brand-gold": "#B5924D",
+                    "brand-slate": "#0F172A",
+                    "brand-slate-light": "#64748b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "xs": "0.5rem",
+                    "md": "1.5rem",
+                    "base": "4px",
+                    "margin-mobile": "16px",
+                    "xl": "4rem",
+                    "max-width": "1440px",
+                    "margin-desktop": "48px",
+                    "lg": "2.5rem",
+                    "sm": "1rem"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "display-lg": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "body-sm": ["Manrope"],
+                    "data-mono": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "data-mono": ["14px", {"lineHeight": "1", "fontWeight": "500"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #F9F8F4;
+        }
+        
+        .input-glow:focus-within {
+            border-color: #B5924D;
+            box-shadow: 0 0 0 2px rgba(181, 146, 77, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center font-body-md text-brand-slate bg-brand-bg md:bg-brand-bg px-margin-mobile py-xl">
+<!-- Top Nav suppressed per instructions (Linear/Transactional) -->
+<main class="w-full max-w-[400px] flex flex-col gap-lg bg-brand-surface p-6 md:p-8 rounded-xl border border-slate-200/50 px-4">
+<!-- Header -->
+<header class="flex flex-col items-center gap-xs mb-sm">
+<img alt="THOKSALE Logo" class="h-10 w-auto object-contain mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAYgVzU39G5OLiCMsKSqM5HjaghQCSfa8Einx4MRTfeaCMuL2wj4fhOYatoc7DUObA1bMsemOgbOjJLBmMqGjsiYNRiae5d2y_FQG0mnNeBYOvvjW84cihD6HVXhxUZ5MN9OzoZQ4KvTWE_RDuay31d0UhiUNWtyzSPo1pGuS2vEtL1Oy9vkXpMarYZTbipdeQHcpoPeMPcJm61jF2SHXxlcE9fRA0zzbNcQBwSWVSwQDQBsukYfR1sctaYiDSG0v0vTM">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-brand-slate text-center">Welcome back</h1>
+<p class="font-body-md text-body-md text-brand-slate-light text-center">Log in to continue to THOKSALE.</p>
+</header>
+<!-- Form -->
+<form class="flex flex-col gap-md" onsubmit="event.preventDefault(); const btn = document.getElementById('continue-btn'); btn.disabled = true; btn.innerHTML = '&lt;span class=&quot;animate-spin mr-2&quot;&gt;&amp;#9696;&lt;/span&gt; Initiating OTP...'; setTimeout(() =&gt; { alert('OTP Sent to ' + document.getElementById('mobile').value); }, 1000);">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-brand-slate uppercase tracking-wider" for="mobile">Mobile Number</label>
+<div class="flex items-center bg-white border border-slate-200 rounded-DEFAULT h-12 input-glow transition-all duration-200 overflow-hidden">
+<div class="flex items-center px-3 bg-slate-50 border-r border-slate-200 h-full font-data-mono text-data-mono text-brand-slate-light select-none">
+                        +91
+                    </div>
+<input autocomplete="tel" class="flex-1 h-full px-3 bg-transparent border-none focus:ring-0 font-data-mono text-data-mono text-brand-slate placeholder:text-slate-400" id="mobile" name="mobile" pattern="[0-9]{10}" placeholder="98765 43210" required="" type="tel">
+</div>
+</div>
+<button id="continue-btn" class="w-full h-12 bg-brand-gold opacity-50 grayscale cursor-not-allowed text-white font-label-md text-label-md rounded-DEFAULT transition-all duration-200 flex items-center justify-center uppercase tracking-wider mt-xs" type="submit" disabled="">Continue</button><script>const input = document.getElementById('mobile'); const btn = document.getElementById('continue-btn'); input.addEventListener('input', (e) => { const val = e.target.value.replace(/\D/g, ''); if (val.length === 10) { btn.disabled = false; btn.classList.remove('opacity-50', 'grayscale', 'cursor-not-allowed'); } else { btn.disabled = true; btn.classList.add('opacity-50', 'grayscale', 'cursor-not-allowed'); } });</script>
+</form>
+<!-- Secondary Actions -->
+<div class="flex flex-col items-center gap-sm mt-xs">
+<a class="font-body-sm text-body-sm text-brand-slate-light hover:text-brand-slate transition-colors duration-200" href="/recovery">
+                Having trouble logging in?
+            </a>
+<a class="font-body-sm text-body-sm text-brand-slate-light hover:text-brand-slate transition-colors duration-200" href="/register">
+                New to THOKSALE? <span class="text-brand-slate font-semibold underline underline-offset-4 decoration-slate-300">Create an account</span>
+</a>
+</div>
+<!-- Footer Consent -->
+<div class="mt-md text-center pt-sm border-t border-slate-100">
+<p class="font-label-md text-label-md text-brand-slate-light leading-relaxed">
+                By continuing, you agree to THOKSALE's <br class="hidden sm:block">
+<a class="text-brand-slate underline hover:text-brand-gold transition-colors" href="/terms">Terms of Use</a> and 
+                <a class="text-brand-slate underline hover:text-brand-gold transition-colors" href="/privacy">Privacy Policy</a>.
+            </p>
+</div>
+</main>
+<!-- Bottom Nav suppressed per instructions (Linear/Transactional) -->
+
+
+</body></html>

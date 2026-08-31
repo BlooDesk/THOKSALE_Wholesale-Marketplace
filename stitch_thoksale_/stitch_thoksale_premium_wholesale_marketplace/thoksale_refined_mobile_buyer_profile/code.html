@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profile - THOKSALE</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#bec6e0",
+                        "on-primary-fixed": "#131b2e",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#785a1b",
+                        "background": "#F9F8F4",
+                        "surface-tint": "#565e74",
+                        "on-surface": "#0F172A",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#775a1a",
+                        "secondary-fixed": "#ffdea4",
+                        "surface-container": "#e5eeff",
+                        "primary-fixed": "#dae2fd",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f8f9ff",
+                        "tertiary": "#000000",
+                        "primary-container": "#131b2e",
+                        "surface-container-high": "#dce9ff",
+                        "on-surface-variant": "#475569",
+                        "tertiary-fixed-dim": "#68dba9",
+                        "surface-dim": "#cbdbf5",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#CBD5E1",
+                        "on-tertiary-container": "#069669",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "surface": "#F9F8F4",
+                        "tertiary-container": "#002114",
+                        "on-secondary-fixed": "#261900",
+                        "secondary-container": "#fdd488",
+                        "tertiary-fixed": "#85f8c4",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "outline": "#94A3B8",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-tertiary-fixed": "#002114",
+                        "primary": "#0F172A",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#7c839b",
+                        "inverse-surface": "#213145",
+                        "on-background": "#0F172A",
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary-fixed-dim": "#e8c177",
+                        "gold": "#B5924D"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "48px",
+                        "sm": "1rem",
+                        "gutter": "24px",
+                        "base": "4px",
+                        "lg": "2.5rem",
+                        "max-width": "1440px",
+                        "md": "1.5rem",
+                        "xs": "0.5rem",
+                        "margin-mobile": "16px",
+                        "xl": "4rem"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "data-mono": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "data-mono": ["14px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-sm": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-background text-primary font-headline-sm text-headline-sm fixed top-0 w-full z-50 border-b border-outline-variant opacity-90 flat no shadows active:scale-100 transition-transform flex justify-between items-center h-16 px-margin-mobile w-full">
+<button aria-label="Go back" class="text-primary hover:opacity-80 transition-opacity p-2 -ml-2">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="flex-1 flex justify-center">
+<img alt="WholesalePremium Logo" class="h-6 object-contain w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkPNrrGW4A-vZb4VWR-yLg79awL7GnLVs-Kza1vCEbN0mhXjXM11-4CdP6uJmALMROV7j5QA2NUkdJ6shqq121M0iQcDxdODrg8tDj09oGW6yD339TuB2U8LcZMtRkNt89WemoaQM9vUx5Jn8zlJqWVyAQfOmnumoLpMac7Ys9dhq3Ar2JLxQmWJqRknWSPHY2onbi2fmIDPlJigJCYZ4aSLU-bqUJ9ARHNeqLK47r8_A-_8FJLZar62DqDzOKn3NaL7Q"/>
+</div>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 pt-16 pb-24 px-margin-mobile flex flex-col gap-6 w-full max-w-[1440px] mx-auto">
+<!-- Header Section -->
+<section class="mt-4">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-2">Profile</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage your personal account information.</p>
+</section>
+<!-- Identity Section -->
+<section class="bg-[#FFFFFF] border border-outline-variant opacity-90 rounded-xl p-4 flex items-center gap-4 shadow-[0_4px_6px_-1px_rgba(15,23,42,0.05),0_2px_4px_-2px_rgba(15,23,42,0.05)]">
+<div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center shrink-0 border border-outline-variant opacity-80">
+<span class="font-headline-md text-headline-md text-primary">RS</span>
+</div>
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-primary">Rahul Sharma</h2>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Business Owner</span>
+<span class="font-body-sm text-body-sm text-gold mt-0.5">Apex Electrical Traders</span>
+</div>
+</section>
+<!-- Personal Details -->
+<section class="flex flex-col gap-4">
+<h3 class="font-headline-sm text-headline-sm text-primary">Personal Details</h3>
+<div class="bg-[#FFFFFF] border border-outline-variant opacity-90 rounded-xl shadow-[0_4px_6px_-1px_rgba(15,23,42,0.05),0_2px_4px_-2px_rgba(15,23,42,0.05)]">
+<div class="p-4 border-b border-outline-variant opacity-80 last:border-b-0 flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Full Name</span>
+<span class="font-body-md text-body-md text-primary">Rahul Sharma</span>
+</div>
+<div class="p-4 border-b border-outline-variant opacity-80 last:border-b-0 flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Mobile Number</span>
+<span class="font-data-mono text-data-mono text-primary">+91 98765 43210</span>
+</div>
+<div class="p-4 border-b border-outline-variant opacity-80 last:border-b-0 flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Email</span>
+<span class="font-body-md text-body-md text-primary">rahul.sharma@example.com</span>
+</div>
+</div>
+<button class="w-full py-2.5 px-4 rounded border border-[#B5924D] text-primary font-body-sm text-body-sm bg-[#FFFFFF] hover:bg-slate-50 transition-colors mt-2">
+                Edit personal details
+            </button>
+</section>
+<!-- Account Context -->
+<section class="flex flex-col gap-4">
+<h3 class="font-headline-sm text-headline-sm text-primary">Account context</h3>
+<div class="bg-[#FFFFFF] border border-outline-variant opacity-90 rounded-xl shadow-[0_4px_6px_-1px_rgba(15,23,42,0.05),0_2px_4px_-2px_rgba(15,23,42,0.05)]">
+<div class="p-4 border-b border-outline-variant opacity-80 last:border-b-0 flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Account Type</span>
+<span class="font-body-md text-body-md text-primary">Buyer</span>
+</div>
+<div class="p-4 border-b border-outline-variant opacity-80 last:border-b-0 flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Role</span>
+<span class="font-body-md text-body-md text-primary">Business Owner</span>
+</div>
+<div class="p-4 border-b border-outline-variant opacity-80 last:border-b-0 flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Business</span>
+<span class="font-body-md text-body-md text-primary">Apex Electrical Traders</span>
+</div>
+</div>
+</section>
+<!-- Preferences -->
+<section class="flex flex-col gap-4 mt-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">Preferences</h3>
+<a class="bg-[#FFFFFF] border border-outline-variant opacity-90 rounded-xl p-4 flex justify-between items-center shadow-[0_4px_6px_-1px_rgba(15,23,42,0.05),0_2px_4px_-2px_rgba(15,23,42,0.05)] hover:shadow-md transition-shadow" href="#">
+<span class="font-body-md text-body-md text-primary">Notification preferences</span>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</a>
+</section>
+<!-- Security -->
+<section class="flex flex-col gap-4 mt-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">Security</h3>
+<a class="bg-[#FFFFFF] border border-outline-variant opacity-90 rounded-xl p-4 flex justify-between items-center shadow-[0_4px_6px_-1px_rgba(15,23,42,0.05),0_2px_4px_-2px_rgba(15,23,42,0.05)] hover:shadow-md transition-shadow" href="#">
+<span class="font-body-md text-body-md text-primary">Login &amp; security</span>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</a>
+</section>
+<!-- Sign Out -->
+<section class="mt-8">
+<button class="w-full py-3 px-4 rounded border border-error text-error font-label-md text-label-md bg-[#FFFFFF] hover:bg-error-container/20 transition-colors uppercase tracking-wider">
+                Sign Out
+            </button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-[#FFFFFF] text-secondary font-label-md text-label-md fixed bottom-0 w-full z-50 rounded-t-xl border-t border-outline-variant opacity-90 shadow-sm flex justify-around items-center h-20 pb-4 px-2 w-full">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-slate-50 transition-colors active:scale-90 transition-transform p-2 rounded-lg flex-1" href="/buyer/home">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-slate-50 transition-colors active:scale-90 transition-transform p-2 rounded-lg flex-1" href="/buyer/categories">
+<span class="material-symbols-outlined mb-1" data-icon="grid_view">grid_view</span>
+<span class="font-label-md text-label-md">Categories</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-slate-50 transition-colors active:scale-90 transition-transform p-2 rounded-lg flex-1" href="/buyer/rfq">
+<span class="material-symbols-outlined mb-1" data-icon="request_quote">request_quote</span>
+<span class="font-label-md text-label-md">RFQ</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-slate-50 transition-colors active:scale-90 transition-transform p-2 rounded-lg flex-1" href="/buyer/orders">
+<span class="material-symbols-outlined mb-1" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[var(--tw-colors-gold)] font-bold hover:bg-slate-50 transition-colors active:scale-90 transition-transform p-2 rounded-lg flex-1" href="/buyer/profile">
+<span class="material-symbols-outlined fill mb-1 text-[var(--tw-colors-gold)]" data-icon="person">person</span>
+<span class="font-label-md text-label-md text-[var(--tw-colors-gold)]">Account</span>
+</a>
+</nav>
+</body></html>

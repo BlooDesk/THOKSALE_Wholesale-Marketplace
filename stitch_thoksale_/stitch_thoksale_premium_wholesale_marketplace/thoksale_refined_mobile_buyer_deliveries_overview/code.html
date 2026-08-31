@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>THOKSALE - Mobile Buyer Deliveries</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#565e74",
+                      "surface-bright": "#f8f9ff",
+                      "surface-container-highest": "#d3e4fe",
+                      "inverse-primary": "#bec6e0",
+                      "on-secondary-fixed-variant": "#5d4201",
+                      "secondary": "#775a1a",
+                      "secondary-container": "#fdd488",
+                      "on-primary-container": "#7c839b",
+                      "on-error": "#ffffff",
+                      "surface-container-high": "#dce9ff",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary": "#000000",
+                      "on-primary-fixed": "#131b2e",
+                      "on-error-container": "#93000a",
+                      "primary-fixed-dim": "#bec6e0",
+                      "surface-variant": "#d3e4fe",
+                      "on-tertiary-container": "#069669",
+                      "error": "#ba1a1a",
+                      "secondary-fixed": "#ffdea4",
+                      "inverse-on-surface": "#eaf1ff",
+                      "background": "#F9F8F4", /* overridden as per prompt for Premium Editorial B2B */
+                      "surface-container-low": "#eff4ff",
+                      "on-tertiary-fixed-variant": "#005137",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "primary-container": "#131b2e",
+                      "outline": "#76777d",
+                      "tertiary-container": "#002114",
+                      "on-secondary-container": "#785a1b",
+                      "secondary-fixed-dim": "#e8c177",
+                      "primary": "#0F172A", /* slate */
+                      "tertiary-fixed-dim": "#68dba9",
+                      "on-primary": "#ffffff",
+                      "surface": "#FFFFFF",
+                      "tertiary-fixed": "#85f8c4",
+                      "error-container": "#ffdad6",
+                      "on-tertiary-fixed": "#002114",
+                      "surface-container": "#e5eeff",
+                      "on-secondary": "#ffffff",
+                      "surface-dim": "#cbdbf5",
+                      "inverse-surface": "#213145",
+                      "outline-variant": "#E2E8F0", /* slate-200 */
+                      "on-background": "#0F172A",
+                      "on-surface": "#0F172A",
+                      "on-tertiary": "#ffffff",
+                      "on-surface-variant": "#475569", /* slate-600 */
+                      "on-secondary-fixed": "#261900",
+                      "primary-fixed": "#dae2fd",
+                      "brand-gold": "#B5924D",
+                      "brand-gold-hover": "#A18144",
+                      "status-amber": "#F59E0B",
+                      "status-emerald": "#10B981"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "max-width": "1440px",
+                      "xl": "4rem",
+                      "md": "1.5rem",
+                      "margin-desktop": "48px",
+                      "xs": "0.5rem",
+                      "sm": "1rem",
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "base": "4px",
+                      "lg": "2.5rem"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Manrope"],
+                      "headline-lg-mobile": ["Manrope"],
+                      "headline-md": ["Manrope"],
+                      "label-md": ["Manrope"],
+                      "body-lg": ["Manrope"],
+                      "display-lg": ["Manrope"],
+                      "data-mono": ["Manrope"],
+                      "headline-sm": ["Manrope"],
+                      "body-sm": ["Manrope"],
+                      "body-md": ["Manrope"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "data-mono": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                      "headline-sm": ["20px", {"lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Hide scrollbar for clean look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .soft-shadow {
+            box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-24 selection:bg-brand-gold selection:text-white">
+<!-- Header (Based on TopAppBar but modified per prompt) -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant/15 flex justify-between items-center px-margin-mobile h-16 shadow-sm">
+<button aria-label="Go back" class="text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 p-2 -ml-2">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="h-6 flex items-center justify-center">
+<img alt="THOKSALE Logo" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6qbMK5MqmOfmTTL2KKw-vnBkLAD97hVnvERB427blyXNzrppbl24WlZs4mpKM-R_IBWxtTc6e7bSIMtysi40jcZTPsqcillDOUVmF7hXlNTor6wvHDK6yxQSfBxE3b-PSICOEXzBtcslYtYKrgNHl33Klx1Mla7hak0rQ9kvWX-bi_Gy--8uXSBTABrQQajUm3Z8zPhkYxYymnr6EEToZy7wCbJ25qpGQQrELgXLZxNAFjcZVP5JSowrI2qKIxVKVTZg"/>
+</div>
+<button aria-label="Notifications" class="text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 p-2 -mr-2 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-brand-gold rounded-full border border-surface"></span>
+</button>
+</header>
+<main class="pt-20 px-margin-mobile pb-8 max-w-lg mx-auto">
+<!-- Title Section -->
+<section class="mb-sm">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-1">Deliveries</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Track your wholesale orders and shipments.</p>
+</section>
+<!-- Filters (Chips) -->
+<section class="mb-gutter -mx-margin-mobile px-margin-mobile overflow-x-auto no-scrollbar">
+<div class="flex space-x-2 pb-2">
+<button class="px-3 py-1.5 bg-primary text-on-primary font-label-md text-label-md rounded border border-primary whitespace-nowrap transition-colors">
+                    All
+                </button>
+<button class="px-3 py-1.5 bg-surface text-on-surface-variant font-label-md text-label-md rounded border border-outline-variant whitespace-nowrap hover:border-brand-gold hover:text-brand-gold transition-colors">
+                    In Transit
+                </button>
+<button class="px-3 py-1.5 bg-surface text-on-surface-variant font-label-md text-label-md rounded border border-outline-variant whitespace-nowrap hover:border-brand-gold hover:text-brand-gold transition-colors">
+                    Out for Delivery
+                </button>
+<button class="px-3 py-1.5 bg-surface text-on-surface-variant font-label-md text-label-md rounded border border-outline-variant whitespace-nowrap hover:border-brand-gold hover:text-brand-gold transition-colors">
+                    Delivered
+                </button>
+<button class="px-3 py-1.5 bg-surface text-status-amber font-label-md text-label-md rounded border border-outline-variant whitespace-nowrap hover:border-status-amber transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                    Attention
+                </button>
+</div>
+</section>
+<!-- Content Sections -->
+<div class="space-y-sm">
+<!-- 1. Arriving Soon -->
+<section class="bg-surface border border-outline-variant/30 rounded-lg p-sm hover:soft-shadow transition-shadow">
+<div class="flex justify-between items-start mb-3">
+<div class="flex gap-3">
+<div class="w-16 h-16 flex-shrink-0 rounded border border-outline-variant/30 overflow-hidden bg-white">
+<img alt="Industrial LED Flood Lights" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk4djAVYD7VRUGIw1S_RFAfdcKsoSbtvHTeDoVLnQzJUuVqh8QX63yjWpFzlguwOBqm4jmorYE92WFszIJBBm2xaAaOwYNUol54MsJAooTkJ9lFsSIMtHhNtaw_MWmoKGN5ryoQzYGDdiejyRNqoiLL-z_l-0k9dDMqfO_ektE4gnq5AYkpgrmHlPRnR9-4AelK7Su4GSPNx00Vhd9kFpYSPRs2gnLvwvbn-mDkRSm_EpjgHriL5qjpQ"/>
+</div>
+<div>
+<h2 class="font-label-md text-label-md text-brand-gold uppercase tracking-wider mb-1">Arriving Soon</h2>
+<h3 class="font-headline-sm text-headline-sm text-primary leading-tight">Industrial LED Flood Lights</h3>
+<p class="font-data-mono text-data-mono text-on-surface-variant mt-1">Order #THK-10482 • Qty: 50</p>
+</div>
+</div>
+<div class="bg-brand-gold/10 text-brand-gold px-2 py-1 rounded font-label-md text-label-md border border-brand-gold/20">
+                        Out for delivery
+                    </div>
+</div>
+<div class="my-4 p-3 bg-background rounded border border-outline-variant/20"><div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-brand-gold">schedule</span>
+<p class="font-body-md text-body-md font-semibold text-primary">Est. Arrival: Today by 6 PM</p>
+</div>
+<div class="relative mt-5 mb-1 px-2">
+<div class="absolute top-1/2 left-2 right-2 h-0.5 bg-outline-variant -translate-y-1/2 z-0"></div>
+<div class="absolute top-1/2 left-2 w-[75%] h-0.5 bg-brand-gold -translate-y-1/2 z-0"></div>
+<div class="relative z-10 flex justify-between">
+<div class="w-3 h-3 rounded-full bg-brand-gold border-2 border-surface"></div>
+<div class="w-3 h-3 rounded-full bg-brand-gold border-2 border-surface"></div>
+<div class="w-3 h-3 rounded-full bg-brand-gold border-2 border-surface"></div>
+<div class="w-3 h-3 rounded-full bg-brand-gold border-2 border-surface ring-2 ring-brand-gold/30"></div>
+<div class="w-3 h-3 rounded-full bg-outline-variant border-2 border-surface"></div>
+</div>
+</div>
+<div class="flex justify-between mt-1 px-0">
+<span class="font-label-md text-[9px] text-on-surface-variant">Confirmed</span>
+<span class="font-label-md text-[9px] text-on-surface-variant">Picked up</span>
+<span class="font-label-md text-[9px] text-on-surface-variant">In Transit</span>
+<span class="font-label-md text-[9px] text-brand-gold font-bold">Out for delivery</span>
+<span class="font-label-md text-[9px] text-on-surface-variant">Delivered</span>
+</div></div>
+<button class="w-full py-2 bg-primary text-on-primary font-label-md text-label-md rounded transition-colors hover:bg-primary/90 flex justify-center items-center gap-2">
+                    Track shipment <span class="material-symbols-outlined text-[16px]">local_shipping</span>
+</button>
+</section>
+<!-- 2. Active Shipments -->
+<section class="bg-surface border border-outline-variant/30 rounded-lg p-sm hover:soft-shadow transition-shadow">
+<div class="flex justify-between items-start mb-3">
+<div class="flex gap-3">
+<div class="w-16 h-16 flex-shrink-0 rounded border border-outline-variant/30 overflow-hidden bg-white">
+<img alt="Organic Cotton T-Shirts" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDREBOj6yn08cbRZPzvEeUgWOO11CSBxwb2pq6FnwGF9NvVCye9gdhSTP4MVAYgm19pRAiXWQoy8F_7TeVDaHiHU7_Q1PN11NxoZ1EJX-YNaVhvFkqx1U5cYcPum1v_yGzIYK_8sglj_UAZuT1t6y_t4i8Xks1iHIb-s7r0XCD_m4U1kWcRRGroN15SVtX-Z7dXcIjMGz85wvOCmob-L1Zy-qZWWnFFvvGRGL6iM5DOchr70KAeXSnnbw"/>
+</div>
+<div>
+<h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Active Shipment</h2>
+<h3 class="font-headline-sm text-headline-sm text-primary leading-tight">Organic Cotton T-Shirts</h3>
+<p class="font-data-mono text-data-mono text-on-surface-variant mt-1">Order #THK-10294</p>
+</div>
+</div>
+<div class="bg-brand-gold/10 text-brand-gold px-2 py-1 rounded font-label-md text-label-md border border-brand-gold/20">
+                        In transit
+                    </div>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="flex-shrink-0 w-10 h-10 bg-background rounded flex items-center justify-center border border-outline-variant/20">
+<span class="material-symbols-outlined text-on-surface-variant">inventory_2</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Multi-shipment Order</p>
+<p class="font-body-md text-body-md font-semibold text-primary">2 of 3 shipments delivered</p>
+</div>
+</div>
+<div class="flex justify-between items-center mb-4 text-sm">
+<span class="font-body-sm text-on-surface-variant">Est. delivery:</span>
+<span class="font-data-mono text-primary font-semibold">29 Aug</span>
+</div>
+<button class="w-full py-2 bg-surface text-primary border border-outline-variant font-label-md text-label-md rounded transition-colors hover:border-brand-gold hover:text-brand-gold">
+                    Track shipment
+                </button>
+</section>
+<!-- 3. Attention Required -->
+<section class="bg-surface border border-status-amber/30 rounded-lg p-sm hover:soft-shadow transition-shadow relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-status-amber"></div>
+<div class="flex justify-between items-start mb-2 pl-2">
+<div>
+<h2 class="font-label-md text-label-md text-status-amber uppercase tracking-wider mb-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">error</span> Attention Required
+                        </h2>
+<h3 class="font-headline-sm text-headline-sm text-primary leading-tight">Delivery delayed</h3>
+<p class="font-data-mono text-data-mono text-on-surface-variant mt-1">Order #THK-10115</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 pl-2">We'll update you when a new delivery estimate is available.</p>
+<button class="ml-2 py-2 px-4 bg-surface text-status-amber border border-status-amber/50 font-label-md text-label-md rounded transition-colors hover:bg-status-amber/10">
+                    View tracking
+                </button>
+</section>
+<!-- 4. Recently Delivered -->
+<section class="bg-surface border border-outline-variant/30 rounded-lg p-sm hover:soft-shadow transition-shadow opacity-90">
+<div class="flex justify-between items-start mb-3">
+<div class="flex gap-3">
+<div class="w-16 h-16 flex-shrink-0 rounded border border-outline-variant/30 overflow-hidden bg-white">
+<img alt="Heavy Duty Power Drills" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCHWWt81mN9zDCW9T1EXgzlJ19d5aPeZ1uzoAdoa8uHnkf9fzl_dRKh6gT6RLihbB40yChrgWZRdRjr4P9-jLgLZFoq9BG623fCCj4iNhbAGAYBKOBKCdiqWwDNVxPH2Vlf3ilqHJzJz9nfZJX4jQPrDxuP3nWBNYKidzrp_3Z78kCzoM9W-zyNOSnhNFD2NFrNEkwbFx6MElg-bly_8cfpfdKqolpn_rTrj2VajF6LPQVq1VIzfXG3w"/>
+</div>
+<div>
+<h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Recently Delivered</h2>
+<h3 class="font-headline-sm text-headline-sm text-primary leading-tight">Heavy Duty Power Drills</h3>
+<p class="font-data-mono text-data-mono text-on-surface-variant mt-1">Order #THK-10042</p>
+</div>
+</div>
+<div class="bg-status-emerald/10 text-status-emerald px-2 py-1 rounded font-label-md text-label-md flex items-center gap-1 border border-status-emerald/20">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Delivered
+                    </div>
+</div>
+<div class="bg-background rounded p-2 mb-4 flex items-start gap-2 border border-outline-variant/20">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px] mt-0.5">timer</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs">Quality review window ends in <strong class="text-primary font-semibold">36h</strong>.</p>
+</div>
+<button class="w-full py-2 bg-surface text-primary border border-outline-variant font-label-md text-label-md rounded transition-colors hover:bg-surface-variant/50">
+                    View order
+                </button>
+</section>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe border-t border-outline-variant/15 bg-surface shadow-sm">
+<div class="flex justify-around items-center h-16 w-full px-xs max-w-lg mx-auto">
+<!-- Home -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low active:scale-90 transition-transform duration-200 w-16 h-full rounded-lg">
+<span class="material-symbols-outlined mb-1">home</span>
+<span>Home</span>
+</button>
+<!-- Categories -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low active:scale-90 transition-transform duration-200 w-16 h-full rounded-lg">
+<span class="material-symbols-outlined mb-1">grid_view</span>
+<span>Categories</span>
+</button>
+<!-- RFQ (replaces Cart per prompt instruction for Buyer nav) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low active:scale-90 transition-transform duration-200 w-16 h-full rounded-lg">
+<span class="material-symbols-outlined mb-1">request_quote</span>
+<span>RFQ</span>
+</button>
+<!-- Orders (Active) -->
+<button class="flex flex-col items-center justify-center text-brand-gold font-semibold font-label-md text-label-md hover:bg-surface-container-low active:scale-90 transition-transform duration-200 w-16 h-full rounded-lg">
+<span class="material-symbols-outlined mb-1" data-weight="fill">receipt_long</span>
+<span>Orders</span>
+</button>
+<!-- Account -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low active:scale-90 transition-transform duration-200 w-16 h-full rounded-lg">
+<span class="material-symbols-outlined mb-1">person</span>
+<span>Account</span>
+</button>
+</div>
+</nav>
+</body></html>

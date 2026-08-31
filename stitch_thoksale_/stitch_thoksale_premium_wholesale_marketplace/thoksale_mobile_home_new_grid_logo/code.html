@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>THOKSALE - B2B Wholesale Marketplace</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Hide scrollbar for horizontal rails but keep functionality */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#005137",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "tertiary-fixed-dim": "#68dba9",
+                    "outline": "#76777d",
+                    "tertiary-container": "#002114",
+                    "surface-container-low": "#eff4ff",
+                    "surface-container-high": "#dce9ff",
+                    "error-container": "#ffdad6",
+                    "primary": "#000000",
+                    "secondary-fixed-dim": "#e8c177",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#cbdbf5",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-tertiary-fixed": "#002114",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#c6c6cd",
+                    "on-secondary-container": "#785a1b",
+                    "primary-fixed-dim": "#bec6e0",
+                    "tertiary-fixed": "#85f8c4",
+                    "on-surface": "#0b1c30",
+                    "surface-variant": "#d3e4fe",
+                    "inverse-surface": "#213145",
+                    "primary-fixed": "#dae2fd",
+                    "on-surface-variant": "#45464d",
+                    "primary-container": "#131b2e",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-secondary-fixed": "#261900",
+                    "surface-bright": "#f8f9ff",
+                    "on-primary-fixed": "#131b2e",
+                    "secondary": "#775a1a",
+                    "surface": "#f8f9ff",
+                    "on-secondary": "#ffffff",
+                    "background": "#f8f9ff",
+                    "on-background": "#0b1c30",
+                    "surface-tint": "#565e74",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#000000",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#fdd488",
+                    "secondary-fixed": "#ffdea4",
+                    "on-primary-container": "#7c839b",
+                    "on-tertiary-container": "#069669",
+                    "inverse-primary": "#bec6e0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "lg": "2.5rem",
+                    "max-width": "1440px",
+                    "md": "1.5rem",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "xl": "4rem",
+                    "margin-desktop": "48px",
+                    "xs": "0.5rem",
+                    "sm": "1rem"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": [
+                            "Manrope"
+                    ],
+                    "headline-lg": [
+                            "Manrope"
+                    ],
+                    "label-md": [
+                            "Manrope"
+                    ],
+                    "headline-sm": [
+                            "Manrope"
+                    ],
+                    "body-lg": [
+                            "Manrope"
+                    ],
+                    "data-mono": [
+                            "Manrope"
+                    ],
+                    "display-lg": [
+                            "Manrope"
+                    ],
+                    "headline-md": [
+                            "Manrope"
+                    ],
+                    "body-sm": [
+                            "Manrope"
+                    ],
+                    "body-md": [
+                            "Manrope"
+                    ]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": [
+                            "28px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.015em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-md": [
+                            "12px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0.02em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-sm": [
+                            "20px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "data-mono": [
+                            "14px",
+                            {
+                                    "lineHeight": "1",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "800"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "letterSpacing": "0",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface pb-24 font-body-sm selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-margin-mobile h-16 bg-surface docked full-width top-0 z-40 sticky shadow-sm border-b border-outline-variant/10"><!-- Left: Location Selector (Compact) -->
+<div class="flex items-center gap-1.5 cursor-pointer hover:bg-surface-variant/10 p-1.5 rounded-lg transition-colors flex-1">
+<span class="material-symbols-outlined text-secondary text-[20px]" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<div class="flex flex-col">
+<span class="text-[9px] text-on-surface-variant font-label-md leading-none uppercase tracking-wider">Deliver to</span>
+<span class="text-[11px] font-bold text-primary truncate max-w-[80px]">Mumbai, IN</span>
+</div>
+</div>
+<!-- Center: Logo -->
+<div class="flex items-center justify-center flex-1 h-full">
+<img alt="THOKSALE Logo" class="h-10 w-auto object-contain transition-all duration-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEXkbQFObPjWZcgnn2P3g2Kgpae55NGnOQtvsW74eSRNbPGg768EFOpWxSG5GL0dggvjYiSgorZCpaPI24B6U3wwdUjUcwP6GJ-rov5peF0d6LNCFqEAHFRdTcN_QcHUHOTHu99aeSfrwYWA8v0O2PEtCy6WpL7iu4KHoCO8PZ-Ccue-FLhS42jhgQyPUEOCkNmamdTgs2x46im8S-dEf1q9Uh7kUrQGqqlYGBqsibxI9YoyU5Cx8nkQ"/>
+</div>
+<!-- Right: Notifications -->
+<div class="flex items-center justify-end flex-1">
+<button class="text-primary hover:bg-surface-variant/10 p-2 rounded-full transition-all scale-95 active:opacity-80 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border border-surface"></span>
+</button>
+</div></header>
+<!-- Search Bar (Sticky) -->
+<div class="px-margin-mobile py-3 sticky top-16 z-30 bg-surface/95 backdrop-blur-sm border-b border-outline-variant/10">
+<div class="flex items-center w-full bg-surface-container-lowest border border-outline-variant/30 rounded-full px-4 py-2.5 shadow-[0_2px_4px_-2px_rgba(15,23,42,0.05)] focus-within:border-secondary focus-within:shadow-[0_0_0_2px_rgba(119,90,26,0.2)] transition-all">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+<input class="w-full bg-transparent border-none p-0 text-body-sm font-body-sm placeholder:text-outline focus:ring-0" placeholder="Search products, industries or suppliers" type="text"/>
+<button class="ml-2 text-primary hover:text-secondary transition-colors border-l border-outline-variant/30 pl-2">
+<span class="material-symbols-outlined">center_focus_strong</span>
+</button>
+</div>
+</div>
+<main class="flex flex-col gap-8 pt-4">
+<!-- Quick Actions -->
+<section class="px-margin-mobile">
+<div class="grid grid-cols-2 gap-3">
+<a class="flex flex-col justify-center items-start p-4 bg-surface-container-lowest rounded-xl border border-secondary/20 shadow-sm relative overflow-hidden group" href="#">
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-secondary-container/20 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+<span class="material-symbols-outlined text-secondary mb-2" style="font-variation-settings: 'FILL' 1;">request_quote</span>
+<span class="text-body-sm font-body-sm font-bold text-primary mb-1 relative z-10">Post RFQ</span>
+<span class="text-[11px] text-on-surface-variant leading-tight relative z-10">Get quotes from suppliers</span>
+</a>
+<a class="flex flex-col justify-center items-start p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/20 shadow-sm hover:border-primary/30 transition-colors" href="#">
+<span class="material-symbols-outlined text-primary mb-2">storefront</span>
+<span class="text-body-sm font-body-sm font-bold text-primary mb-1">Sell on THOKSALE</span>
+<span class="text-[11px] text-on-surface-variant leading-tight">Start selling B2B</span>
+</a>
+</div>
+</section>
+<!-- Hero Section -->
+<section class="px-margin-mobile">
+<div class="bg-surface-container-lowest rounded-xl p-5 border border-outline-variant/20 shadow-sm flex flex-col items-start relative overflow-hidden">
+<!-- Abstract BG Element -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-container/10 rounded-bl-full -z-0"></div>
+<h1 class="text-headline-sm-mobile font-headline-sm-mobile text-primary mb-2 relative z-10">Source Wholesale.<br/>Grow Your Business.</h1>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4 max-w-[250px] relative z-10">Connect with premium manufacturers and distributors directly.</p>
+<div class="flex flex-wrap gap-2 mb-5 relative z-10">
+<div class="flex items-center gap-1 bg-surface py-1 px-2 rounded border border-outline-variant/10">
+<span class="material-symbols-outlined text-[14px] text-on-tertiary-container">verified</span>
+<span class="text-[10px] font-label-md text-primary font-bold">Verified Suppliers</span>
+</div>
+<div class="flex items-center gap-1 bg-surface py-1 px-2 rounded border border-outline-variant/10">
+<span class="material-symbols-outlined text-[14px] text-primary">inventory_2</span>
+<span class="text-[10px] font-label-md text-primary font-bold">Bulk Pricing</span>
+</div>
+<div class="flex items-center gap-1 bg-surface py-1 px-2 rounded border border-outline-variant/10">
+<span class="material-symbols-outlined text-[14px] text-primary">local_shipping</span>
+<span class="text-[10px] font-label-md text-primary font-bold">Pan-India</span>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded-lg hover:bg-primary/90 active:scale-95 transition-all relative z-10">
+                    Explore Products
+                </button>
+</div>
+</section>
+<!-- Shop by Industry -->
+<section>
+<div class="px-margin-mobile flex justify-between items-end mb-3">
+<h2 class="text-headline-sm-mobile font-headline-sm-mobile text-primary">Shop by Industry</h2>
+<a class="text-label-md font-label-md text-secondary hover:underline" href="#">See All</a>
+</div>
+<div class="overflow-x-auto flex gap-3 px-margin-mobile pb-2 snap-x hide-scrollbar">
+<!-- Card 1 -->
+<a class="flex flex-col items-center gap-2 min-w-[80px] snap-center group" href="#">
+<div class="w-[80px] h-[80px] rounded-full bg-surface-container-lowest border border-outline-variant/20 shadow-sm overflow-hidden p-3 group-hover:border-secondary/50 transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[32px] text-primary">memory</span>
+</div>
+<span class="text-[11px] font-label-md text-primary text-center">Electronics</span>
+</a>
+<!-- Card 2 -->
+<a class="flex flex-col items-center gap-2 min-w-[80px] snap-center group" href="#">
+<div class="w-[80px] h-[80px] rounded-full bg-surface-container-lowest border border-outline-variant/20 shadow-sm overflow-hidden p-3 group-hover:border-secondary/50 transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[32px] text-primary">shopping_bag</span>
+</div>
+<span class="text-[11px] font-label-md text-primary text-center">FMCG</span>
+</a>
+<!-- Card 3 -->
+<a class="flex flex-col items-center gap-2 min-w-[80px] snap-center group" href="#">
+<div class="w-[80px] h-[80px] rounded-full bg-surface-container-lowest border border-outline-variant/20 shadow-sm overflow-hidden p-3 group-hover:border-secondary/50 transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[32px] text-primary">precision_manufacturing</span>
+</div>
+<span class="text-[11px] font-label-md text-primary text-center">Machinery</span>
+</a>
+<!-- Card 4 -->
+<a class="flex flex-col items-center gap-2 min-w-[80px] snap-center group" href="#">
+<div class="w-[80px] h-[80px] rounded-full bg-surface-container-lowest border border-outline-variant/20 shadow-sm overflow-hidden p-3 group-hover:border-secondary/50 transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[32px] text-primary">checkroom</span>
+</div>
+<span class="text-[11px] font-label-md text-primary text-center">Textiles</span>
+</a>
+</div>
+</section>
+<!-- Top Wholesale Deals -->
+<section class="bg-surface-container-lowest py-6 border-y border-outline-variant/10">
+<div class="px-margin-mobile flex justify-between items-end mb-4">
+<div class="flex items-center gap-2">
+<h2 class="text-headline-sm-mobile font-headline-sm-mobile text-primary">Top Deals</h2>
+<span class="bg-error/10 text-error text-[10px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">Hot</span>
+</div>
+</div>
+<div class="overflow-x-auto flex gap-4 px-margin-mobile pb-4 snap-x hide-scrollbar">
+<!-- Deal 1 -->
+<div class="min-w-[160px] max-w-[160px] bg-surface rounded-lg border border-outline-variant/20 overflow-hidden flex flex-col snap-start shadow-sm">
+<div class="h-32 w-full bg-surface-variant/30 relative">
+<img class="w-full h-full object-cover mix-blend-multiply" data-alt="A high-quality, professional photograph of neatly stacked industrial-grade LED floodlights in a clean, brightly lit wholesale warehouse setting. The lighting is crisp and modern, emphasizing the metallic finish and durable build quality of the electronics. The color palette is composed of cool whites, sleek silvers, and subtle industrial greys." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP0QecMjAZF7o6WJeIbotCxm9v-VQ2rjh04rTbjG57XQyIOxyiGzWkA5SSCDuzyfFW7z8-m4O3YGhdyHkFVRk020gGuCtKlS-Cww-kSfCJY9R9C8gs5_7xhQ-QP-aaWOJSUaOKXyQmSk5xpOl5GEG4ep9WuBzgzf1W8rDqi86rL1F6S5iOYirvggsHGFxfrWchDCz38L5H3mRGw5qZv2KjgihLp6u9xdsA8KL70nOed7JOtHNnWBS_Hg"/>
+<div class="absolute top-2 left-2 bg-on-tertiary-container text-white text-[10px] font-bold px-1.5 py-0.5 rounded">15% OFF</div>
+</div>
+<div class="p-3 flex flex-col gap-1 flex-grow">
+<h3 class="text-label-md font-label-md text-primary line-clamp-2 leading-snug">Industrial LED Floodlight 50W Water...</h3>
+<div class="mt-auto pt-2">
+<span class="text-data-mono font-data-mono text-secondary text-lg">₹450 <span class="text-[10px] text-on-surface-variant font-body-sm">/ unit</span></span>
+<div class="flex items-center gap-1 mt-1">
+<span class="bg-surface-dim text-on-surface-variant text-[10px] px-1.5 py-0.5 rounded">MOQ: 50</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Deal 2 -->
+<div class="min-w-[160px] max-w-[160px] bg-surface rounded-lg border border-outline-variant/20 overflow-hidden flex flex-col snap-start shadow-sm">
+<div class="h-32 w-full bg-surface-variant/30 relative">
+<img class="w-full h-full object-cover mix-blend-multiply" data-alt="A pristine, editorial-style photograph of premium organic cotton t-shirts stacked in bulk on a minimalist wooden pallet. The setting is a clean, modern textile warehouse with warm, natural lighting that highlights the soft texture and high-quality weave of the fabric. The aesthetic leans towards a high-end, sustainable fashion supply chain." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBof-V-fa3YNUtk85kZnG9BGCSpf-iK-9vqo-OsKlNeUgQzT89NzdAF7oxjF94xrLFWbKKAzfTexN-Nkemx7Z_VK9thRfyw_afhWELqk0XEi-d0GAO9i_652TZqT-xZfKoI8-z1ibqyjrHqVmt_I6_rSs3VYokD1Q2KVkCc4eueke-iV7qzAs3wVD7vjm-SEMjm6ofPlld2WggUrR3Z8C_ldnkKuMk5KsL4bPpoTwYJn-e4mZXG2KAaCw"/>
+</div>
+<div class="p-3 flex flex-col gap-1 flex-grow">
+<h3 class="text-label-md font-label-md text-primary line-clamp-2 leading-snug">Premium Organic Cotton Blank T-Shirts</h3>
+<div class="mt-auto pt-2">
+<span class="text-data-mono font-data-mono text-secondary text-lg">₹120 <span class="text-[10px] text-on-surface-variant font-body-sm">/ unit</span></span>
+<div class="flex items-center gap-1 mt-1">
+<span class="bg-surface-dim text-on-surface-variant text-[10px] px-1.5 py-0.5 rounded">MOQ: 200</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Deal 3 -->
+<div class="min-w-[160px] max-w-[160px] bg-surface rounded-lg border border-outline-variant/20 overflow-hidden flex flex-col snap-start shadow-sm">
+<div class="h-32 w-full bg-surface-variant/30 relative">
+<img class="w-full h-full object-cover mix-blend-multiply" data-alt="A sharp, detailed photograph of heavy-duty brass valves arranged meticulously on a clean, industrial shelving unit. The lighting is bright and focused, emphasizing the gleaming gold-toned metal and precision engineering of the components. The background is a slightly blurred, clean industrial facility, conveying reliability and high manufacturing standards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-oLnxz-qTVTKezeZwQwPjWPapZOVWN_SMsXLUsMQisGxg-I638BgLo1G-PxpD0tstMKE_1LIm59QJldXkTyjW-5AuzdIHR_VlOCU1bKPt9reewqJfOt52ySf4QrRRh1sS9PE0jTDWFxwPcq7MblU7FMI1TvkvgOfe_SksujqmkKWi4hvbsKF8f-FXpSThdWO4dz8vsVfxfgPt7cAKWaVbccQ-Aw27jRTITNlpvGBTQyUjdDrHAqhLOA"/>
+</div>
+<div class="p-3 flex flex-col gap-1 flex-grow">
+<h3 class="text-label-md font-label-md text-primary line-clamp-2 leading-snug">Heavy Duty Brass Gate Valve 1-inch</h3>
+<div class="mt-auto pt-2">
+<span class="text-data-mono font-data-mono text-secondary text-lg">₹380 <span class="text-[10px] text-on-surface-variant font-body-sm">/ unit</span></span>
+<div class="flex items-center gap-1 mt-1">
+<span class="bg-surface-dim text-on-surface-variant text-[10px] px-1.5 py-0.5 rounded">MOQ: 100</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Suppliers -->
+<section>
+<div class="px-margin-mobile flex justify-between items-end mb-3">
+<h2 class="text-headline-sm-mobile font-headline-sm-mobile text-primary">Featured Suppliers</h2>
+</div>
+<div class="overflow-x-auto flex gap-4 px-margin-mobile pb-4 snap-x hide-scrollbar">
+<!-- Supplier 1 -->
+<div class="min-w-[220px] bg-surface-container-lowest border border-outline-variant/20 rounded-xl p-4 flex flex-col items-center text-center snap-center shadow-sm">
+<div class="w-16 h-16 rounded-full bg-surface border border-outline-variant/20 mb-3 flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-[32px] text-primary-container">factory</span>
+</div>
+<div class="flex items-center gap-1 justify-center mb-1">
+<h3 class="text-label-md font-label-md text-primary font-bold">Apex Industries Pvt Ltd</h3>
+<span class="material-symbols-outlined text-[14px] text-on-tertiary-container" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<span class="text-[11px] text-on-surface-variant mb-3">Machinery &amp; Tools • Gujarat</span>
+<button class="w-full text-[12px] font-label-md border border-outline-variant text-primary py-1.5 rounded hover:bg-surface-variant/10 transition-colors">Visit Store</button>
+</div>
+<!-- Supplier 2 -->
+<div class="min-w-[220px] bg-surface-container-lowest border border-outline-variant/20 rounded-xl p-4 flex flex-col items-center text-center snap-center shadow-sm">
+<div class="w-16 h-16 rounded-full bg-surface border border-outline-variant/20 mb-3 flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-[32px] text-primary-container">local_shipping</span>
+</div>
+<div class="flex items-center gap-1 justify-center mb-1">
+<h3 class="text-label-md font-label-md text-primary font-bold">Global Trade Impex</h3>
+<span class="material-symbols-outlined text-[14px] text-on-tertiary-container" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<span class="text-[11px] text-on-surface-variant mb-3">Consumer Electronics • Delhi</span>
+<button class="w-full text-[12px] font-label-md border border-outline-variant text-primary py-1.5 rounded hover:bg-surface-variant/10 transition-colors">Visit Store</button>
+</div>
+</div>
+</section>
+<!-- Popular Products (Grid) -->
+<section class="px-margin-mobile">
+<h2 class="text-headline-sm-mobile font-headline-sm-mobile text-primary mb-4">Popular Products</h2>
+<div class="grid grid-cols-2 gap-3">
+<!-- Product 1 -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant/20 overflow-hidden flex flex-col hover:-translate-y-0.5 hover:shadow-[0_4px_6px_-1px_rgba(15,23,42,0.05)] transition-all duration-200">
+<div class="h-32 bg-surface-variant/20 p-2">
+<img class="w-full h-full object-contain mix-blend-multiply" data-alt="A clean, minimalist product shot of a high-capacity commercial power bank. The device is sleek matte black, placed on a crisp white surface with soft, diffused studio lighting. The focus is sharp, highlighting the ports and premium build quality suited for B2B distribution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAniksECHbYkZXGxa6HhEMFEAr14u15nrSp0EFMaozJEv65gDaBaWl_-FFCnV_WPjqIUSG6b8pAijhglE3uJ3ClCRr1SyXSUb7TyLAZgMlG5Du_NBtZVOaKycF3sq4za8IQB3sGgLKUx25gvsFuxxzLEGe7Aa7zdcGfFTpglqS5vut6VIB8duYvumTiHXv98H5W8d6sv0F43f4Wh3oxBYNL8vC-D8gvjh01sgcELuZyMehpHd4Cy8qH4Q"/>
+</div>
+<div class="p-2.5 flex flex-col gap-1 flex-grow border-t border-outline-variant/10">
+<h3 class="text-label-md font-label-md text-primary line-clamp-2 leading-tight">20000mAh Commercial Power Bank PD 65W</h3>
+<div class="text-data-mono font-data-mono text-primary font-bold mt-1">₹850</div>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="bg-surface text-on-surface-variant text-[9px] px-1 py-0.5 border border-outline-variant/20 rounded font-semibold">MOQ: 100</span>
+</div>
+<div class="mt-2 text-[10px] text-on-surface-variant truncate flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">store</span> ElectroCorp
+                        </div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant/20 overflow-hidden flex flex-col hover:-translate-y-0.5 hover:shadow-[0_4px_6px_-1px_rgba(15,23,42,0.05)] transition-all duration-200">
+<div class="h-32 bg-surface-variant/20 p-2">
+<img class="w-full h-full object-contain mix-blend-multiply" data-alt="A bright, professional photograph of bulk wholesale packaging tape rolls. The rolls are stacked neatly, showing the transparent tape and sturdy cardboard cores. The lighting is even and cool, set against a pristine white background, emphasizing consistency and industrial volume." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlObhFxpNKVhzGh8bCq6sG8KAr43nWdB08pnRRXYC5-SuOoRmjODDyWoSjYPio7qc3n2DNWbemwdT6T9FSVRxxdJ4PiiRM_iDJPIsPN6lurgVErL48Sg2Av3nnQuJHHpZgx4DrrgjNhFkYy2tkSGBcRshEdFhjEhO4F9mJJ_1Hu1y6mGqgI2qR-4rOx-MlFFA7QBuVvYDZyMiOsZTNJ-a1P8oRjzXXz11QpGQgpU6NKTyjcynUFHv-jw"/>
+</div>
+<div class="p-2.5 flex flex-col gap-1 flex-grow border-t border-outline-variant/10">
+<h3 class="text-label-md font-label-md text-primary line-clamp-2 leading-tight">BOPP Packaging Tape 2-inch Transparent (Box of 72)</h3>
+<div class="text-data-mono font-data-mono text-primary font-bold mt-1">₹1850</div>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="bg-surface text-on-surface-variant text-[9px] px-1 py-0.5 border border-outline-variant/20 rounded font-semibold">MOQ: 10 Boxes</span>
+</div>
+<div class="mt-2 text-[10px] text-on-surface-variant truncate flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">store</span> PackIndia
+                        </div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant/20 overflow-hidden flex flex-col hover:-translate-y-0.5 hover:shadow-[0_4px_6px_-1px_rgba(15,23,42,0.05)] transition-all duration-200">
+<div class="h-32 bg-surface-variant/20 p-2">
+<img class="w-full h-full object-contain mix-blend-multiply" data-alt="A detailed macro photograph of industrial ball bearings. The metallic surfaces gleam under bright, specular lighting, showcasing precision engineering and flawless finish. The composition is tight, emphasizing the mechanical nature and high quality of the B2B hardware components." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZdeqzfw3hlWd9ME12gNdk0HkuQK_Pv1QjggxHWBZKl7hUZzhsAdwFrvgAubTDbmMLdl0aDiLMiuPE6hto760ZN4K4SDE7dOCCFJtYTq81VKssY6VG5bHFZdtNSslDH7j-462X7gYGesrKwKv0Mzz-LI0IxpSm8rnMbx6ZcfNEtbpG_QFgnjrBW9xkOWwNWrdfUgIpUOZCREOeAlGX1c9ozqQeuqGUB0BTh7_nHi0zQrE3y3QKC2yz4w"/>
+</div>
+<div class="p-2.5 flex flex-col gap-1 flex-grow border-t border-outline-variant/10">
+<h3 class="text-label-md font-label-md text-primary line-clamp-2 leading-tight">Precision Ball Bearing 6204-2RS</h3>
+<div class="text-data-mono font-data-mono text-primary font-bold mt-1">₹45</div>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="bg-surface text-on-surface-variant text-[9px] px-1 py-0.5 border border-outline-variant/20 rounded font-semibold">MOQ: 500</span>
+</div>
+<div class="mt-2 text-[10px] text-on-surface-variant truncate flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">store</span> MechSpares
+                        </div>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant/20 overflow-hidden flex flex-col hover:-translate-y-0.5 hover:shadow-[0_4px_6px_-1px_rgba(15,23,42,0.05)] transition-all duration-200">
+<div class="h-32 bg-surface-variant/20 p-2">
+<img class="w-full h-full object-contain mix-blend-multiply" data-alt="A clean, well-lit photograph of generic blank hoodies in various neutral colors (black, grey, navy) folded immaculately on a white surface. The image highlights the fabric texture and consistent quality suitable for wholesale bulk purchasing in the apparel industry." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBwSbPy0iDQZjhaqVolpiHiyA_KNJ5BpvuqHJYML6ZBSTQGiKJPhn9g_L2HF3JjQ6T9gB1OhCM0TgJV9HD7Qr7-ZspH0YOFCL2e1cVc1l0FbDBndzGIjUMjt1QYm6CICiUJzbBoM8-F8Nj91sqR75Jmrdr8Rrk5uLxi06LLvmVfjT6xVypO-Emlb0Dt0plVRCi__4Dz1HjljgWwpZL9XE4pE5gQ0rFHfAry669TnVx_3eyZyVQvQ0jQw"/>
+</div>
+<div class="p-2.5 flex flex-col gap-1 flex-grow border-t border-outline-variant/10">
+<h3 class="text-label-md font-label-md text-primary line-clamp-2 leading-tight">Unisex Fleece Hoodie Blank (300 GSM)</h3>
+<div class="text-data-mono font-data-mono text-primary font-bold mt-1">₹350</div>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="bg-surface text-on-surface-variant text-[9px] px-1 py-0.5 border border-outline-variant/20 rounded font-semibold">MOQ: 100</span>
+</div>
+<div class="mt-2 text-[10px] text-on-surface-variant truncate flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">store</span> LoomWorks
+                        </div>
+</div>
+</div>
+</div>
+<button class="w-full mt-4 py-3 border border-outline-variant rounded-lg text-label-md font-label-md text-primary hover:bg-surface-variant/10 transition-colors">View All Products</button>
+</section>
+<!-- Business Opportunities -->
+<section class="bg-primary text-on-primary py-8 mt-4">
+<div class="px-margin-mobile mb-4">
+<h2 class="text-headline-sm-mobile font-headline-sm-mobile mb-1">Business Opportunities</h2>
+<p class="text-body-sm font-body-sm text-outline-variant">Find distributorships and dealership networks.</p>
+</div>
+<div class="overflow-x-auto flex gap-4 px-margin-mobile pb-4 snap-x hide-scrollbar">
+<div class="min-w-[240px] bg-primary-container border border-surface-tint/30 rounded-xl p-4 snap-start">
+<span class="material-symbols-outlined text-secondary mb-2">handshake</span>
+<h3 class="text-label-md font-label-md font-bold mb-1">Distributor Wanted</h3>
+<p class="text-[12px] text-on-primary-container mb-3">Leading FMCG brand seeking regional distributors in South India.</p>
+<a class="text-secondary text-[12px] font-bold hover:underline" href="#">Apply Now →</a>
+</div>
+<div class="min-w-[240px] bg-primary-container border border-surface-tint/30 rounded-xl p-4 snap-start">
+<span class="material-symbols-outlined text-secondary mb-2">store</span>
+<h3 class="text-label-md font-label-md font-bold mb-1">Dealership Available</h3>
+<p class="text-[12px] text-on-primary-container mb-3">Exclusive franchise opportunities for industrial tool brand.</p>
+<a class="text-secondary text-[12px] font-bold hover:underline" href="#">View Details →</a>
+</div>
+</div>
+</section>
+<!-- Why THOKSALE -->
+<section class="px-margin-mobile">
+<h2 class="text-headline-sm-mobile font-headline-sm-mobile text-primary mb-4 text-center">Why Trade on THOKSALE?</h2>
+<div class="grid grid-cols-2 gap-x-4 gap-y-6">
+<div class="flex flex-col items-center text-center">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center mb-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+</div>
+<h3 class="text-label-md font-label-md text-primary mb-1">Verified Businesses</h3>
+<p class="text-[11px] text-on-surface-variant">100% KYC verified buyers and sellers.</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center mb-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</div>
+<h3 class="text-label-md font-label-md text-primary mb-1">Secure Payments</h3>
+<p class="text-[11px] text-on-surface-variant">Secure Business Transactions</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center mb-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">local_shipping</span>
+</div>
+<h3 class="text-label-md font-label-md text-primary mb-1">Pan-India Logistics</h3>
+<p class="text-[11px] text-on-surface-variant">End-to-end freight and delivery support.</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center mb-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">support_agent</span>
+</div>
+<h3 class="text-label-md font-label-md text-primary mb-1">Dedicated Support</h3>
+<p class="text-[11px] text-on-surface-variant">B2B account managers for large volumes.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/20 py-8 mt-8 mb-4">
+<div class="px-margin-mobile flex flex-col items-center justify-center gap-4 text-center">
+<div class="flex justify-center mb-4"><img alt="THOKSALE Logo" class="h-8 w-auto object-contain opacity-50 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEXkbQFObPjWZcgnn2P3g2Kgpae55NGnOQtvsW74eSRNbPGg768EFOpWxSG5GL0dggvjYiSgorZCpaPI24B6U3wwdUjUcwP6GJ-rov5peF0d6LNCFqEAHFRdTcN_QcHUHOTHu99aeSfrwYWA8v0O2PEtCy6WpL7iu4KHoCO8PZ-Ccue-FLhS42jhgQyPUEOCkNmamdTgs2x46im8S-dEf1q9Uh7kUrQGqqlYGBqsibxI9YoyU5Cx8nkQ"/></div>
+<div class="flex gap-4 text-[12px] text-on-surface-variant font-label-md">
+<a class="hover:text-primary" href="#">Help Center</a>
+<a class="hover:text-primary" href="#">About Us</a>
+<a class="hover:text-primary" href="#">Terms &amp; Policies</a>
+</div>
+<p class="text-[10px] text-outline mt-2">© [Year] Thoksale B2B Marketplace. All rights reserved.</p>
+</div>
+</footer>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-2 border-t border-outline-variant/20 bg-surface-container-lowest shadow-sm rounded-t-xl pb-safe">
+<!-- Item 1: Home (Active) -->
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim bg-secondary-container/20 rounded-xl px-3 py-1 scale-90 transition-transform duration-150 group" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-label-md font-label-md">Home</span>
+</a>
+<!-- Item 2: Categories -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-secondary transition-colors group px-3 py-1" href="#">
+<span class="material-symbols-outlined mb-1">grid_view</span>
+<span class="text-label-md font-label-md">Categories</span>
+</a>
+<!-- Item 3: RFQ (Slightly emphasized per prompt request, but maintaining JSON inactive structure) -->
+<a class="flex flex-col items-center justify-center text-on-primary bg-primary rounded-full w-16 h-16 -mt-8 shadow-lg transition-transform active:scale-95 group" href="#"><span class="material-symbols-outlined mb-0.5" style="font-variation-settings: 'FILL' 1;">request_quote</span><span class="text-[10px] font-bold uppercase tracking-tighter">RFQ</span></a>
+<!-- Item 4: Cart -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-secondary transition-colors group px-3 py-1 relative" href="#">
+<span class="material-symbols-outlined mb-1">shopping_cart</span>
+<span class="absolute top-0 right-2 w-2 h-2 bg-secondary rounded-full"></span>
+<span class="text-label-md font-label-md">Cart</span>
+</a>
+<!-- Item 5: Account -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:text-secondary transition-colors group px-3 py-1" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="text-label-md font-label-md">Account</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Invoices - THOKSALE</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#002114",
+                      "surface": "#f8f9ff",
+                      "inverse-primary": "#bec6e0",
+                      "secondary-fixed": "#ffdea4",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-surface": "#0b1c30",
+                      "primary": "#000000",
+                      "surface-tint": "#565e74",
+                      "outline": "#76777d",
+                      "background": "#f8f9ff",
+                      "surface-container-low": "#eff4ff",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-high": "#dce9ff",
+                      "inverse-surface": "#213145",
+                      "on-secondary-fixed-variant": "#5d4201",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#85f8c4",
+                      "error-container": "#ffdad6",
+                      "surface-dim": "#cbdbf5",
+                      "on-secondary-container": "#785a1b",
+                      "on-error-container": "#93000a",
+                      "primary-fixed-dim": "#bec6e0",
+                      "surface-container": "#e5eeff",
+                      "on-primary": "#ffffff",
+                      "on-primary-fixed": "#131b2e",
+                      "primary-container": "#131b2e",
+                      "on-background": "#0b1c30",
+                      "surface-variant": "#d3e4fe",
+                      "outline-variant": "#c6c6cd",
+                      "on-tertiary-container": "#069669",
+                      "secondary-fixed-dim": "#e8c177",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#68dba9",
+                      "on-tertiary-fixed-variant": "#005137",
+                      "secondary": "#775a1a",
+                      "on-surface-variant": "#45464d",
+                      "surface-bright": "#f8f9ff",
+                      "on-tertiary-fixed": "#002114",
+                      "on-primary-container": "#7c839b",
+                      "on-secondary-fixed": "#261900",
+                      "tertiary": "#000000",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed": "#dae2fd",
+                      "error": "#ba1a1a",
+                      "secondary-container": "#fdd488",
+                      "inverse-on-surface": "#eaf1ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-desktop": "48px",
+                      "xl": "4rem",
+                      "xs": "0.5rem",
+                      "md": "1.5rem",
+                      "sm": "1rem",
+                      "base": "4px",
+                      "lg": "2.5rem",
+                      "gutter": "24px",
+                      "margin-mobile": "16px",
+                      "max-width": "1440px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Manrope"
+                      ],
+                      "data-mono": [
+                              "Manrope"
+                      ],
+                      "body-lg": [
+                              "Manrope"
+                      ],
+                      "headline-lg-mobile": [
+                              "Manrope"
+                      ],
+                      "label-md": [
+                              "Manrope"
+                      ],
+                      "body-sm": [
+                              "Manrope"
+                      ],
+                      "headline-sm": [
+                              "Manrope"
+                      ],
+                      "display-lg": [
+                              "Manrope"
+                      ],
+                      "headline-lg": [
+                              "Manrope"
+                      ],
+                      "headline-md": [
+                              "Manrope"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "data-mono": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.015em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #F9F8F4;
+        }
+        .b2b-card-border {
+            border: 1px solid rgba(15, 23, 42, 0.1);
+        }
+        .b2b-card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+        }
+        .gold-accent {
+            color: #B5924D;
+        }
+        .bg-gold-accent {
+            background-color: #B5924D;
+        }
+        .border-gold-accent {
+            border-color: #B5924D;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-background bg-[#F9F8F4] flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-on-background flex items-center justify-between px-margin-mobile h-16 shadow-sm">
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-colors active:opacity-80 p-2 rounded-full">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="h-8">
+<img alt="THOKSALE Logo" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0Fv9e5G3gCgaAfGnWlrJFW7X5fTS0J-8OOPd1Z5mlc4mzDuLkeDRATkO0_HQE1me4GrVZ24BXzSFu0Y2jYUIfKixCOCC0jakdFIdugam3ExLJSquV9W1Wz5CUVzKGydsdumIqgzpqw93xSMG5uQO9PWBe8e9YxThFWkIJKEsOngXCWm_eJaRe6MXTJLfVdvbLVBjesTi-nvGCYxo_4CrhU03831HYlJGf2tDDpXdvnzl5uWWkUGt4h0xsJxZ_IzSFUUs">
+</div>
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-colors active:opacity-80 p-2 rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-1 pt-24 pb-24 px-margin-mobile md:px-margin-desktop md:max-w-[1440px] md:mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-sm">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight mb-2">Invoices</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">View and download invoices for your THOKSALE orders.</p>
+</div>
+<!-- Search Bar -->
+<div class="relative mb-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-outline">search</span>
+<input class="w-full h-12 pl-10 pr-4 bg-white border border-slate-200 rounded-lg font-body-sm text-body-sm focus:outline-none focus:border-[#B5924D] focus:ring-1 focus:ring-[#B5924D] transition-all" placeholder="Search invoice or order" type="text">
+</div>
+<!-- Filter Chips -->
+<div class="flex overflow-x-auto gap-2 pb-2 mb-md scrollbar-hide">
+<button class="px-4 py-2 rounded-full bg-[#B5924D] text-white font-label-md text-label-md whitespace-nowrap">All</button>
+<button class="px-4 py-2 rounded-full bg-white border border-slate-200 text-on-surface-variant font-label-md text-label-md whitespace-nowrap">Available</button>
+<button class="px-4 py-2 rounded-full bg-white border border-slate-200 text-on-surface-variant font-label-md text-label-md whitespace-nowrap">Processing</button>
+<button class="px-4 py-2 rounded-full bg-white border border-slate-200 text-on-surface-variant font-label-md text-label-md whitespace-nowrap">Cancelled</button>
+</div>
+<!-- August 2026 Group -->
+<div class="mb-lg">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-sm">August 2026</h2>
+<div class="flex flex-col gap-sm"><!-- Invoice 1 for Order #THK-10482 -->
+<div class="bg-white rounded-lg p-sm b2b-card-border hover:b2b-card-shadow transition-all group cursor-pointer">
+    <div class="flex justify-between items-start mb-3">
+        <div>
+            <span class="font-data-mono text-data-mono text-primary block mb-1">#INV-THK-10482</span>
+            <span class="font-data-mono text-xs text-on-surface-variant">28 Aug 2026</span>
+        </div>
+        <span class="inline-flex items-center px-2 py-1 rounded bg-green-50 text-green-700 font-label-md text-[10px] uppercase tracking-wider">
+            Available
+        </span>
+    </div>
+    <div class="border-t border-b border-slate-100 py-3 mb-3">
+        <div class="flex justify-between items-center mb-1">
+            <span class="font-body-sm text-body-sm text-on-surface-variant">Order ID</span>
+            <span class="font-data-mono text-data-mono text-primary">#THK-10482</span>
+        </div>
+        <div class="flex justify-between items-center mb-1">
+            <span class="font-body-sm text-body-sm text-on-surface-variant">Supplier</span>
+            <span class="font-body-sm text-body-sm font-medium text-primary">Industrial LED Pro</span>
+        </div>
+        <div class="flex justify-between items-center mt-2">
+            <span class="font-body-sm text-body-sm font-medium text-primary">Total Amount</span>
+            <span class="font-data-mono text-[16px] font-bold text-primary">₹12,430</span>
+        </div>
+    </div>
+    <div class="flex justify-between items-center">
+        <button class="text-[#B5924D] font-label-md text-label-md hover:underline flex items-center gap-1">
+            View invoice
+        </button>
+        <button class="text-on-surface-variant hover:text-[#B5924D] transition-colors p-1 opacity-60 hover:opacity-100">
+            <span class="material-symbols-outlined text-[18px]">download</span>
+        </button>
+    </div>
+</div>
+
+<!-- Invoice 2 for Order #THK-10482 (Split Shipment) -->
+<div class="bg-white rounded-lg p-sm b2b-card-border hover:b2b-card-shadow transition-all group cursor-pointer">
+    <div class="flex justify-between items-start mb-3">
+        <div>
+            <span class="font-data-mono text-data-mono text-primary block mb-1">#INV-THK-10483</span>
+            <span class="font-data-mono text-xs text-on-surface-variant">28 Aug 2026</span>
+        </div>
+        <span class="inline-flex items-center px-2 py-1 rounded bg-green-50 text-green-700 font-label-md text-[10px] uppercase tracking-wider">
+            Available
+        </span>
+    </div>
+    <div class="border-t border-b border-slate-100 py-3 mb-3">
+        <div class="flex justify-between items-center mb-1">
+            <span class="font-body-sm text-body-sm text-on-surface-variant">Order ID</span>
+            <span class="font-data-mono text-data-mono text-primary">#THK-10482</span>
+        </div>
+        <div class="flex justify-between items-center mb-1">
+            <span class="font-body-sm text-body-sm text-on-surface-variant">Supplier</span>
+            <span class="font-body-sm text-body-sm font-medium text-primary">Industrial LED Pro</span>
+        </div>
+        <div class="flex justify-between items-center mt-2">
+            <span class="font-body-sm text-body-sm font-medium text-primary">Total Amount</span>
+            <span class="font-data-mono text-[16px] font-bold text-primary">₹12,430</span>
+        </div>
+    </div>
+    <div class="flex justify-between items-center">
+        <button class="text-[#B5924D] font-label-md text-label-md hover:underline flex items-center gap-1">
+            View invoice
+        </button>
+        <button class="text-on-surface-variant hover:text-[#B5924D] transition-colors p-1 opacity-60 hover:opacity-100">
+            <span class="material-symbols-outlined text-[18px]">download</span>
+        </button>
+    </div>
+</div>
+
+<!-- Processing Invoice Card -->
+<div class="bg-white rounded-lg p-sm b2b-card-border hover:b2b-card-shadow transition-all group cursor-pointer">
+    <div class="flex justify-between items-start mb-3">
+        <div>
+            <span class="font-body-md text-body-md font-semibold text-primary block mb-1">Invoice processing</span>
+            <span class="font-data-mono text-xs text-on-surface-variant">25 Aug 2026</span>
+        </div>
+        <span class="inline-flex items-center px-2 py-1 rounded bg-amber-50 text-amber-700 font-label-md text-[10px] uppercase tracking-wider">
+            Processing
+        </span>
+    </div>
+    <div class="border-t border-b border-slate-100 py-3 mb-3">
+        <p class="font-body-sm text-body-sm text-on-surface-variant mb-2">Your invoice will appear here once it is generated.</p>
+        <div class="flex justify-between items-center">
+            <span class="font-body-sm text-body-sm text-on-surface-variant">Order ID</span>
+            <span class="font-data-mono text-data-mono text-primary">#THK-10475</span>
+        </div>
+    </div>
+    <div class="flex justify-end">
+        <button class="text-[#B5924D] font-label-md text-label-md hover:underline border border-[#B5924D] px-4 py-1.5 rounded">
+            View order
+        </button>
+    </div>
+</div></div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface dark:bg-on-background border-t border-outline-variant dark:border-on-surface-variant shadow-sm md:hidden">
+<div class="flex justify-around items-center h-16 w-full px-2">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-secondary transition-all active:scale-95 duration-150 w-full h-full">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-secondary transition-all active:scale-95 duration-150 w-full h-full">
+<span class="material-symbols-outlined mb-1">grid_view</span>
+<span class="font-label-md text-label-md">Categories</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-secondary transition-all active:scale-95 duration-150 w-full h-full">
+<span class="material-symbols-outlined mb-1">request_quote</span>
+<span class="font-label-md text-label-md">RFQ</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#B5924D] font-semibold hover:text-secondary transition-all active:scale-95 duration-150 w-full h-full">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-secondary transition-all active:scale-95 duration-150 w-full h-full">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-label-md text-label-md">Account</span>
+</button>
+</div>
+</nav>
+<style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+
+
+</body></html>

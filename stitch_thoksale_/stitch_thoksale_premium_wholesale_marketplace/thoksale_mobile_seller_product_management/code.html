@@ -1,0 +1,343 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>THOKSALE - Products</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#eaf1ff",
+                        "inverse-primary": "#bec6e0",
+                        "surface": "#f8f9ff",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "primary-container": "#131b2e",
+                        "surface-container-low": "#eff4ff",
+                        "tertiary": "#000000",
+                        "surface-bright": "#f8f9ff",
+                        "primary": "#000000",
+                        "inverse-surface": "#213145",
+                        "on-secondary-container": "#785a1b",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f8f9ff",
+                        "on-tertiary-container": "#069669",
+                        "secondary-fixed-dim": "#e8c177",
+                        "on-secondary-fixed": "#261900",
+                        "on-tertiary-fixed": "#002114",
+                        "tertiary-fixed": "#85f8c4",
+                        "on-surface-variant": "#45464d",
+                        "secondary": "#775a1a",
+                        "on-surface": "#0b1c30",
+                        "primary-fixed": "#dae2fd",
+                        "on-background": "#0b1c30",
+                        "secondary-fixed": "#ffdea4",
+                        "secondary-container": "#fdd488",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#002114",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "surface-tint": "#565e74",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "on-primary-fixed": "#131b2e",
+                        "tertiary-fixed-dim": "#68dba9",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "outline": "#76777d",
+                        "on-primary-container": "#7c839b",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container": "#e5eeff",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#bec6e0",
+                        "outline-variant": "#c6c6cd",
+                        "surface-container-high": "#dce9ff",
+                        "brand-slate": "#0F172A",
+                        "brand-gold": "#B5924D",
+                        "brand-canvas": "#F9F8F4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "0.5rem",
+                        "base": "4px",
+                        "md": "1.5rem",
+                        "gutter": "24px",
+                        "sm": "1rem",
+                        "lg": "2.5rem",
+                        "xl": "4rem",
+                        "margin-desktop": "48px",
+                        "max-width": "1440px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "data-mono": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "label-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "data-mono": ["14px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #F9F8F4; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+        
+        /* Hide scrollbar for filter row */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Soft Shadow utility for editorial look */
+        .shadow-editorial { box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05); }
+    </style>
+</head>
+<body class="bg-[#F9F8F4] text-on-surface pb-24">
+<!-- Sticky Header (Mobile TopAppBar logic) -->
+<header class="fixed top-0 w-full z-50 bg-[#F9F8F4] border-b border-slate-200/50 flex items-center justify-between px-4 h-16 max-w-full">
+<div class="w-10 h-10 flex items-center justify-center">
+<span class="material-symbols-outlined text-brand-slate text-2xl" data-icon="arrow_back">arrow_back</span>
+</div>
+<div class="flex-1 flex justify-center">
+<img alt="THOKSALE Logo" class="h-6 object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XYGTl2h5TzojXSCWEWm_EBwYM0EgI_vJsdgslzgeam_tAnPdflOjyo010XjDw09A_5c8bmhNIGXnB9Qc3wLh-NdGQvYwWiuHQ-TNaOFgXYnYXAwhNZVjPJOCJdq9JOiKCWkbMQj5G7QQr_V2BXg1iqvadjMEQ3kv_pkNnglz4qcI4_-v8U5NWoRFuan4neyjmZivxaIKhDApmK6sixuMECB5NvCgJHZJV0uC7MqxVvr76hFMLShlkG0Z0w">
+</div>
+<div class="w-10 h-10 flex items-center justify-center">
+<!-- Spacer to keep logo centered -->
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="pt-20 px-margin-mobile">
+<!-- Title & Summary -->
+<section class="mb-6">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-brand-slate mb-1">Products</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Manage your product catalog and availability.</p>
+<div class="flex flex-wrap gap-x-4 gap-y-2 mb-6">
+<span class="font-label-md text-label-md text-brand-slate px-2 py-1 border border-slate-200 rounded-sm bg-white">Active: 148</span>
+<span class="font-label-md text-label-md text-brand-slate px-2 py-1 border border-slate-200 rounded-sm bg-white">Draft: 6</span>
+<span class="font-label-md text-label-md text-brand-slate px-2 py-1 border border-slate-200 rounded-sm bg-white">Out of stock: 3</span>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-brand-gold text-white font-label-md text-label-md py-3 rounded-lg shadow-editorial active:scale-95 transition-transform flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                    Add product
+                </button>
+<button class="flex-1 bg-transparent border border-brand-slate text-brand-slate font-label-md text-label-md py-3 rounded-lg active:scale-95 transition-transform flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="upload_file">upload_file</span>
+                    Upload catalog
+                </button>
+</div>
+</section>
+<!-- Search & Filters -->
+<section class="mb-6 sticky top-16 bg-[#F9F8F4] z-40 pt-2 pb-2 -mx-margin-mobile px-margin-mobile">
+<div class="relative mb-4">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant" data-icon="search">search</span>
+<input class="w-full border border-slate-200 rounded-lg pl-10 pr-4 py-2 font-body-sm text-body-sm focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/50 outline-none transition-all placeholder:text-outline-variant text-brand-slate shadow-sm bg-white" placeholder="Search products" type="text">
+</div>
+<div class="flex gap-6 overflow-x-auto no-scrollbar border-b border-slate-200/50 pb-[1px]">
+<button class="font-label-md text-label-md text-brand-slate pb-2 border-b-2 border-brand-gold whitespace-nowrap">All</button>
+<button class="font-label-md text-label-md text-outline pb-2 border-b-2 border-transparent whitespace-nowrap">Active</button>
+<button class="font-label-md text-label-md text-outline pb-2 border-b-2 border-transparent whitespace-nowrap">Draft</button>
+<button class="font-label-md text-label-md text-outline pb-2 border-b-2 border-transparent whitespace-nowrap">Out of stock</button>
+</div>
+</section>
+<!-- Product List -->
+<section class="flex flex-col gap-3">
+<!-- Row 1 -->
+<div class="border border-slate-200/60 rounded-lg p-3 flex gap-3 shadow-sm active:bg-slate-100 transition-colors bg-white">
+<div class="w-16 h-16 border border-slate-100 rounded-sm shrink-0 relative bg-slate-50" data-alt="A clean, minimalist product shot of an Industrial LED Panel Light 18W on a pure white background, showcasing sleek industrial design. High-end editorial lighting, crisp shadows, commercial e-commerce style. Minimalist aesthetic with subtle silver metallic accents." style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBkvqg8kPMzscp54xRkTUZRa9fYD1moNkBqUd7cvEe8Mao3-cJTfb6yR7FseTPLUsZ7_nqSGIEaIbDmtiJxlL8qNPgt0MZK1yVVXkRGO-HLIuH7004Vi63_L4rL7Kr7MVq3cdndKYiCT0tMT_zFgjiuGSA8z3zC3mfLV8XOwpjxBcQEegI6-4zFLea-ifUAOuNcAW_tJ9QZqENSbbaci3TA2IuiP9xK6lUflB9Fh9l30SGNE-_THTj2QQ&quot;);"></div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-label-md text-brand-slate truncate mb-0.5">Industrial LED Panel Light 18W</p>
+<p class="font-body-sm text-[11px] text-outline truncate mb-1">Electrical &amp; Lighting</p>
+<div class="flex items-center gap-2 mb-1.5 flex-wrap">
+<span class="font-data-mono text-data-mono text-brand-slate text-[13px] tracking-tight">₹620 / unit</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-data-mono text-data-mono text-outline text-[11px]">SKU: LED-18W-204</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-1.5 py-0.5 rounded-[2px] bg-slate-100 text-brand-slate font-label-md text-[10px]">MOQ 50</span>
+<span class="px-1.5 py-0.5 rounded-[2px] bg-[#E8F5E9] text-[#1B5E20] font-label-md text-[10px]">In stock</span>
+<span class="flex items-center gap-1 px-1.5 py-0.5 rounded-[2px] border border-[#E8F5E9] text-[#1B5E20] font-label-md text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4CAF50]"></span> Active
+                        </span>
+</div>
+</div>
+<div class="flex items-center justify-center w-6 shrink-0">
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="border border-slate-200/60 rounded-lg p-3 flex gap-3 shadow-sm active:bg-slate-100 transition-colors bg-white">
+<div class="w-16 h-16 border border-slate-100 rounded-sm shrink-0 relative bg-slate-50" data-alt="A high-quality close-up of a spool of Copper Flexible Cable 2.5 sq mm on a pure white background. High-end editorial lighting emphasizing the metallic texture of the copper and the clean red PVC insulation. Commercial e-commerce style, minimalist aesthetic." style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAqVuq25WbwkRd-Uv-z0yLXDDHah6-Huu8a2UAUDSN8HQVA2DohwcwlrM9a_4yRx1TwGP8aL7dvKd7Qfs5otthAQ4TZKdHu6CAd3dymATeFMHDwmLf0AVe_ykySqt2So1BKVeyqQC30o2HYkqZx8PHJWsI-gFs9Lk8CTwALzsxij22mdFxxsEpJU3ROIGSKi9msSos0czLSkjW7Zp5XT3KkKhQVE61tnQFTVxHINquIFNpJcbO4-tFBCQ&quot;);"></div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-label-md text-brand-slate truncate mb-0.5">Copper Flexible Cable 2.5 sq mm</p>
+<p class="font-body-sm text-[11px] text-outline truncate mb-1">Electrical Supplies</p>
+<div class="flex items-center gap-2 mb-1.5 flex-wrap">
+<span class="font-data-mono text-data-mono text-brand-slate text-[13px] tracking-tight">₹84 / metre</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-data-mono text-data-mono text-outline text-[11px]">SKU: CBL-2.5-118</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-1.5 py-0.5 rounded-[2px] bg-slate-100 text-brand-slate font-label-md text-[10px]">MOQ 100</span>
+<span class="px-1.5 py-0.5 rounded-[2px] bg-[#FFF8E1] text-[#F57F17] font-label-md text-[10px]">Low stock</span>
+<span class="flex items-center gap-1 px-1.5 py-0.5 rounded-[2px] border border-[#E8F5E9] text-[#1B5E20] font-label-md text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4CAF50]"></span> Active
+                        </span>
+</div>
+</div>
+<div class="flex items-center justify-center w-6 shrink-0">
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="border border-slate-200/60 rounded-lg p-3 flex gap-3 shadow-sm active:bg-slate-100 transition-colors opacity-70 bg-white">
+<div class="w-16 h-16 border border-slate-100 rounded-sm shrink-0 relative bg-slate-50" data-alt="Minimalist commercial shot of a sleek white Modular Switch 6A on a clean white background. High-end editorial lighting, crisp details, soft shadows. The switch looks modern and premium, fitting an institutional B2B catalog." style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAQiKCcag102L26dQrEE_gLXMoKZqWCJwwH_ufjVEQlRuNG1gzBVysjGi8nkYKsNUUhlU34OY59n6gjDW4dWyvcR8FkTXc68tvD9iyZpjm_gKWqlr2EUZszV30BTQP4WFRCwzAxw3pWf5Ia4rAcm3FFkWiQe2eh6QTgD6_KU1pKlj-dxIk-4g2n-HY-oTCi8davQWT00LEhmSuhZl-fqe6MmDwOnyrIAcsieNE2vNlR9XHps7JKSBBonw&quot;);"></div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-label-md text-brand-slate truncate mb-0.5">Modular Switch 6A</p>
+<p class="font-body-sm text-[11px] text-outline truncate mb-1">Electrical Accessories</p>
+<div class="flex items-center gap-2 mb-1.5 flex-wrap">
+<span class="font-data-mono text-data-mono text-brand-slate text-[13px] tracking-tight">₹52 / unit</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-data-mono text-data-mono text-outline text-[11px]">SKU: SWT-6A-071</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-1.5 py-0.5 rounded-[2px] bg-slate-100 text-brand-slate font-label-md text-[10px]">MOQ 100</span>
+<span class="px-1.5 py-0.5 rounded-[2px] bg-[#E8F5E9] text-[#1B5E20] font-label-md text-[10px]">In stock</span>
+<span class="flex items-center gap-1 px-1.5 py-0.5 rounded-[2px] border border-slate-200 text-outline font-label-md text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span> Draft
+                        </span>
+</div>
+</div>
+<div class="flex items-center justify-center w-6 shrink-0">
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Row 4 -->
+<div class="border border-slate-200/60 rounded-lg p-3 flex gap-3 shadow-sm active:bg-slate-100 transition-colors bg-white">
+<div class="w-16 h-16 border border-slate-100 rounded-sm shrink-0 relative bg-slate-50" data-alt="Clean, professional photograph of a section of grey PVC Electrical Conduit Pipe on a bright white background. High contrast, sharp focus on the material texture, minimalist B2B e-commerce aesthetic." style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCXRy5wElmueP-71kSaZmunHZs09PMWRthuUVPfdKkrRH0LDBOXArtZIGPW13cj2XnWyEaCBgK2b3H32OtQjA1FwXlH-8zkwMp0kk78f-V0-r8vnAZIwscwkvXvcyGN1xQYSBEi0ZazYuKyEhE88CVehHqcSqpxGt-1O_WDPrHyu2TbNT-RcuWCYswuhKKgESm_4D0KSfyMQr8rljRvSLln75dSj2VkG2IhYATs5UjUdhNoYyuq8pbRCw&quot;);"></div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-label-md text-brand-slate truncate mb-0.5">PVC Electrical Conduit Pipe</p>
+<p class="font-body-sm text-[11px] text-outline truncate mb-1">Electrical Supplies</p>
+<div class="flex items-center gap-2 mb-1.5 flex-wrap">
+<span class="font-data-mono text-data-mono text-brand-slate text-[13px] tracking-tight">₹38 / metre</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-data-mono text-data-mono text-outline text-[11px]">SKU: PVC-CP-302</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-1.5 py-0.5 rounded-[2px] bg-slate-100 text-brand-slate font-label-md text-[10px]">MOQ 200</span>
+<span class="px-1.5 py-0.5 rounded-[2px] bg-[#FFEBEE] text-[#C62828] font-label-md text-[10px]">Out of stock</span>
+<span class="flex items-center gap-1 px-1.5 py-0.5 rounded-[2px] border border-[#E8F5E9] text-[#1B5E20] font-label-md text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4CAF50]"></span> Active
+                        </span>
+</div>
+</div>
+<div class="flex items-center justify-center w-6 shrink-0">
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Row 5 -->
+<div class="border border-slate-200/60 rounded-lg p-3 flex gap-3 shadow-sm active:bg-slate-100 transition-colors bg-white">
+<div class="w-16 h-16 border border-slate-100 rounded-sm shrink-0 relative bg-slate-50" data-alt="High-fidelity product image of an MCB 32A Double Pole circuit breaker on a pristine white background. Crisp lines, soft commercial lighting highlighting the robust industrial design and clear branding space. Minimalist e-commerce presentation." style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDUlQo5WDWGnzZJLLBupV7VaIUQ2q6fBCBFOgAeV1wRmEWi7YPgmxIQQkI0IQVKWZeydaqz29wOCfz5UcGN-25pGmF50eN3V-Vb9n9lsiwevT0Wouy77-IeMxhAdkERY5RjW_dXdn03S67e88-dJOwsTctXFHuyxNlRi9Q2uO8ZRpKks1uhI7dPXplmUEzt-oURoU9Hk9LuDmT6KLN6hcTUcJhRbfUS_dPUSSDc2NTwq_y7Ns8WPm4euw&quot;);"></div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-label-md text-brand-slate truncate mb-0.5">MCB 32A Double Pole</p>
+<p class="font-body-sm text-[11px] text-outline truncate mb-1">Electrical Safety</p>
+<div class="flex items-center gap-2 mb-1.5 flex-wrap">
+<span class="font-data-mono text-data-mono text-brand-slate text-[13px] tracking-tight">₹385 / unit</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-data-mono text-data-mono text-outline text-[11px]">SKU: MCB-32DP-419</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-1.5 py-0.5 rounded-[2px] bg-slate-100 text-brand-slate font-label-md text-[10px]">MOQ 20</span>
+<span class="px-1.5 py-0.5 rounded-[2px] bg-[#E8F5E9] text-[#1B5E20] font-label-md text-[10px]">In stock</span>
+<span class="flex items-center gap-1 px-1.5 py-0.5 rounded-[2px] border border-[#E8F5E9] text-[#1B5E20] font-label-md text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4CAF50]"></span> Active
+                        </span>
+</div>
+</div>
+<div class="flex items-center justify-center w-6 shrink-0">
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Row 6 -->
+<div class="border border-slate-200/60 rounded-lg p-3 flex gap-3 shadow-sm active:bg-slate-100 transition-colors bg-white">
+<div class="w-16 h-16 border border-slate-100 rounded-sm shrink-0 relative bg-slate-50" data-alt="A clean, minimalist product shot of a white electronic Ceiling Fan Regulator on a pure white background. High-end editorial lighting, crisp shadows, commercial e-commerce style. Smooth matte finish details." style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDgvLnMB4YzWxHrSKAqSrOHbwjLo3dMxyxNQH0go115qxmRr0vamv-qXwAty0m8FMvJXwHZqXfJxujmYoJ8fLeNf8aMPCc-3lvDOJ-6PXxtE_ljzH_StwZo_Lgo7-SvGJNLDXkpnvh7-KYaYxEMjYleVZIYaA6Qn9leO4tZjMqWtpVQk2XpWQ__5jjF7WLS_H58RoNCoRzJaEfr-cU_i2wK4zScAvh3uB9sEcFtVScJNyWOqfFc1kqTUw&quot;);"></div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-label-md text-brand-slate truncate mb-0.5">Ceiling Fan Regulator</p>
+<p class="font-body-sm text-[11px] text-outline truncate mb-1">Electrical Accessories</p>
+<div class="flex items-center gap-2 mb-1.5 flex-wrap">
+<span class="font-data-mono text-data-mono text-brand-slate text-[13px] tracking-tight">₹145 / unit</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-data-mono text-data-mono text-outline text-[11px]">SKU: REG-5S-156</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-1.5 py-0.5 rounded-[2px] bg-slate-100 text-brand-slate font-label-md text-[10px]">MOQ 50</span>
+<span class="px-1.5 py-0.5 rounded-[2px] bg-[#E8F5E9] text-[#1B5E20] font-label-md text-[10px]">In stock</span>
+<span class="flex items-center gap-1 px-1.5 py-0.5 rounded-[2px] border border-[#E8F5E9] text-[#1B5E20] font-label-md text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4CAF50]"></span> Active
+                        </span>
+</div>
+</div>
+<div class="flex items-center justify-center w-6 shrink-0">
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<button class="mt-4 w-full bg-transparent border border-outline-variant/50 text-brand-slate font-label-md text-label-md py-3 rounded-lg active:scale-95 transition-transform">
+                Load more products
+            </button>
+</section>
+</main>
+<!-- Bottom Nav Bar from JSON shell structure -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-2 py-3 pb-safe border-t border-outline-variant/10 z-50 shadow-[0_-2px_10px_rgba(0,0,0,0.02)] bg-white">
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-slate-50 transition-all active:scale-90 duration-150 rounded-lg">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-[10px] mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-slate-50 transition-all active:scale-90 duration-150 rounded-lg">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-md text-[10px] mt-1">Orders</span>
+</div>
+<div class="flex flex-col items-center justify-center text-brand-gold p-2 hover:bg-slate-50 transition-all active:scale-90 duration-150 rounded-lg">
+<span class="material-symbols-outlined fill" data-icon="inventory" data-weight="fill">inventory</span>
+<span class="font-label-md text-[10px] mt-1 font-bold">Products</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-slate-50 transition-all active:scale-90 duration-150 rounded-lg">
+<span class="material-symbols-outlined" data-icon="request_quote">request_quote</span>
+<span class="font-label-md text-[10px] mt-1">RFQs</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-slate-50 transition-all active:scale-90 duration-150 rounded-lg">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-[10px] mt-1">Account</span>
+</div>
+</nav>
+
+
+</body></html>

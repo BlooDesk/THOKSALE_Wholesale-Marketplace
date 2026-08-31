@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>THOKSALE - Product Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "secondary": "#775a1a",
+                  "tertiary-container": "#002114",
+                  "secondary-fixed-dim": "#e8c177",
+                  "on-tertiary-fixed-variant": "#005137",
+                  "on-primary-container": "#7c839b",
+                  "inverse-surface": "#213145",
+                  "error-container": "#ffdad6",
+                  "on-tertiary-container": "#069669",
+                  "on-secondary-container": "#785a1b",
+                  "primary-container": "#131b2e",
+                  "surface-dim": "#cbdbf5",
+                  "on-primary-fixed-variant": "#3f465c",
+                  "tertiary": "#000000",
+                  "background": "#f8f9ff",
+                  "on-secondary-fixed": "#261900",
+                  "on-primary-fixed": "#131b2e",
+                  "on-secondary": "#ffffff",
+                  "surface-container-high": "#dce9ff",
+                  "surface-variant": "#d3e4fe",
+                  "inverse-on-surface": "#eaf1ff",
+                  "primary-fixed": "#dae2fd",
+                  "tertiary-fixed-dim": "#68dba9",
+                  "surface-container-low": "#eff4ff",
+                  "secondary-fixed": "#ffdea4",
+                  "surface": "#f8f9ff",
+                  "on-secondary-fixed-variant": "#5d4201",
+                  "surface-container-lowest": "#ffffff",
+                  "surface-tint": "#565e74",
+                  "inverse-primary": "#bec6e0",
+                  "on-background": "#0b1c30",
+                  "on-error-container": "#93000a",
+                  "surface-container": "#e5eeff",
+                  "tertiary-fixed": "#85f8c4",
+                  "primary-fixed-dim": "#bec6e0",
+                  "on-tertiary-fixed": "#002114",
+                  "secondary-container": "#fdd488",
+                  "on-primary": "#ffffff",
+                  "surface-container-highest": "#d3e4fe",
+                  "outline-variant": "#c6c6cd",
+                  "surface-bright": "#f8f9ff",
+                  "on-error": "#ffffff",
+                  "on-tertiary": "#ffffff",
+                  "error": "#ba1a1a",
+                  "outline": "#76777d",
+                  "on-surface": "#0b1c30",
+                  "primary": "#000000",
+                  "on-surface-variant": "#45464d"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.125rem",
+                  "lg": "0.25rem",
+                  "xl": "0.5rem",
+                  "full": "0.75rem"
+          },
+          "spacing": {
+                  "xs": "0.5rem",
+                  "xl": "4rem",
+                  "gutter": "24px",
+                  "sm": "1rem",
+                  "base": "4px",
+                  "max-width": "1440px",
+                  "lg": "2.5rem",
+                  "md": "1.5rem",
+                  "margin-mobile": "16px",
+                  "margin-desktop": "48px"
+          },
+          "fontFamily": {
+                  "headline-md": [
+                          "Manrope"
+                  ],
+                  "headline-lg": [
+                          "Manrope"
+                  ],
+                  "headline-sm": [
+                          "Manrope"
+                  ],
+                  "body-sm": [
+                          "Manrope"
+                  ],
+                  "headline-lg-mobile": [
+                          "Manrope"
+                  ],
+                  "display-lg": [
+                          "Manrope"
+                  ],
+                  "body-md": [
+                          "Manrope"
+                  ],
+                  "label-md": [
+                          "Manrope"
+                  ],
+                  "body-lg": [
+                          "Manrope"
+                  ],
+                  "data-mono": [
+                          "Manrope"
+                  ]
+          },
+          "fontSize": {
+                  "headline-md": [
+                          "24px",
+                          {
+                                  "lineHeight": "1.3",
+                                  "letterSpacing": "-0.01em",
+                                  "fontWeight": "600"
+                          }
+                  ],
+                  "headline-lg": [
+                          "32px",
+                          {
+                                  "lineHeight": "1.2",
+                                  "letterSpacing": "-0.015em",
+                                  "fontWeight": "700"
+                          }
+                  ],
+                  "headline-sm": [
+                          "20px",
+                          {
+                                  "lineHeight": "1.4",
+                                  "letterSpacing": "-0.01em",
+                                  "fontWeight": "600"
+                          }
+                  ],
+                  "body-sm": [
+                          "14px",
+                          {
+                                  "lineHeight": "1.5",
+                                  "letterSpacing": "0",
+                                  "fontWeight": "400"
+                          }
+                  ],
+                  "headline-lg-mobile": [
+                          "28px",
+                          {
+                                  "lineHeight": "1.2",
+                                  "fontWeight": "700"
+                          }
+                  ],
+                  "display-lg": [
+                          "48px",
+                          {
+                                  "lineHeight": "1.1",
+                                  "letterSpacing": "-0.02em",
+                                  "fontWeight": "800"
+                          }
+                  ],
+                  "body-md": [
+                          "16px",
+                          {
+                                  "lineHeight": "1.5",
+                                  "letterSpacing": "-0.01em",
+                                  "fontWeight": "400"
+                          }
+                  ],
+                  "label-md": [
+                          "12px",
+                          {
+                                  "lineHeight": "1",
+                                  "letterSpacing": "0.02em",
+                                  "fontWeight": "600"
+                          }
+                  ],
+                  "body-lg": [
+                          "18px",
+                          {
+                                  "lineHeight": "1.6",
+                                  "letterSpacing": "-0.01em",
+                                  "fontWeight": "400"
+                          }
+                  ],
+                  "data-mono": [
+                          "14px",
+                          {
+                                  "lineHeight": "1",
+                                  "fontWeight": "500"
+                          }
+                  ]
+          }
+        },
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #F9F8F4;
+      color: #0F172A;
+    }
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom, 20px);
+    }
+    .text-gold {
+      color: #B5924D;
+    }
+    .bg-gold {
+      background-color: #B5924D;
+    }
+    .border-gold {
+      border-color: #B5924D;
+    }
+    .custom-shadow {
+      box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+    }
+  </style>
+</head>
+<body class="font-body-md text-body-md antialiased bg-[#F9F8F4] flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-[#F9F8F4] border-b border-slate-200/50 flex items-center justify-between px-margin-mobile h-16 w-full">
+<button aria-label="Go back" class="flex items-center justify-center p-2 text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span aria-hidden="true" class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="flex-1 flex justify-center">
+<img alt="THOKSALE Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XYGTl2h5TzojXSCWEWm_EBwYM0EgI_vJsdgslzgeam_tAnPdflOjyo010XjDw09A_5c8bmhNIGXnB9Qc3wLh-NdGQvYwWiuHQ-TNaOFgXYnYXAwhNZVjPJOCJdq9JOiKCWkbMQj5G7QQr_V2BXg1iqvadjMEQ3kv_pkNnglz4qcI4_-v8U5NWoRFuan4neyjmZivxaIKhDApmK6sixuMECB5NvCgJHZJV0uC7MqxVvr76hFMLShlkG0Z0w"/>
+</div>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-margin-mobile py-6 pb-32 mx-auto w-full">
+<!-- Product Hero -->
+<section class="mb-8 bg-white p-4 rounded-lg border border-slate-200/50 custom-shadow">
+<div class="h-[240px] w-full rounded bg-slate-50 mb-2 overflow-hidden border border-slate-100 flex items-center justify-center relative"><img alt="Industrial LED Flood Lights" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1X-j_d0ZmTKIxGtP8-f59aEVP8zih10QNBqfnQ0_2xZ6u7GE83gnMLBA56bsrScYslVef1bCxx6MNj_Fy6F8rsZJqJ6qvNMP8q10IhSec_ZIpBIfZlC3upU3MHQCL0c3IxPy37_bfh9WDQb2DmdgiVACl3-XeKf-CNoEZR7D42UjJpWSyiG023lK1R1cLOTovSWS65jkkeYVyLS2Lp7uJC8PiuKAVCZSe8Pssl3h29qUPh5RKame4vkwa2o"/></div>
+<div class="flex justify-end mb-4"><button class="text-gold font-label-md text-label-md flex items-center gap-1 hover:underline"><span class="material-symbols-outlined text-[16px]">photo_library</span> Manage images →</button></div><div class="flex items-start justify-between gap-4 mb-2">
+<h1 class="font-headline-md text-headline-md text-primary">18W Industrial LED Panel Light</h1>
+<span class="inline-flex items-center px-2 py-1 rounded bg-emerald-50 text-emerald-700 font-label-md text-label-md whitespace-nowrap">Active</span>
+</div>
+<p class="font-body-sm text-body-sm text-slate-500 mb-6">Category: Electrical &amp; Lighting / LED Lighting</p>
+<div class="flex flex-col gap-3">
+<button class="flex-1 bg-gold text-white px-4 py-3 rounded font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">edit</span> Edit product
+        </button>
+<button class="flex-1 bg-white text-primary border border-slate-300 px-4 py-3 rounded font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">inventory</span> Manage inventory
+        </button>
+</div>
+</section>
+<!-- Product Information -->
+<section class="mb-8">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-4 border-b border-slate-200/50 pb-2">Product Information</h2>
+<div class="bg-white rounded-lg border border-slate-200/50 overflow-hidden custom-shadow">
+<div class="flex items-center justify-between p-4 border-b border-slate-100">
+<span class="font-body-sm text-body-sm text-slate-500">Name</span>
+<span class="font-body-md text-body-md text-primary text-right">18W Industrial LED Panel Light</span>
+</div>
+<div class="flex items-center justify-between p-4 border-b border-slate-100 bg-slate-50/50">
+<span class="font-body-sm text-body-sm text-slate-500">SKU</span>
+<span class="font-data-mono text-data-mono text-primary">LED-18W-204</span>
+</div>
+<div class="flex flex-col gap-2 p-4 border-b border-slate-100">
+<span class="font-body-sm text-body-sm text-slate-500">Description</span>
+<p class="font-body-sm text-body-sm text-primary leading-relaxed">
+            18W commercial LED panel light suitable for offices, retail spaces and institutional installations. High efficiency and durable build quality for bulk institutional use.
+          </p>
+</div>
+</div>
+</section>
+<!-- Wholesale Terms -->
+<section class="mb-8">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-4 border-b border-slate-200/50 pb-2">Wholesale Terms</h2>
+<div class="grid grid-cols-1 gap-4">
+<div class="bg-white p-4 rounded-lg border border-slate-200/50 custom-shadow flex items-start gap-3">
+<div class="bg-slate-100 p-2 rounded-full flex-shrink-0 text-slate-600">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<span class="font-body-sm text-body-sm text-slate-500 block mb-1">Factory-gate base price</span>
+<span class="font-data-mono text-data-mono text-primary text-lg">₹620 / Piece</span>
+</div>
+</div>
+<div class="bg-white p-4 rounded-lg border border-slate-200/50 custom-shadow flex items-start gap-3">
+<div class="bg-slate-100 p-2 rounded-full flex-shrink-0 text-slate-600">
+<span class="material-symbols-outlined">conveyor_belt</span>
+</div>
+<div>
+<span class="font-body-sm text-body-sm text-slate-500 block mb-1">Minimum order quantity</span>
+<span class="font-data-mono text-data-mono text-primary text-lg">50 Pieces</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Inventory & Fulfilment -->
+<section class="mb-8"><div class="bg-white rounded-lg border border-slate-200/50 custom-shadow overflow-hidden"><div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50"><h3 class="font-headline-sm text-headline-sm text-primary flex items-center gap-2"><span class="material-symbols-outlined text-slate-400 text-[20px]">warehouse</span> Inventory</h3><span class="inline-flex items-center px-2 py-1 rounded bg-emerald-50 text-emerald-700 font-label-md text-label-md">In stock</span></div><div class="p-4 flex flex-col gap-4"><div><div class="flex gap-6 mb-4"><div><span class="font-body-sm text-body-sm text-slate-500 block mb-1">Available stock</span><span class="font-data-mono text-data-mono text-primary text-lg">500 Pieces</span></div><div><span class="font-body-sm text-body-sm text-slate-500 block mb-1">Low-stock threshold</span><span class="font-data-mono text-data-mono text-slate-500">50 Pieces</span></div></div><button class="text-gold font-label-md text-label-md flex items-center gap-1 hover:underline">Manage inventory <span class="material-symbols-outlined text-[16px]">arrow_forward</span></button></div></div></div></section><section class="mb-8"><div class="bg-white rounded-lg border border-slate-200/50 custom-shadow overflow-hidden"><div class="p-4 border-b border-slate-100 bg-slate-50/50"><h3 class="font-headline-sm text-headline-sm text-primary flex items-center gap-2"><span class="material-symbols-outlined text-slate-400 text-[20px]">local_shipping</span> Fulfilment</h3></div><div class="p-4"><div><span class="font-body-sm text-body-sm text-slate-500 block mb-1">Dispatch lead time</span><span class="font-body-md text-body-md text-primary">3–5 days</span></div></div></div></section>
+<!-- Metadata & Danger Zone -->
+<section class="mb-12">
+<div class="flex items-center justify-between font-label-md text-label-md text-slate-400 mb-6 px-2">
+<span>Created: 24 Aug 2026</span>
+<span>Last updated: 29 Aug 2026</span>
+</div>
+<div class="border border-red-200 rounded-lg p-4 bg-red-50/30 flex items-center justify-between">
+<div>
+<h4 class="font-body-md text-body-md text-red-700 font-semibold mb-1">Danger Zone</h4>
+<p class="font-body-sm text-body-sm text-red-600/80">Remove this product from active listings.</p>
+</div>
+<button class="font-label-md text-label-md text-red-600 hover:text-red-700 hover:underline px-4 py-2">
+           Deactivate product
+         </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-safe bg-white border-t border-slate-200/50 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-50 h-16">
+<button aria-label="Home" class="flex flex-col items-center justify-center text-slate-500 pt-2 hover:text-slate-700 transition-colors">
+<span aria-hidden="true" class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-label-md text-[10px]">Home</span>
+</button>
+<button aria-label="Orders" class="flex flex-col items-center justify-center text-slate-500 pt-2 hover:text-slate-700 transition-colors">
+<span aria-hidden="true" class="material-symbols-outlined mb-1" data-icon="package_2">package_2</span>
+<span class="font-label-md text-[10px]">Orders</span>
+</button>
+<button aria-current="page" aria-label="Products" class="flex flex-col items-center justify-center text-gold border-t-2 border-gold pt-2">
+<span aria-hidden="true" class="material-symbols-outlined mb-1" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-label-md text-[10px]">Products</span>
+</button>
+<button aria-label="RFQs" class="flex flex-col items-center justify-center text-slate-500 pt-2 hover:text-slate-700 transition-colors">
+<span aria-hidden="true" class="material-symbols-outlined mb-1" data-icon="request_quote">request_quote</span>
+<span class="font-label-md text-[10px]">RFQs</span>
+</button>
+<button aria-label="Account" class="flex flex-col items-center justify-center text-slate-500 pt-2 hover:text-slate-700 transition-colors">
+<span aria-hidden="true" class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-label-md text-[10px]">Account</span>
+</button>
+</nav>
+</body></html>

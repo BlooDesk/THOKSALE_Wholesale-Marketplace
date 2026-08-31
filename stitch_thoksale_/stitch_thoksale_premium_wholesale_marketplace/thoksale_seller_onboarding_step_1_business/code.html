@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>THOKSALE - Seller Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#d3e4fe",
+                        "on-surface": "#0b1c30",
+                        "tertiary-fixed-dim": "#68dba9",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "on-secondary-container": "#785a1b",
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary-container": "#fdd488",
+                        "inverse-surface": "#213145",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#131b2e",
+                        "on-surface-variant": "#45464d",
+                        "on-secondary-fixed": "#261900",
+                        "surface-container": "#e5eeff",
+                        "outline": "#76777d",
+                        "tertiary": "#000000",
+                        "on-background": "#0b1c30",
+                        "primary-fixed": "#dae2fd",
+                        "tertiary-container": "#002114",
+                        "background": "#f8f9ff",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-tertiary-container": "#069669",
+                        "outline-variant": "#c6c6cd",
+                        "secondary": "#775a1a",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#ffdea4",
+                        "surface-bright": "#f8f9ff",
+                        "surface-tint": "#565e74",
+                        "primary-container": "#131b2e",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "on-tertiary-fixed": "#002114",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "surface-dim": "#cbdbf5",
+                        "secondary-fixed-dim": "#e8c177",
+                        "tertiary-fixed": "#85f8c4",
+                        "inverse-primary": "#bec6e0",
+                        "surface-container-low": "#eff4ff",
+                        "on-primary-container": "#7c839b",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#000000",
+                        "error": "#ba1a1a",
+                        "brand-bg": "#F9F8F4",
+                        "brand-gold": "#B5924D",
+                        "brand-slate": "#0F172A"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "max-width": "1440px",
+                        "xs": "0.5rem",
+                        "base": "4px",
+                        "xl": "4rem",
+                        "sm": "1rem",
+                        "md": "1.5rem",
+                        "lg": "2.5rem",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "margin-desktop": "48px"
+                    },
+                    "fontFamily": {
+                        "data-mono": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "display-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "data-mono": ["14px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #F9F8F4; }
+        .input-outline { border: 1px solid #E2E8F0; transition: all 0.2s ease-in-out; }
+        .input-outline:focus { border-color: #B5924D; outline: none; box-shadow: 0 0 0 2px rgba(181, 146, 77, 0.2); }
+        .select-wrapper { position: relative; }
+        .select-wrapper::after {
+            content: 'expand_more';
+            font-family: 'Material Symbols Outlined';
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #64748B;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col text-on-surface antialiased">
+<!-- Header -->
+<header class="sticky top-0 bg-white/90 backdrop-blur-md border-b border-brand-slate/10 z-50 px-margin-mobile py-4 flex items-center justify-between">
+<button class="p-2 -ml-2 text-brand-slate hover:bg-surface-container-low rounded-full transition-colors flex items-center justify-center" type="button">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</button>
+<div class="h-6 w-auto flex-1 flex justify-center">
+<img alt="THOKSALE Logo" class="h-full w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6ieGucqjk-YdVPOvI3p0vgP5_d8SXM01OLZgmRHLvkNvRytiTjKY7B4XvcEDFL1bhxex4uu6VXc_WwdP8Ulkvq1CD-YvW-9zkYTcRHjDq0PwfM2C-Gi7cBhH1pbhMAMtWTP3Knq6Y7GfXQG2eghnzaJKxc80Dy6ABZOgJ1J2UUN7c6UAn03hDRe5XWJ2sPtMxUpYaXadg2hGFCJTd7BFSF_dzHiarsNl5nkb-v3iD8bvskk3oNfIuUaS5pGARD5cll3o"/>
+</div>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-margin-mobile py-lg pb-32 flex flex-col max-w-md mx-auto w-full">
+<!-- Progress Indicator -->
+<div class="mb-8">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md text-brand-gold uppercase tracking-widest">Step 1 of 4</span>
+<span class="font-label-md text-label-md text-brand-slate/60">Business Details</span>
+</div>
+<div class="flex gap-2">
+<div class="h-1 flex-1 bg-brand-gold rounded-full"></div>
+<div class="h-1 flex-1 bg-brand-slate/10 rounded-full"></div>
+<div class="h-1 flex-1 bg-brand-slate/10 rounded-full"></div>
+<div class="h-1 flex-1 bg-brand-slate/10 rounded-full"></div>
+</div>
+</div>
+<!-- Heading -->
+<div class="mb-8">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-brand-slate mb-3">Tell us about your business</h1>
+<p class="font-body-md text-body-md text-brand-slate/70">Set up your Seller account to start selling on THOKSALE.</p>
+</div>
+<!-- Form -->
+<form class="space-y-6 flex-1 flex flex-col">
+<!-- Legal Business Name -->
+<div class="bg-white p-5 rounded-xl border border-brand-slate/10 shadow-[0_4px_6px_-1px_rgba(15,23,42,0.02)]">
+<label class="block font-label-md text-label-md text-brand-slate mb-2" for="legalName">Legal Business Name</label>
+<input class="w-full bg-white rounded-lg px-4 py-3 font-body-md text-body-md text-brand-slate input-outline" id="legalName" placeholder="Enter your registered business name" type="text"/>
+</div>
+<!-- Display / Store Name -->
+<div class="bg-white p-5 rounded-xl border border-brand-slate/10 shadow-[0_4px_6px_-1px_rgba(15,23,42,0.02)]">
+<label class="block font-label-md text-label-md text-brand-slate mb-2" for="displayName">Display / Store Name</label>
+<input class="w-full bg-white rounded-lg px-4 py-3 font-body-md text-body-md text-brand-slate input-outline mb-2" id="displayName" placeholder="Enter the name buyers will see" type="text"/>
+<p class="font-body-sm text-body-sm text-brand-slate/60 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">info</span>
+                    You can update your display name later.
+                </p>
+</div>
+<!-- Business Type -->
+<div class="bg-white p-5 rounded-xl border border-brand-slate/10 shadow-[0_4px_6px_-1px_rgba(15,23,42,0.02)]">
+<label class="block font-label-md text-label-md text-brand-slate mb-2" for="businessType">Business Type</label>
+<div class="select-wrapper">
+<select class="w-full appearance-none bg-white rounded-lg px-4 py-3 pr-10 font-body-md text-body-md text-brand-slate input-outline" id="businessType">
+<option disabled="" selected="" value="">Select your primary business type</option>
+<option value="manufacturer">Manufacturer</option>
+<option value="factory">Factory</option>
+<option value="brand_owner">Brand Owner</option>
+<option value="wholesaler">Wholesaler</option>
+<option value="distributor">Distributor</option>
+<option value="importer">Importer</option>
+<option value="trader">Trader</option>
+<option value="other">Other</option>
+</select>
+</div>
+</div>
+<!-- GSTIN -->
+<div class="bg-white p-5 rounded-xl border border-brand-slate/10 shadow-[0_4px_6px_-1px_rgba(15,23,42,0.02)]">
+<div class="flex justify-between items-end mb-2">
+<label class="block font-label-md text-label-md text-brand-slate" for="gstin">GSTIN</label>
+<button class="font-label-md text-label-md text-brand-gold underline decoration-brand-gold/30 hover:decoration-brand-gold transition-colors" type="button">
+                        GSTIN not applicable to my business
+                    </button>
+</div>
+<input class="w-full bg-white rounded-lg px-4 py-3 font-data-mono text-data-mono text-brand-slate uppercase input-outline mb-2 tracking-wider" id="gstin" maxlength="15" placeholder="Enter 15-character GSTIN" type="text"/>
+<p class="font-body-sm text-body-sm text-brand-slate/60">Used for applicable business verification and tax workflows.</p>
+</div>
+</form>
+</main>
+<!-- Bottom Action Bar (Fixed) -->
+<div class="fixed bottom-0 left-0 right-0 bg-white border-t border-brand-slate/10 p-margin-mobile shadow-[0_-4px_6px_-1px_rgba(15,23,42,0.02)] z-50">
+<div class="max-w-md mx-auto w-full">
+<button class="w-full bg-brand-slate text-white font-label-md text-label-md uppercase tracking-wider py-4 rounded-lg hover:bg-brand-slate/90 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed" type="button">
+                Continue
+            </button>
+</div>
+</div>
+</body></html>

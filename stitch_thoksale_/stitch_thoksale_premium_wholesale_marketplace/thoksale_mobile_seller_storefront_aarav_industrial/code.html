@@ -1,0 +1,357 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Aarav Industrial Supplies Pvt. Ltd. | THOKSALE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "secondary-fixed-dim": "#e8c177",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#261900",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container": "#e5eeff",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#7c839b",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "secondary": "#775a1a",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#069669",
+                        "primary-fixed": "#dae2fd",
+                        "surface-dim": "#cbdbf5",
+                        "error": "#ba1a1a",
+                        "on-background": "#0b1c30",
+                        "on-secondary-container": "#785a1b",
+                        "outline-variant": "#c6c6cd",
+                        "primary-container": "#131b2e",
+                        "tertiary-fixed-dim": "#68dba9",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-bright": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "outline": "#76777d",
+                        "on-primary-fixed": "#131b2e",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "secondary-fixed": "#ffdea4",
+                        "surface-container-low": "#eff4ff",
+                        "primary": "#000000",
+                        "on-surface-variant": "#45464d",
+                        "tertiary-fixed": "#85f8c4",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#000000",
+                        "surface-tint": "#565e74",
+                        "background": "#f8f9ff",
+                        "inverse-surface": "#213145",
+                        "inverse-primary": "#bec6e0",
+                        "tertiary-container": "#002114",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-tertiary-fixed": "#002114",
+                        "surface": "#f8f9ff",
+                        "surface-container-high": "#dce9ff",
+                        "secondary-container": "#fdd488",
+                        // Custom Brand Colors based on prompt instructions
+                        "brand-canvas": "#F9F8F4",
+                        "brand-surface": "#FFFFFF",
+                        "brand-accent": "#B5924D",
+                        "brand-verified": "#10B981"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "max-width": "1440px",
+                        "xs": "0.5rem",
+                        "margin-desktop": "48px",
+                        "base": "4px",
+                        "sm": "1rem",
+                        "xl": "4rem",
+                        "lg": "2.5rem",
+                        "gutter": "24px",
+                        "md": "1.5rem"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Manrope"],
+                        "data-mono": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "data-mono": ["14px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #F9F8F4; } /* Enforce brand canvas */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Editorial Depth Shadows */
+        .shadow-editorial-soft { box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05); }
+    </style>
+</head>
+<body class="font-body-md text-on-surface antialiased bg-brand-canvas pb-[80px]">
+<!-- HEADER: Sticky, Back button, Logo, Search icon, Share icon -->
+<header class="sticky top-0 z-50 bg-brand-surface border-b border-outline-variant/15 flex justify-between items-center px-margin-mobile h-16 w-full shadow-sm">
+<button aria-label="Go back" class="text-on-surface hover:opacity-80 transition-opacity p-2 -ml-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</button>
+<div class="flex-1 flex justify-center items-center h-8">
+<img alt="THOKSALE Logo" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W5QhGGs4OOvhfxOvHHjMrKImJ-kaaU922QAh8HNGG5UqKcQQ0qe_oO3PR3PEGWvrnB4i9ORGDmWY-pBMxIzs7h5dCtaBj6oYZkOUP0n7J93NH0WD5x9Rvxqy5CTXAD7LfPnRZW6d8osm9E6VuP2i3AERRMO0wiNczkJ1p8_RFA2fr3ATJKxLC_PW877sVhazsj-meIyE1uCbhT179BsZXOKkwE47XzzkJLA99rwTmo88NRjyux2DKl__ST">
+</div>
+<div class="flex gap-2 -mr-2">
+<button aria-label="Search store" class="text-on-surface hover:opacity-80 transition-opacity p-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">search</span>
+</button>
+<button aria-label="Share store" class="text-on-surface hover:opacity-80 transition-opacity p-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">share</span>
+</button>
+</div>
+</header>
+<main class="md:hidden"> <!-- Mobile portrait layout only emphasis -->
+<!-- IDENTITY HERO -->
+<section class="bg-brand-surface border-b border-outline-variant/15 p-margin-mobile text-center">
+<div class="mx-auto w-20 h-20 bg-surface-container rounded-lg border border-outline-variant/15 flex items-center justify-center mb-4 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A minimalist, professional corporate logo for Aarav Industrial Supplies Pvt. Ltd. The logo features abstract geometric shapes in deep slate and subtle gold accents on a pristine white background. High-quality corporate branding suitable for a B2B manufacturer." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk-p6j7lPO-J8M3Oun3DwmbVnNbNVXGHd5_XEog5-3JVyKs6W9q56VkAot2s6d_RcJUuaDjM7g-wX9gmdGQb6zfw21brildajUuT1VEzCCZTv5_haTDQ4pNmnAXDxylgkbluPzu9yL3FuLxkg7vqOtEjKPj6Fi1KSzC9n7wZOW5StjSJmFWBzfbe3PDSqqbso8446ck8ydv6a3fweAXIzVNLlQDsZ_g0cvN9r_aiYDUIwF9NGP04MT2Q">
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-1">Aarav Industrial Supplies Pvt. Ltd.</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">Manufacturer &amp; Wholesale Supplier</p>
+<div class="flex items-center justify-center gap-2 mb-4">
+<span class="flex items-center gap-1 bg-[#ECFDF5] text-[#065F46] px-2 py-1 rounded font-label-md text-label-md">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+                    Verified
+                </span>
+<span class="text-on-surface-variant text-sm flex items-center gap-1 font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+                    Mumbai, Maharashtra
+                </span>
+</div>
+<!-- TRUST SIGNALS -->
+<div class="flex flex-wrap justify-center gap-x-4 gap-y-2 mb-6">
+<div class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[14px]">fact_check</span> GST Verified
+                </div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[14px]">business</span> Business Verified
+                </div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[14px]">history</span> 12+ Years in Business
+                </div>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[14px]">forum</span> 98% Response
+                </div>
+</div>
+<!-- ACTIONS -->
+<div class="flex gap-3">
+<button class="flex-1 bg-brand-accent text-white font-label-md text-label-md py-3 rounded-DEFAULT hover:opacity-90 transition-opacity shadow-sm">View Products</button>
+<button class="flex-1 bg-brand-surface text-[#0F172A] border border-[#0F172A] font-label-md text-label-md py-3 rounded-DEFAULT hover:bg-slate-50 transition-colors">Send Enquiry</button>
+</div>
+</section>
+<!-- STORE SEARCH & CATEGORIES -->
+<section class="bg-brand-surface mt-2 border-y border-outline-variant/15 p-margin-mobile pb-0">
+<div class="relative mb-4">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-brand-surface border border-slate-200 rounded-DEFAULT font-body-sm text-body-sm text-on-surface focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20 outline-none transition-all" placeholder="Search in this store" type="text">
+</div>
+<div class="flex overflow-x-auto hide-scrollbar gap-2 pb-4 -mx-margin-mobile px-margin-mobile snap-x">
+<button class="snap-start shrink-0 px-4 py-1.5 rounded-full border border-brand-accent text-brand-accent font-label-md text-label-md bg-brand-accent/5">All</button>
+<button class="snap-start shrink-0 px-4 py-1.5 rounded-full border border-outline-variant/30 text-on-surface-variant font-label-md text-label-md bg-brand-surface hover:bg-slate-50">Fasteners</button>
+<button class="snap-start shrink-0 px-4 py-1.5 rounded-full border border-outline-variant/30 text-on-surface-variant font-label-md text-label-md bg-brand-surface hover:bg-slate-50">Power Tools</button>
+<button class="snap-start shrink-0 px-4 py-1.5 rounded-full border border-outline-variant/30 text-on-surface-variant font-label-md text-label-md bg-brand-surface hover:bg-slate-50">Safety Gear</button>
+<button class="snap-start shrink-0 px-4 py-1.5 rounded-full border border-outline-variant/30 text-on-surface-variant font-label-md text-label-md bg-brand-surface hover:bg-slate-50">Electrical</button>
+</div>
+</section>
+<!-- FEATURED PRODUCTS (Horizontal Rail) -->
+<section class="mt-4 pl-margin-mobile py-2">
+<div class="flex justify-between items-end pr-margin-mobile mb-3">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Featured Products</h2>
+<a class="font-label-md text-label-md text-brand-accent" href="#">See all</a>
+</div>
+<div class="flex overflow-x-auto hide-scrollbar gap-4 pb-4 pr-margin-mobile snap-x">
+<!-- Product Card 1 -->
+<div class="snap-start shrink-0 w-48 bg-brand-surface border border-outline-variant/15 rounded-lg overflow-hidden flex flex-col group shadow-sm">
+<div class="aspect-square bg-surface-container relative">
+<img class="w-full h-full object-cover" data-alt="A high-quality, professional product shot of an Industrial Grade Drill. The drill is heavy-duty, metallic with yellow and black accents, resting on a clean, stark white background under studio lighting. Highly detailed, evoking a premium B2B manufacturing context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5Cu_yvDL-S1xkQRFS7f2iap_Z118SmnK1OJfoZLdw4t5MEAiXU3zcNR7y6nDeOYoL-rHQQU4Vz7LE1BrCJ44t0P4gjVAArOfXg9-TGFB1f9CuGGdEiwmLOTcjagcrOf-kDFoVFbadJlxiuaR2uO5vFK1j9k9OZJUyZ_tslV2QekTvvDQfGbhVTJtDA9XxQEAUS9vIx54dmjU_qYFrPgxgEW7KoiOhv4rJyJWJpRqN776IZGiD_qCXLg">
+</div>
+<div class="p-3 flex flex-col flex-1">
+<h3 class="font-body-sm text-body-sm text-on-surface font-medium line-clamp-2 mb-1">Industrial Grade Drill - Heavy Duty 800W</h3>
+<p class="font-data-mono text-data-mono text-on-surface mt-auto">From ₹3,500 / unit</p>
+<p class="font-label-md text-[10px] text-on-surface-variant mt-1">MOQ: 10</p>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="snap-start shrink-0 w-48 bg-brand-surface border border-outline-variant/15 rounded-lg overflow-hidden flex flex-col group shadow-sm">
+<div class="aspect-square bg-surface-container relative">
+<img class="w-full h-full object-cover" data-alt="A bulk pack of bright yellow safety helmets neatly stacked. Professional industrial photography on a pristine white background. Studio lighting highlights the durable texture of the high-density polyethylene material. Premium B2B safety gear presentation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOoZIEQlOf_97HQH95iQcKQUlwWCcSKJMiSR8a0PEk-2gBpPcHAYzmGo7TiRF5DmGx46vZR2EE_JV8ggEtMCnoOW7Jn7g_Bv2pu3Ai09c2SX7gI7_J2s4A2wi2aKVFnEAem4D1IDCNvEBaCHkFGG9C2KpxOuUgCUMdXZuRG6DlRx0YzhiOSYjUbi287W5UOHN6MdbXskor_8JPXl-83S1f1BZ0MKwZi31kJMIp9uQGRvAx6uqdnprnOQ">
+</div>
+<div class="p-3 flex flex-col flex-1">
+<h3 class="font-body-sm text-body-sm text-on-surface font-medium line-clamp-2 mb-1">Safety Helmet (Bulk Pack) - ISI Certified</h3>
+<p class="font-data-mono text-data-mono text-on-surface mt-auto">From ₹120 / unit</p>
+<p class="font-label-md text-[10px] text-on-surface-variant mt-1">MOQ: 100</p>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="snap-start shrink-0 w-48 bg-brand-surface border border-outline-variant/15 rounded-lg overflow-hidden flex flex-col group shadow-sm">
+<div class="aspect-square bg-surface-container relative">
+<img class="w-full h-full object-cover" data-alt="A close-up, high-resolution shot of a pile of heavy-duty industrial steel bolts. Macro photography on a seamless white background. Crisp metallic reflections and deep shadows, highlighting the precision engineering. High-end industrial hardware aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8dsnc5RjlHEQtnIUAYvrRADroauedvP-y24P9zbZVBj-8j3AgI0opl-X22pAT_FnDk0bdARA-1pwjUZ0OUnt66-XRm01bN01TGXMqxgQDNFkvhYf7IoLDPWIBTvMx_UoxLy0a8miUHagbLR6liAx_ANaxcp0LMly6g_iDzXKTaT_dcDAmaBrneiI5Uk32FaEpmxzVIxiIuipg7I1uHGDcMc0vJHzEIdGXyYna-ZzApILef08XVCSZfw">
+</div>
+<div class="p-3 flex flex-col flex-1">
+<h3 class="font-body-sm text-body-sm text-on-surface font-medium line-clamp-2 mb-1">Heavy Duty Steel Bolts - Hex Head M12</h3>
+<p class="font-data-mono text-data-mono text-on-surface mt-auto">From ₹15 / unit</p>
+<p class="font-label-md text-[10px] text-on-surface-variant mt-1">MOQ: 1000</p>
+</div>
+</div>
+</div>
+</section>
+<!-- PRODUCT GRID (All Products) -->
+<section class="px-margin-mobile pt-2 pb-6">
+<!-- SORT/FILTER Controls -->
+<div class="flex justify-between items-center mb-4 pb-2 border-b border-outline-variant/15">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">All Products</h2>
+<div class="flex gap-2">
+<button class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md px-2 py-1 rounded bg-brand-surface border border-outline-variant/20 shadow-sm">
+                        Sort <span class="material-symbols-outlined text-[16px]">swap_vert</span>
+</button>
+<button class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md px-2 py-1 rounded bg-brand-surface border border-outline-variant/20 shadow-sm">
+                        Filter <span class="material-symbols-outlined text-[16px]">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-2 gap-3 sm:gap-4">
+<!-- Grid Item 1 -->
+<div class="bg-brand-surface border border-outline-variant/15 rounded-lg overflow-hidden flex flex-col shadow-sm">
+<div class="aspect-square bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Professional studio shot of a red and black industrial angle grinder on a clean white background. High contrast, sharp details showing the robust build quality. Suitable for a premium B2B hardware catalog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKdSyuOiI2ZQknRb3Aq2rCuCf5xGhyZsi7wNvGKFHt66Ws8AjSf2Qe-T8n4QVhozSxYLZXZC3n-irSJpJ6G9WH_G5jNRRFOkUn5r3_3L3tNzmqFkPwIn8xJtu5NQ3oh2rVa7ckSRJ1S9KE0fH3RhHYo3ETcEm1KXqWlkZLSvAT-yx0iglhUceEAbWsKd-CJWGQEYaS36C75N-8n0MGDX6mcQaDnU4gq4mRpcekJTkn4Tb9KDA3X-3e_w">
+</div>
+<div class="p-2 sm:p-3 flex flex-col flex-1">
+<h3 class="font-body-sm text-body-sm text-on-surface line-clamp-2 mb-1 leading-tight">Professional Angle Grinder 4-inch</h3>
+<p class="font-data-mono text-[13px] text-on-surface mt-auto pt-2">₹1,850 / unit</p>
+<p class="font-label-md text-[10px] text-on-surface-variant mt-0.5">MOQ: 20</p>
+</div>
+</div>
+<!-- Grid Item 2 -->
+<div class="bg-brand-surface border border-outline-variant/15 rounded-lg overflow-hidden flex flex-col shadow-sm">
+<div class="aspect-square bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A bundle of heavy-duty industrial extension cords, thick black cables with industrial plugs. Photographed on a seamless white backdrop with crisp lighting. Demonstrates durability for construction or factory use." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3M1x-pHwMF-ePM2bLkJEYtGDR6P1r0XnPPWv64sR5xPKWtL0f3z8meEaWlqoU5jFgk2iHoYdJ1GsgJ71O5yQSXDqqze_1PuROZxOtNzuEYqV6K8g5TiPTH3_eAW2ZQ74pWbyG_PPiDkw-uk_ENx7v-fnLyjiQEzwyMuTTbnVcQEzpM4fqowdBtYJiZr3z9pTyFTkzsJQpJXB02VK0vekCLRMteThs1-rYUwTLKlJuQzW5DGzqRnFyGA">
+</div>
+<div class="p-2 sm:p-3 flex flex-col flex-1">
+<h3 class="font-body-sm text-body-sm text-on-surface line-clamp-2 mb-1 leading-tight">Industrial Extension Cable 15A 3-Core</h3>
+<p class="font-data-mono text-[13px] text-on-surface mt-auto pt-2">₹850 / unit</p>
+<p class="font-label-md text-[10px] text-on-surface-variant mt-0.5">MOQ: 50</p>
+</div>
+</div>
+<!-- Grid Item 3 -->
+<div class="bg-brand-surface border border-outline-variant/15 rounded-lg overflow-hidden flex flex-col shadow-sm">
+<div class="aspect-square bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A neatly arranged row of premium industrial safety goggles with clear lenses and black rubber frames. Studio lighting, pure white background. High-resolution commercial product photography highlighting eye protection gear." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8-6dnvhVF0kFOocfTr7uT6OYSURcFpnjXg3p0xNpPhI08OWZRxrl20-0sMlVQ3pdqBRmTJtnBGPHIr9bG7MDXc24xE-FOOsee1iHx8llLPSSH2qlNUqteX_t0QuV8de7jf14fViw_U3BvCPqMgLw_2upQADI1i7cbbgCiTHu-REhjouRYkmxS5O7fmz_-2-yKOiLFxlpSCKJWwf-1gZGvbn_gFtKqZvhelhEAqjHynnzGy_n8h0q1Kw">
+</div>
+<div class="p-2 sm:p-3 flex flex-col flex-1">
+<h3 class="font-body-sm text-body-sm text-on-surface line-clamp-2 mb-1 leading-tight">Clear Safety Goggles - Anti Scratch</h3>
+<p class="font-data-mono text-[13px] text-on-surface mt-auto pt-2">₹65 / unit</p>
+<p class="font-label-md text-[10px] text-on-surface-variant mt-0.5">MOQ: 200</p>
+</div>
+</div>
+<!-- Grid Item 4 -->
+<div class="bg-brand-surface border border-outline-variant/15 rounded-lg overflow-hidden flex flex-col shadow-sm">
+<div class="aspect-square bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Macro shot of a collection of stainless steel washers on a stark white background. Sharp focus on the metallic sheen and precise circular edges. Premium industrial fasteners presentation for a B2B catalog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkyeBIhzTIfyq93LGRecm2o9zXBbwINurh7Ac9a04m5644PGJga6Ql9S2INc436b9cNUfaYTv1Ttpqcq1G74i_Z7Rtz9Xm0qqpR7c5EXlOL4jO569wQNwo9A2lGgKD0DciXvktQVmMsUSYeWyuvD5gBlVAPmx58PLQV2hefW0aSFwqu5Oy-f6dsKdnrps7gE1yYdDI7WGd_RdMxHfIToGydhFU0gPVcaGRSOoaCgCScVgjzFuMLAIwbQ">
+</div>
+<div class="p-2 sm:p-3 flex flex-col flex-1">
+<h3 class="font-body-sm text-body-sm text-on-surface line-clamp-2 mb-1 leading-tight">SS Washers Flat M10 Grade 304</h3>
+<p class="font-data-mono text-[13px] text-on-surface mt-auto pt-2">₹1.50 / unit</p>
+<p class="font-label-md text-[10px] text-on-surface-variant mt-0.5">MOQ: 5000</p>
+</div>
+</div>
+</div>
+<div class="mt-4 flex justify-center">
+<button class="font-label-md text-label-md text-brand-accent px-6 py-2 border border-brand-accent rounded-DEFAULT bg-brand-surface hover:bg-slate-50 transition-colors">Load More</button>
+</div>
+</section>
+<!-- ABOUT (Collapsible) -->
+<section class="bg-brand-surface border-y border-outline-variant/15 p-margin-mobile mb-4">
+<details class="group">
+<summary class="flex justify-between items-center cursor-pointer list-none font-headline-sm text-headline-sm text-on-surface">
+                    About the Supplier
+                    <span class="material-symbols-outlined transition group-open:rotate-180">expand_more</span>
+</summary>
+<div class="mt-3 text-on-surface-variant font-body-sm text-body-sm"><p class="mb-2"><strong class="text-on-surface">Business Type:</strong> Manufacturer, Wholesale Supplier</p><p class="mb-4">Established in 2012, Aarav Industrial Supplies Pvt. Ltd. is a manufacturer and wholesale supplier of high-grade industrial tools, safety equipment, and fasteners. We cater to large-scale construction, manufacturing, and infrastructure projects across India, ensuring quality and competitive bulk pricing.</p><button class="flex items-center gap-1 text-brand-accent font-label-md text-label-md hover:opacity-80 transition-opacity">View Company Details <span class="material-symbols-outlined text-[18px]">chevron_right</span></button></div>
+</details>
+</section>
+<!-- ENQUIRY CTA -->
+<section class="px-margin-mobile mb-8">
+<div class="bg-surface-container-low border border-brand-accent/20 rounded-lg p-5 text-center shadow-editorial-soft">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Need bulk quantities?</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Share your bulk or custom requirements with this supplier through THOKSALE.</p>
+<button class="w-full bg-[#0F172A] text-white font-label-md text-label-md py-3 rounded-DEFAULT hover:opacity-90 transition-opacity">Send Enquiry</button>
+</div>
+</section>
+</main>
+<!-- BOTTOM NAV: "Home", "Categories", "Cart", "Orders", "Account" -->
+<!-- Note: While viewing a seller storefront, the user is likely 'Browsing/Home' or we default to Home as the base state if not in cart/orders -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe border-t border-outline-variant/15 bg-surface dark:bg-surface-container-highest shadow-sm md:hidden">
+<div class="flex justify-around items-center h-16 w-full px-xs">
+<!-- Home (Active) -->
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed font-semibold hover:bg-surface-container-low dark:hover:bg-surface-variant active:scale-90 transition-transform duration-200 p-1 w-16 rounded-lg">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</button>
+<!-- Categories -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low dark:hover:bg-surface-variant active:scale-90 transition-transform duration-200 p-1 w-16 rounded-lg">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">grid_view</span>
+<span class="font-label-md text-label-md">Categories</span>
+</button>
+<!-- Cart -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low dark:hover:bg-surface-variant active:scale-90 transition-transform duration-200 p-1 w-16 rounded-lg">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">shopping_cart</span>
+<span class="font-label-md text-label-md">Cart</span>
+</button>
+<!-- Orders -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low dark:hover:bg-surface-variant active:scale-90 transition-transform duration-200 p-1 w-16 rounded-lg">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</button>
+<!-- Account -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low dark:hover:bg-surface-variant active:scale-90 transition-transform duration-200 p-1 w-16 rounded-lg">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">person</span>
+<span class="font-label-md text-label-md">Account</span>
+</button>
+</div>
+</nav>
+<!-- Support for safe area inset on modern mobile browsers -->
+<style>
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+    </style>
+
+
+</body></html>

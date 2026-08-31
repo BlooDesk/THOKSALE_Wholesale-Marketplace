@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>THOKSALE - Mobile Buyer Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#dae2fd",
+                      "on-secondary-fixed": "#261900",
+                      "on-tertiary-container": "#069669",
+                      "primary-fixed-dim": "#bec6e0",
+                      "tertiary": "#000000",
+                      "secondary-fixed-dim": "#e8c177",
+                      "on-error-container": "#93000a",
+                      "error": "#ba1a1a",
+                      "inverse-surface": "#213145",
+                      "on-tertiary-fixed": "#002114",
+                      "surface-variant": "#d3e4fe",
+                      "on-surface": "#0b1c30",
+                      "on-primary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "background": "#f8f9ff",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "on-secondary-container": "#785a1b",
+                      "inverse-primary": "#bec6e0",
+                      "error-container": "#ffdad6",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-container": "#fdd488",
+                      "secondary-fixed": "#ffdea4",
+                      "on-background": "#0b1c30",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed-dim": "#68dba9",
+                      "surface-container": "#e5eeff",
+                      "tertiary-container": "#002114",
+                      "surface-bright": "#f8f9ff",
+                      "on-secondary": "#ffffff",
+                      "surface-dim": "#cbdbf5",
+                      "tertiary-fixed": "#85f8c4",
+                      "primary": "#000000",
+                      "inverse-on-surface": "#eaf1ff",
+                      "surface-container-low": "#eff4ff",
+                      "primary-container": "#131b2e",
+                      "surface-container-highest": "#d3e4fe",
+                      "outline-variant": "#c6c6cd",
+                      "secondary": "#775a1a",
+                      "surface-container-high": "#dce9ff",
+                      "on-secondary-fixed-variant": "#5d4201",
+                      "on-primary-fixed": "#131b2e",
+                      "outline": "#76777d",
+                      "on-surface-variant": "#45464d",
+                      "on-tertiary-fixed-variant": "#005137",
+                      "surface-tint": "#565e74",
+                      "surface": "#f8f9ff",
+                      "on-primary-container": "#7c839b",
+                      "primary-text": "#0F172A",
+                      "muted-text": "#64748B"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "sm": "1rem",
+                      "margin-mobile": "16px",
+                      "xl": "4rem",
+                      "md": "1.5rem",
+                      "xs": "0.5rem",
+                      "margin-desktop": "48px",
+                      "lg": "2.5rem",
+                      "gutter": "24px",
+                      "base": "4px",
+                      "max-width": "1440px"
+              },
+              "fontFamily": {
+                      "headline-sm": [
+                              "Manrope"
+                      ],
+                      "display-lg": [
+                              "Manrope"
+                      ],
+                      "headline-md": [
+                              "Manrope"
+                      ],
+                      "body-md": [
+                              "Manrope"
+                      ],
+                      "headline-lg-mobile": [
+                              "Manrope"
+                      ],
+                      "headline-lg": [
+                              "Manrope"
+                      ],
+                      "data-mono": [
+                              "Manrope"
+                      ],
+                      "body-sm": [
+                              "Manrope"
+                      ],
+                      "label-md": [
+                              "Manrope"
+                      ],
+                      "body-lg": [
+                              "Manrope"
+                      ]
+              },
+              "fontSize": {
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.015em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "data-mono": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body { background-color: #F9F8F4; }
+        .bg-white-surface { background-color: #FFFFFF; }
+        .text-gold { color: #B5924D; }
+        .bg-gold { background-color: #B5924D; }
+        .border-gold { border-color: #B5924D; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="font-body-md text-primary-text pb-20 md:pb-0">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white-surface flex items-center justify-between px-margin-mobile h-16 w-full border-b border-gray-200 md:hidden">
+<div class="flex flex-col">
+<img alt="THOKSALE Logo" class="h-6 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB5yysZMsYqJ9YLkRQv-hTTcRveKqjoLRy02-VWksfwPXssvGIQPiScuPoBRK9bpnPTFN2VjZOkkpzh5mQ52gTwOyiZ7TLV-EEbrjRRhZILE_Tnd1qWmeisF7qoHeGesX8lt48xTnobJzYNO78waKXGiD1u_G3mkhs4vVTsUEcsn2XEGek8JF2Ozz40JtP18svW37OiRKhpc8wdCqmO3ntCb6o6rmmMJIBvw7T-mO3r9yFSHtJukLtE13m_MUM_xNwSHY"/>
+<div class="flex items-center mt-1 text-muted-text">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span class="font-label-md text-label-md ml-1">Deliver to Pune</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-text hover:bg-gray-100 transition-colors active:opacity-80 cursor-pointer rounded-full p-1">notifications</span>
+<div class="relative cursor-pointer hover:bg-gray-100 transition-colors active:opacity-80 rounded-full p-1">
+<span class="material-symbols-outlined text-primary-text">shopping_cart</span>
+<span class="absolute top-0 right-0 bg-gold text-white font-label-md text-[10px] rounded-full h-4 w-4 flex items-center justify-center border border-white-surface">3</span>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-20 px-margin-mobile md:px-margin-desktop md:max-w-max-width mx-auto pb-24">
+<!-- Search Bar -->
+<div class="relative mb-6">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-text">search</span>
+<input class="w-full pl-10 pr-10 py-3 bg-white-surface border border-gray-200 rounded-lg font-body-sm text-primary-text focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors shadow-sm" placeholder="Search products, categories or suppliers" type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-text cursor-pointer hover:text-gold transition-colors">photo_camera</span>
+</div>
+<!-- Category Shortcuts -->
+<div class="flex overflow-x-auto gap-4 mb-8 hide-scrollbar pb-2">
+<div class="flex flex-col items-center min-w-[72px] cursor-pointer group">
+<div class="w-14 h-14 rounded-full bg-white-surface border border-gray-200 flex items-center justify-center mb-1 shadow-sm group-hover:border-gold transition-colors">
+<span class="material-symbols-outlined text-primary-text group-hover:text-gold transition-colors">devices</span>
+</div>
+<span class="font-label-md text-[11px] text-center text-primary-text leading-tight mt-1">Electronics</span>
+</div>
+<div class="flex flex-col items-center min-w-[72px] cursor-pointer group">
+<div class="w-14 h-14 rounded-full bg-white-surface border border-gray-200 flex items-center justify-center mb-1 shadow-sm group-hover:border-gold transition-colors">
+<span class="material-symbols-outlined text-primary-text group-hover:text-gold transition-colors">checkroom</span>
+</div>
+<span class="font-label-md text-[11px] text-center text-primary-text leading-tight mt-1">Textiles</span>
+</div>
+<div class="flex flex-col items-center min-w-[72px] cursor-pointer group">
+<div class="w-14 h-14 rounded-full bg-white-surface border border-gray-200 flex items-center justify-center mb-1 shadow-sm group-hover:border-gold transition-colors">
+<span class="material-symbols-outlined text-primary-text group-hover:text-gold transition-colors">local_mall</span>
+</div>
+<span class="font-label-md text-[11px] text-center text-primary-text leading-tight mt-1">FMCG</span>
+</div>
+<div class="flex flex-col items-center min-w-[72px] cursor-pointer group">
+<div class="w-14 h-14 rounded-full bg-white-surface border border-gray-200 flex items-center justify-center mb-1 shadow-sm group-hover:border-gold transition-colors">
+<span class="material-symbols-outlined text-primary-text group-hover:text-gold transition-colors">factory</span>
+</div>
+<span class="font-label-md text-[11px] text-center text-primary-text leading-tight mt-1">Industrial</span>
+</div>
+<div class="flex flex-col items-center min-w-[72px] cursor-pointer group">
+<div class="w-14 h-14 rounded-full bg-white-surface border border-gray-200 flex items-center justify-center mb-1 shadow-sm group-hover:border-gold transition-colors">
+<span class="material-symbols-outlined text-primary-text group-hover:text-gold transition-colors">construction</span>
+</div>
+<span class="font-label-md text-[11px] text-center text-primary-text leading-tight mt-1">Construction</span>
+</div>
+<div class="flex flex-col items-center min-w-[72px] cursor-pointer group">
+<div class="w-14 h-14 rounded-full bg-white-surface border border-gray-200 flex items-center justify-center mb-1 shadow-sm group-hover:border-gold transition-colors">
+<span class="material-symbols-outlined text-primary-text group-hover:text-gold transition-colors">inventory_2</span>
+</div>
+<span class="font-label-md text-[11px] text-center text-primary-text leading-tight mt-1">Packaging</span>
+</div>
+<div class="flex flex-col items-center min-w-[72px] cursor-pointer group">
+<div class="w-14 h-14 rounded-full bg-white-surface border border-gray-200 flex items-center justify-center mb-1 shadow-sm group-hover:border-gold transition-colors">
+<span class="material-symbols-outlined text-primary-text group-hover:text-gold transition-colors">precision_manufacturing</span>
+</div>
+<span class="font-label-md text-[11px] text-center text-primary-text leading-tight mt-1">Machinery</span>
+</div>
+<div class="flex flex-col items-center min-w-[72px] cursor-pointer group">
+<div class="w-14 h-14 rounded-full bg-white-surface border border-gray-200 flex items-center justify-center mb-1 shadow-sm group-hover:border-gold transition-colors">
+<span class="material-symbols-outlined text-primary-text group-hover:text-gold transition-colors">directions_car</span>
+</div>
+<span class="font-label-md text-[11px] text-center text-primary-text leading-tight mt-1">Auto Parts</span>
+</div>
+<div class="flex flex-col items-center min-w-[72px] cursor-pointer group">
+<div class="w-14 h-14 rounded-full bg-white-surface border border-gray-200 flex items-center justify-center mb-1 shadow-sm group-hover:border-gold transition-colors">
+<span class="material-symbols-outlined text-primary-text group-hover:text-gold transition-colors">category</span>
+</div>
+<span class="font-label-md text-[11px] text-center text-primary-text leading-tight mt-1">All Categories</span>
+</div>
+</div>
+<!-- Shop by Industry -->
+<section class="mb-8">
+<div class="flex justify-between items-center mb-4">
+<h2 class="font-headline-sm text-headline-sm text-primary-text">Shop by Industry</h2>
+<a class="text-gold font-label-md text-label-md hover:underline" href="#">View all</a>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-white-surface rounded-xl p-3 border border-gray-200 shadow-sm flex items-center gap-3 cursor-pointer active:scale-95 transition-transform">
+<div class="bg-gray-100 rounded-lg p-2">
+<span class="material-symbols-outlined text-primary-text">local_hospital</span>
+</div>
+<span class="font-label-md text-sm text-primary-text">Medical Supplies</span>
+</div>
+<div class="bg-white-surface rounded-xl p-3 border border-gray-200 shadow-sm flex items-center gap-3 cursor-pointer active:scale-95 transition-transform">
+<div class="bg-gray-100 rounded-lg p-2">
+<span class="material-symbols-outlined text-primary-text">agriculture</span>
+</div>
+<span class="font-label-md text-sm text-primary-text">Agriculture</span>
+</div>
+<div class="bg-white-surface rounded-xl p-3 border border-gray-200 shadow-sm flex items-center gap-3 cursor-pointer active:scale-95 transition-transform">
+<div class="bg-gray-100 rounded-lg p-2">
+<span class="material-symbols-outlined text-primary-text">restaurant</span>
+</div>
+<span class="font-label-md text-sm text-primary-text">Food &amp; Beverage</span>
+</div>
+<div class="bg-white-surface rounded-xl p-3 border border-gray-200 shadow-sm flex items-center gap-3 cursor-pointer active:scale-95 transition-transform">
+<div class="bg-gray-100 rounded-lg p-2">
+<span class="material-symbols-outlined text-primary-text">science</span>
+</div>
+<span class="font-label-md text-sm text-primary-text">Chemicals</span>
+</div>
+</div>
+</section>
+<!-- Popular in Wholesale -->
+<section class="mb-8">
+<div class="flex justify-between items-center mb-4">
+<h2 class="font-headline-sm text-headline-sm text-primary-text">Popular in Wholesale</h2>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Product Card 1 -->
+<div class="bg-white-surface rounded-xl overflow-hidden border border-gray-200 shadow-sm flex flex-col cursor-pointer hover:border-gold transition-colors">
+<div class="aspect-square bg-gray-100 w-full relative">
+<!-- Placeholder for Image -->
+<div class="absolute inset-0 flex items-center justify-center text-muted-text">
+<span class="material-symbols-outlined text-4xl">inventory_2</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<h3 class="font-label-md text-sm text-primary-text line-clamp-2 mb-1">Industrial Grade Safety Helmets - ISI Certified</h3>
+<div class="mt-auto">
+<p class="font-headline-sm text-lg text-primary-text">From ₹245 <span class="text-xs text-muted-text font-normal">/ piece</span></p>
+<p class="font-label-md text-[11px] text-muted-text mt-1">MOQ: 50 pieces</p>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-[14px] text-gold">verified</span>
+<p class="font-label-md text-[10px] text-muted-text truncate">SafeGuard Industries</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-white-surface rounded-xl overflow-hidden border border-gray-200 shadow-sm flex flex-col cursor-pointer hover:border-gold transition-colors">
+<div class="aspect-square bg-gray-100 w-full relative">
+<div class="absolute inset-0 flex items-center justify-center text-muted-text">
+<span class="material-symbols-outlined text-4xl">cable</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<h3 class="font-label-md text-sm text-primary-text line-clamp-2 mb-1">Copper Wire PVC Insulated 1.5 sq mm Roll</h3>
+<div class="mt-auto">
+<p class="font-headline-sm text-lg text-primary-text">From ₹850 <span class="text-xs text-muted-text font-normal">/ roll</span></p>
+<p class="font-label-md text-[11px] text-muted-text mt-1">MOQ: 20 rolls</p>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-[14px] text-gold">verified</span>
+<p class="font-label-md text-[10px] text-muted-text truncate">ElectroCables Pvt Ltd</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- RFQ Promotion -->
+<section class="mb-8">
+<div class="bg-white-surface rounded-xl p-5 border border-gray-200 shadow-sm flex flex-col md:flex-row items-center gap-4 relative overflow-hidden">
+<div class="absolute right-0 top-0 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-9xl">request_quote</span>
+</div>
+<div class="flex-1 relative z-10">
+<h3 class="font-headline-sm text-primary-text mb-2">Need something specific?</h3>
+<p class="font-body-sm text-muted-text mb-4">Send a requirement and receive supplier responses quickly.</p>
+<button class="bg-gold text-white font-label-md py-2 px-6 rounded-lg w-full md:w-auto shadow-sm active:scale-95 transition-transform">
+                Post an RFQ
+            </button>
+</div>
+</div>
+</section>
+<!-- Recently Viewed -->
+<section class="mb-8">
+<h2 class="font-headline-sm text-headline-sm text-primary-text mb-4">Recently Viewed</h2>
+<div class="flex overflow-x-auto gap-3 hide-scrollbar pb-2">
+<div class="min-w-[100px] bg-white-surface rounded-lg border border-gray-200 shadow-sm p-2 cursor-pointer">
+<div class="aspect-square bg-gray-100 rounded w-full relative mb-2 flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl text-muted-text">bolt</span>
+</div>
+<p class="font-label-md text-[10px] text-primary-text truncate">AC Motors</p>
+</div>
+<div class="min-w-[100px] bg-white-surface rounded-lg border border-gray-200 shadow-sm p-2 cursor-pointer">
+<div class="aspect-square bg-gray-100 rounded w-full relative mb-2 flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl text-muted-text">conveyor_belt</span>
+</div>
+<p class="font-label-md text-[10px] text-primary-text truncate">Conveyor Belts</p>
+</div>
+<div class="min-w-[100px] bg-white-surface rounded-lg border border-gray-200 shadow-sm p-2 cursor-pointer">
+<div class="aspect-square bg-gray-100 rounded w-full relative mb-2 flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl text-muted-text">pallet</span>
+</div>
+<p class="font-label-md text-[10px] text-primary-text truncate">Wooden Pallets</p>
+</div>
+<div class="min-w-[100px] bg-white-surface rounded-lg border border-gray-200 shadow-sm p-2 cursor-pointer">
+<div class="aspect-square bg-gray-100 rounded w-full relative mb-2 flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl text-muted-text">science</span>
+</div>
+<p class="font-label-md text-[10px] text-primary-text truncate">Industrial Solvents</p>
+</div>
+</div>
+</section>
+<!-- Explore Suppliers -->
+<section class="mb-8">
+<div class="flex justify-between items-center mb-4">
+<h2 class="font-headline-sm text-headline-sm text-primary-text">Explore Suppliers</h2>
+<a class="text-gold font-label-md text-label-md hover:underline" href="#">View all</a>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Supplier 1 -->
+<div class="bg-white-surface rounded-xl p-4 border border-gray-200 shadow-sm flex items-center gap-4 cursor-pointer hover:border-gold transition-colors">
+<div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 text-xl font-bold text-muted-text">
+                R
+            </div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-1 mb-1">
+<h3 class="font-label-md text-sm text-primary-text truncate">Rajeshwati Textiles Pvt Ltd</h3>
+<span class="material-symbols-outlined text-[16px] text-gold flex-shrink-0">verified</span>
+</div>
+<p class="font-body-sm text-[12px] text-muted-text truncate">Textiles &amp; Garments • Mumbai, MH</p>
+<p class="font-label-md text-[11px] text-primary-text mt-1">150+ Products</p>
+</div>
+</div>
+<!-- Supplier 2 -->
+<div class="bg-white-surface rounded-xl p-4 border border-gray-200 shadow-sm flex items-center gap-4 cursor-pointer hover:border-gold transition-colors">
+<div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 text-xl font-bold text-muted-text">
+                B
+            </div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-1 mb-1">
+<h3 class="font-label-md text-sm text-primary-text truncate">Bharat Tools &amp; Hardware</h3>
+</div>
+<p class="font-body-sm text-[12px] text-muted-text truncate">Industrial Tools • Ludhiana, PB</p>
+<p class="font-label-md text-[11px] text-primary-text mt-1">85 Products</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 shadow-[0_-1px_3px_rgba(0,0,0,0.05)] flex justify-around items-center h-16 w-full bg-white-surface px-2 border-t border-gray-200 md:hidden pb-safe">
+<div class="flex flex-col items-center justify-center text-gold font-semibold active:scale-95 duration-150 cursor-pointer w-1/5">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-md text-[10px] mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-muted-text hover:text-primary-text transition-all active:scale-95 duration-150 cursor-pointer w-1/5">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-md text-[10px] mt-1">Categories</span>
+</div>
+<div class="flex flex-col items-center justify-center text-muted-text hover:text-primary-text transition-all active:scale-95 duration-150 cursor-pointer w-1/5">
+<span class="material-symbols-outlined">request_quote</span>
+<span class="font-label-md text-[10px] mt-1">RFQ</span>
+</div>
+<div class="flex flex-col items-center justify-center text-muted-text hover:text-primary-text transition-all active:scale-95 duration-150 cursor-pointer w-1/5">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-[10px] mt-1">Orders</span>
+</div>
+<div class="flex flex-col items-center justify-center text-muted-text hover:text-primary-text transition-all active:scale-95 duration-150 cursor-pointer w-1/5">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-[10px] mt-1">Account</span>
+</div>
+</nav>
+</body></html>

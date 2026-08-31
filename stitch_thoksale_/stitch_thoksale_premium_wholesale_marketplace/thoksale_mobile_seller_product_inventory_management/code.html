@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Inventory - THOKSALE Seller</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#565e74",
+                        "surface-dim": "#cbdbf5",
+                        "secondary-fixed": "#ffdea4",
+                        "secondary-container": "#fdd488",
+                        "primary": "#000000",
+                        "on-surface": "#0b1c30",
+                        "secondary": "#775a1a",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f8f9ff",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "on-surface-variant": "#45464d",
+                        "on-secondary-container": "#785a1b",
+                        "on-background": "#0b1c30",
+                        "tertiary-fixed-dim": "#68dba9",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#002114",
+                        "on-tertiary-fixed": "#002114",
+                        "surface": "#f8f9ff",
+                        "outline-variant": "#c6c6cd",
+                        "on-primary-container": "#7c839b",
+                        "outline": "#76777d",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-primary-fixed": "#131b2e",
+                        "tertiary": "#000000",
+                        "on-tertiary-container": "#069669",
+                        "surface-container-high": "#dce9ff",
+                        "surface-container": "#e5eeff",
+                        "surface-bright": "#f8f9ff",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-surface": "#213145",
+                        "tertiary-fixed": "#85f8c4",
+                        "secondary-fixed-dim": "#e8c177",
+                        "primary-container": "#131b2e",
+                        "on-secondary-fixed": "#261900",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "primary-fixed": "#dae2fd",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#bec6e0",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#005137"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "margin-mobile": "16px",
+                        "sm": "1rem",
+                        "gutter": "24px",
+                        "xl": "4rem",
+                        "margin-desktop": "48px",
+                        "xs": "0.5rem",
+                        "md": "1.5rem",
+                        "max-width": "1440px",
+                        "lg": "2.5rem",
+                        "base": "4px"
+                    },
+                    fontFamily: {
+                        "display-lg": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "data-mono": ["Manrope"],
+                        "body-sm": ["Manrope"]
+                    },
+                    fontSize: {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-sm": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "data-mono": ["14px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#F9F8F4] text-on-surface antialiased font-body-md pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-container-high border-b border-outline-variant/15 flex items-center justify-between px-margin-mobile h-16 max-w-max-width mx-auto">
+<button class="w-10 h-10 flex items-center justify-center text-primary dark:text-on-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors rounded-full active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="flex-1 flex justify-center">
+<img alt="THOKSALE Logo" class="h-8 object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WGDtV9YI3c8Ml6zV-z-67WVSiVPQB9FPdcSAgXfPhvtprRhGkQBQn_LUWqJCz_5ovQJV3tzG-Ce0hmwsnn9O_w9J2bCZdCvW0XF3Nud2RaongliiYVO_QPqOeBF5kSm2RGH9JnTzv-6O7VJJxXhz1XOUh-ENJ4vQWDH1eD4P99MdU-a3MBW29Ffyg3Kfr7jBWqyxmn6-azUFL9AjnJPzA8bZ5C-T1zOFTRH1jvU8jOon0reJqMQIGNaiyb"/>
+</div>
+<div class="w-10 h-10 flex items-center justify-center">
+<span class="material-symbols-outlined text-transparent select-none" data-icon="arrow_back">arrow_back</span>
+</div>
+</header>
+<main class="pt-20 px-margin-mobile space-y-6">
+<!-- Header Section -->
+<section>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">Inventory</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage stock levels for this product.</p>
+</section>
+<!-- Product Context Card -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded p-sm shadow-sm">
+<div class="flex flex-col gap-1">
+<p class="font-headline-sm text-headline-sm text-on-surface">18W Industrial LED Panel Light</p>
+<div class="flex items-center gap-4 mt-2">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant">SKU</span>
+<span class="font-data-mono text-data-mono text-on-surface mt-1">LED-18W-204</span>
+</div>
+<div class="w-px h-6 bg-outline-variant/30"></div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant">Unit</span>
+<span class="font-body-sm text-body-sm text-on-surface mt-1">Piece</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Current Inventory Summary -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded p-sm shadow-sm flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-label-md text-label-md text-on-surface-variant mb-1 uppercase tracking-wider">Available Stock</h2>
+<div class="flex items-baseline gap-1">
+<span class="font-display-lg text-display-lg text-on-surface">500</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Pieces</span>
+</div>
+</div>
+<div class="bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0] px-2 py-1 rounded-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-md text-label-md">In stock</span>
+</div>
+</div>
+<div class="border-t border-outline-variant/20 pt-4 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Low-stock threshold: <span class="font-data-mono text-data-mono text-on-surface">50</span> Pieces</span>
+</div>
+</div>
+</main>
+<!-- Bottom Nav Placeholder (using standard shared component classes to visually represent it, though active state logic says it should be hidden on deep transactional pages. Leaving it in as requested in prompt structure.) -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface dark:bg-surface-container-highest border-t border-outline-variant/15 shadow-sm fixed bottom-0 left-0 w-full flex justify-around items-center px-2 py-3 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline font-medium hover:text-secondary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline font-medium hover:text-secondary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-label-md text-label-md mt-1">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed font-semibold active:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-label-md text-label-md mt-1">Products</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline font-medium hover:text-secondary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="request_quote">request_quote</span>
+<span class="font-label-md text-label-md mt-1">RFQs</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline font-medium hover:text-secondary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md mt-1">Account</span>
+</a>
+</nav>
+</body></html>

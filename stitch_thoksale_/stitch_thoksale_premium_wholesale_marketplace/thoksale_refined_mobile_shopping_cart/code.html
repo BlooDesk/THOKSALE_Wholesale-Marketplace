@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>THOKSALE - Cart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#002114",
+                      "outline": "#76777d",
+                      "on-surface-variant": "#45464d",
+                      "background": "#f8f9ff",
+                      "surface": "#f8f9ff",
+                      "surface-dim": "#cbdbf5",
+                      "secondary-fixed": "#ffdea4",
+                      "secondary-fixed-dim": "#e8c177",
+                      "on-primary": "#ffffff",
+                      "on-surface": "#0b1c30",
+                      "primary-fixed": "#dae2fd",
+                      "on-secondary-fixed-variant": "#5d4201",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-primary-fixed": "#131b2e",
+                      "on-tertiary-container": "#069669",
+                      "outline-variant": "#c6c6cd",
+                      "tertiary": "#000000",
+                      "primary": "#000000",
+                      "tertiary-fixed-dim": "#68dba9",
+                      "tertiary-container": "#002114",
+                      "primary-fixed-dim": "#bec6e0",
+                      "surface-container-high": "#dce9ff",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "primary-container": "#131b2e",
+                      "surface-container-low": "#eff4ff",
+                      "surface-container-highest": "#d3e4fe",
+                      "surface-tint": "#565e74",
+                      "secondary": "#775a1a",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-container": "#fdd488",
+                      "on-tertiary-fixed-variant": "#005137",
+                      "inverse-surface": "#213145",
+                      "on-secondary": "#ffffff",
+                      "on-primary-container": "#7c839b",
+                      "on-secondary-container": "#785a1b",
+                      "on-error-container": "#93000a",
+                      "surface-container": "#e5eeff",
+                      "error": "#ba1a1a",
+                      "surface-bright": "#f8f9ff",
+                      "on-background": "#0b1c30",
+                      "surface-variant": "#d3e4fe",
+                      "inverse-primary": "#bec6e0",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-fixed": "#261900",
+                      "on-error": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed": "#85f8c4"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "lg": "2.5rem",
+                      "base": "4px",
+                      "gutter": "24px",
+                      "max-width": "1440px",
+                      "xl": "4rem",
+                      "margin-mobile": "16px",
+                      "md": "1.5rem",
+                      "xs": "0.5rem",
+                      "sm": "1rem",
+                      "margin-desktop": "48px"
+              },
+              "fontFamily": {
+                      "body-sm": [
+                              "Manrope"
+                      ],
+                      "headline-lg-mobile": [
+                              "Manrope"
+                      ],
+                      "label-md": [
+                              "Manrope"
+                      ],
+                      "display-lg": [
+                              "Manrope"
+                      ],
+                      "body-lg": [
+                              "Manrope"
+                      ],
+                      "headline-lg": [
+                              "Manrope"
+                      ],
+                      "headline-md": [
+                              "Manrope"
+                      ],
+                      "data-mono": [
+                              "Manrope"
+                      ],
+                      "headline-sm": [
+                              "Manrope"
+                      ],
+                      "body-md": [
+                              "Manrope"
+                      ]
+              },
+              "fontSize": {
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.015em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "data-mono": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: #F9F8F4; /* Porcelain */
+            padding-top: 56px; /* h-14 */
+            padding-bottom: 80px; /* footer height */
+        }
+        .text-gold { color: #B5924D; }
+        .bg-gold { background-color: #B5924D; }
+        .border-gold { border-color: #B5924D; }
+        .bg-slate { background-color: #0F172A; }
+        .border-slate-10 { border-color: rgba(15, 23, 42, 0.1); }
+        .shadow-soft { box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05); }
+    </style>
+</head>
+<body class="font-body-sm text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-margin-mobile h-14 bg-surface dark:bg-surface-container-high border-b border-outline-variant dark:border-outline">
+<button class="text-primary dark:text-inverse-primary hover:bg-surface-container-low dark:hover:bg-surface-container transition-colors duration-200 active:opacity-70 p-2 -ml-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="flex-1 flex flex-col items-center justify-center">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary tracking-tight">Cart (3 items)</h1>
+</div>
+<button class="text-primary dark:text-inverse-primary hover:bg-surface-container-low dark:hover:bg-surface-container transition-colors duration-200 active:opacity-70 p-2 -mr-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+</header>
+<main class="max-w-max-width mx-auto md:px-margin-desktop md:py-lg flex flex-col gap-sm md:gap-gutter pb-xl md:pb-0">
+<!-- Mobile padding container -->
+<div class="px-margin-mobile md:px-0 flex flex-col gap-sm md:gap-gutter mt-sm md:mt-0">
+<!-- Delivery Location -->
+<section class="bg-surface-container-lowest p-md rounded-lg border border-slate-10 shadow-soft flex items-center justify-between">
+<div class="flex items-start gap-xs">
+<span class="material-symbols-outlined text-outline mt-[2px]" data-icon="location_on">location_on</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Deliver to</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Pune, Maharashtra – 411001</span>
+</div>
+</div>
+<button class="font-label-md text-label-md text-gold uppercase tracking-wider hover:underline px-2 py-1">Change</button>
+</section>
+<!-- Cart Items Grid / List -->
+<div class="grid-cols-1 lg:grid-cols-12 gap-gutter">
+<div class="lg:col-span-8 flex flex-col gap-md">
+<!-- Supplier Group 1 -->
+<section class="bg-surface-container-lowest rounded-lg border border-slate-10 shadow-soft overflow-hidden">
+<!-- Supplier Header -->
+<div class="bg-surface-container-low p-md border-b border-slate-10 flex flex-col sm:flex-row sm:items-center justify-between gap-xs">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-on-tertiary-container text-[20px]" data-icon="verified">verified</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">TechAudio Manufacturing</h2>
+</div>
+<div class="flex items-center gap-xs text-on-surface-variant font-label-md text-label-md bg-surface px-2 py-1 rounded border border-slate-10 w-fit"><span class="material-symbols-outlined text-[14px]" data-icon="public">public</span><span>Ludhiana, Punjab</span></div>
+</div>
+<!-- Item 1 -->
+<div class="p-md flex flex-col sm:flex-row gap-md border-b border-slate-10 last:border-b-0">
+<div class="w-full sm:w-32 h-32 bg-surface-container rounded border border-slate-10 flex-shrink-0 relative overflow-hidden">
+<img class="w-full h-full object-cover mix-blend-multiply" data-alt="A clean, highly detailed product shot of premium wireless headphones in bulk packaging. Shot against a pristine white background. Studio lighting highlights the matte black finish of the headphones and the sturdy, industrial cardboard of the bulk box. A modern, B2B wholesale aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsttP0JzkgfwaS4y_BuhbS1c64uf3GTYbDL837rdj1CAOquRM-jmzn2_TEnT82DOCIdWh-5jsc9FwlHeK7qnUv3lZE5xQVyDfU5HV2dwGssoepyCkyA--IfpsK66GSgozBetf-NpE4S7_ahx_pCs7uEhvwnPL6sI2l1uPkPyyCxoe4-I2B8ZW4XxqCoTOjuDB7F6Jb31Rjw6XyLVIpLl0fTT3uO7YDotqwCRXBfbWA4XGJbRt2Bxj3Pg"/>
+</div>
+<div class="flex flex-col flex-1 justify-between gap-xs">
+<div class="flex justify-between items-start gap-md">
+<h3 class="font-body-lg text-body-lg text-on-surface font-semibold leading-tight">Premium Wireless Headphones - Bulk Set</h3>
+<button class="text-outline hover:text-error transition-colors p-1 rounded">
+<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+</button>
+<button class="text-gold font-label-md text-[12px] hover:underline ml-2">Save for Later</button></div>
+<div class="flex items-center gap-sm mt-1">
+<span class="font-data-mono text-data-mono text-on-surface">₹1,500<span class="text-on-surface-variant text-[12px] font-normal">/unit</span></span>
+<span class="bg-surface-variant text-on-primary-container font-label-md text-label-md px-2 py-0.5 rounded-sm">MOQ: 50</span>
+</div>
+<div class="flex items-center justify-between mt-sm pt-sm border-t border-slate-10 border-dashed">
+<div class="flex items-center border border-slate-10 rounded overflow-hidden">
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container hover:bg-surface-container-high disabled:opacity-50 disabled:cursor-not-allowed transition-colors" disabled="">
+<span class="material-symbols-outlined text-[16px]" data-icon="remove">remove</span>
+</button>
+<input class="w-12 h-8 text-center font-data-mono text-data-mono border-0 p-0 bg-surface-container-lowest focus:ring-0 focus:outline-none" readonly="" type="text" value="50"/>
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="add">add</span>
+</button>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-on-surface-variant block mb-[2px]">Subtotal</span>
+<span class="font-data-mono text-data-mono font-bold text-on-surface text-[16px]">₹75,000</span>
+</div>
+</div>
+</div>
+</div>
+<div class="px-md py-2 bg-surface-container-low border-t border-slate-10 flex justify-between items-center"><span class="font-label-md text-on-surface-variant uppercase">Supplier Subtotal</span><span class="font-data-mono font-bold text-on-surface">₹75,000</span></div></section>
+<!-- Supplier Group 2 -->
+<section class="bg-surface-container-lowest rounded-lg border border-slate-10 shadow-soft overflow-hidden">
+<!-- Supplier Header -->
+<div class="bg-surface-container-low p-md border-b border-slate-10 flex flex-col sm:flex-row sm:items-center justify-between gap-xs">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-on-tertiary-container text-[20px]" data-icon="verified">verified</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">ElectroTech India</h2>
+</div>
+<div class="flex items-center gap-xs text-on-surface-variant font-label-md text-label-md bg-surface px-2 py-1 rounded border border-slate-10 w-fit">
+<span class="material-symbols-outlined text-[14px]" data-icon="location_on">location_on</span>
+<span>Delhi, India</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-md flex flex-col sm:flex-row gap-md border-b border-slate-10 last:border-b-0">
+<div class="w-full sm:w-32 h-32 bg-surface-container rounded border border-slate-10 flex-shrink-0 relative overflow-hidden">
+<img class="w-full h-full object-cover mix-blend-multiply" data-alt="A clean, highly detailed product shot of 10000mAh PD Fast Charging Power Banks stacked neatly. High-key lighting, pristine white background, commercial grade wholesale photography. The power banks are sleek, modern, and dark gray." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9ezfWIPvnV0Ux0VoWe4uMWnj4t-C5-2nSwZ0owtdef7UfAFyMdnHn-MBLZhLSFvyG2ycDiCZmBeakbF5_3AM4pqZ_nY3Ekl0InUqxEvNIn7M_GRF4KbQkbNE-nmmjM92Jm_F5jFkw32dId90gOQ5p4qds-m9jgt2KV89rUx-k8AG3YWD80r4uTshFilyV9YQioFwkC-FiQlm_mliSQSD9aaRH89UUJlNKAA5Mz-OAgafDtvKViPjPKw"/>
+</div>
+<div class="flex flex-col flex-1 justify-between gap-xs">
+<div class="flex justify-between items-start gap-md">
+<h3 class="font-body-lg text-body-lg text-on-surface font-semibold leading-tight">10000mAh PD Fast Charging Power Bank</h3>
+<button class="text-outline hover:text-error transition-colors p-1 rounded">
+<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+</button>
+<button class="text-gold font-label-md text-[12px] hover:underline ml-2">Save for Later</button></div>
+<div class="flex items-center gap-sm mt-1">
+<span class="font-data-mono text-data-mono text-on-surface">₹850<span class="text-on-surface-variant text-[12px] font-normal">/unit</span></span>
+<span class="bg-surface-variant text-on-primary-container font-label-md text-label-md px-2 py-0.5 rounded-sm">MOQ: 100</span>
+</div>
+<div class="flex items-center justify-between mt-sm pt-sm border-t border-slate-10 border-dashed">
+<div class="flex items-center border border-slate-10 rounded overflow-hidden">
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="remove">remove</span>
+</button>
+<input class="w-12 h-8 text-center font-data-mono text-data-mono border-0 p-0 bg-surface-container-lowest focus:ring-0 focus:outline-none" readonly="" type="text" value="120"/>
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="add">add</span>
+</button>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-on-surface-variant block mb-[2px]">Subtotal</span>
+<span class="font-data-mono text-data-mono font-bold text-on-surface text-[16px]">₹1,02,000</span>
+</div>
+</div>
+</div>
+</div>
+<div class="px-md py-2 bg-surface-container-low border-t border-slate-10 flex justify-between items-center"><span class="font-label-md text-on-surface-variant uppercase">Supplier Subtotal</span><span class="font-data-mono font-bold text-on-surface">₹1,02,000</span></div></section>
+<!-- RFQ CTA -->
+<section class="bg-surface-container-lowest p-md rounded-lg border border-slate-10 shadow-soft mb-gutter"><h3 class="font-headline-sm text-headline-sm text-on-surface border-b border-slate-10 pb-sm mb-sm">Order Summary</h3><div class="flex flex-col gap-3 mb-md"><div class="flex justify-between items-center"><span class="font-body-md text-body-md text-on-surface-variant">Product Subtotal</span><span class="font-data-mono text-data-mono text-on-surface">₹1,77,000</span></div><div class="flex justify-between items-center"><span class="font-body-md text-body-md text-on-surface-variant">Platform Convenience Fee (3%)</span><span class="font-data-mono text-data-mono text-on-surface">₹5,310</span></div><div class="flex justify-between items-start gap-sm"><span class="font-body-md text-body-md text-on-surface-variant flex-1">Logistics: Calculated based on delivery location</span></div><div class="flex justify-between items-start gap-sm"><span class="font-body-md text-body-md text-on-surface-variant flex-1">Applicable Taxes: Calculated during checkout</span></div></div><div class="border-t border-slate-10 pt-sm mb-sm"><div class="flex flex-col gap-1"><span class="font-body-md text-body-md font-semibold text-on-surface">Subtotal before logistics &amp; applicable taxes</span><span class="font-data-mono text-data-mono font-bold text-[20px] text-on-surface">₹1,82,310</span></div></div><div class="bg-surface-container-low p-sm rounded border border-slate-10 flex gap-xs items-start"><span class="material-symbols-outlined text-[16px] text-outline mt-0.5" data-icon="info">info</span><p class="font-label-md text-label-md text-on-surface-variant leading-relaxed">Note: Final applicable price and order total are confirmed during checkout.</p></div></section><section class="bg-surface-container p-md rounded-lg border border-slate-10 flex flex-col sm:flex-row items-center justify-between gap-sm text-center sm:text-left">
+<div>
+<h4 class="font-body-md text-body-md font-semibold text-on-surface">Need a different quantity or custom requirement?</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Submit a Request for Quotation directly to these suppliers.</p>
+</div>
+<button class="px-6 py-2 bg-surface-container-lowest border border-slate-10 rounded font-label-md text-label-md text-on-surface hover:bg-surface-container-high transition-colors uppercase tracking-wider flex-shrink-0">
+                            Post RFQ
+                        </button>
+</section>
+</div>
+<!-- Order Summary Sidebar -->
+</div>
+</div>
+</main>
+<!-- Mobile Sticky Footer Checkout -->
+<div class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-lowest border-t border-slate-10 p-margin-mobile flex items-center justify-between shadow-[0_-4px_6px_-1px_rgba(15,23,42,0.05)] z-40">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant mb-1">2 Suppliers • 3 Items</span>
+<span class="font-data-mono text-data-mono font-bold text-[18px] text-on-surface">₹1,82,310</span>
+</div>
+<button class="bg-gold hover:opacity-90 text-on-primary font-label-md text-label-md uppercase tracking-wider px-6 py-3 rounded shadow-soft transition-opacity">Proceed to Checkout</button>
+</div>
+</body></html>

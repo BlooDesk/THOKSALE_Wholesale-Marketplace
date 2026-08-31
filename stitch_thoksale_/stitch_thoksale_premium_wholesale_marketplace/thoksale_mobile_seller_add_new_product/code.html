@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add New Product - THOKSALE Seller</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-container": "#069669",
+            "tertiary-container": "#002114",
+            "on-secondary": "#ffffff",
+            "error-container": "#ffdad6",
+            "on-primary-fixed-variant": "#3f465c",
+            "tertiary": "#000000",
+            "secondary-container": "#fdd488",
+            "secondary-fixed": "#ffdea4",
+            "on-tertiary-fixed": "#002114",
+            "on-primary-fixed": "#131b2e",
+            "surface-container-low": "#eff4ff",
+            "primary-container": "#131b2e",
+            "on-error": "#ffffff",
+            "on-secondary-fixed": "#261900",
+            "tertiary-fixed-dim": "#68dba9",
+            "on-secondary-fixed-variant": "#5d4201",
+            "surface-variant": "#d3e4fe",
+            "surface-container-highest": "#d3e4fe",
+            "outline": "#76777d",
+            "error": "#ba1a1a",
+            "on-primary-container": "#7c839b",
+            "primary": "#000000",
+            "secondary-fixed-dim": "#e8c177",
+            "on-tertiary-fixed-variant": "#005137",
+            "inverse-on-surface": "#eaf1ff",
+            "secondary": "#775a1a",
+            "on-tertiary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "inverse-surface": "#213145",
+            "surface-dim": "#cbdbf5",
+            "surface": "#f8f9ff",
+            "on-secondary-container": "#785a1b",
+            "surface-bright": "#f8f9ff",
+            "primary-fixed-dim": "#bec6e0",
+            "on-surface": "#0b1c30",
+            "background": "#f8f9ff",
+            "on-surface-variant": "#45464d",
+            "primary-fixed": "#dae2fd",
+            "on-primary": "#ffffff",
+            "surface-tint": "#565e74",
+            "on-background": "#0b1c30",
+            "surface-container": "#e5eeff",
+            "outline-variant": "#c6c6cd",
+            "inverse-primary": "#bec6e0",
+            "surface-container-high": "#dce9ff",
+            "tertiary-fixed": "#85f8c4",
+            "on-error-container": "#93000a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "xs": "0.5rem",
+            "margin-desktop": "48px",
+            "md": "1.5rem",
+            "gutter": "24px",
+            "max-width": "1440px",
+            "base": "4px",
+            "xl": "4rem",
+            "lg": "2.5rem",
+            "margin-mobile": "16px",
+            "sm": "1rem"
+          },
+          "fontFamily": {
+            "data-mono": ["Manrope"],
+            "body-lg": ["Manrope"],
+            "body-md": ["Manrope"],
+            "headline-lg": ["Manrope"],
+            "display-lg": ["Manrope"],
+            "label-md": ["Manrope"],
+            "headline-sm": ["Manrope"],
+            "body-sm": ["Manrope"],
+            "headline-md": ["Manrope"],
+            "headline-lg-mobile": ["Manrope"]
+          },
+          "fontSize": {
+            "data-mono": ["14px", { "lineHeight": "1", "fontWeight": "500" }],
+            "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+            "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "700" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body { background-color: #F9F8F4; }
+    .form-input {
+      @apply w-full rounded border border-outline-variant/30 bg-surface px-3 py-2 text-on-surface font-body-sm transition-colors focus:border-[#B5924D] focus:outline-none focus:ring-2 focus:ring-[#B5924D]/20;
+    }
+    .form-label {
+      @apply block mb-1 text-on-surface-variant font-label-md;
+    }
+  </style>
+</head>
+<body class="font-body-md text-on-surface antialiased pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant/10 shadow-sm flex items-center justify-between px-4 h-16 max-w-full">
+<button aria-label="Go back" class="text-primary hover:bg-surface-container-low transition-colors p-2 rounded-full active:scale-95 transition-transform">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex-1 flex justify-center">
+<img alt="THOKSALE Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida/AEtjO1XYGTl2h5TzojXSCWEWm_EBwYM0EgI_vJsdgslzgeam_tAnPdflOjyo010XjDw09A_5c8bmhNIGXnB9Qc3wLh-NdGQvYwWiuHQ-TNaOFgXYnYXAwhNZVjPJOCJdq9JOiKCWkbMQj5G7QQr_V2BXg1iqvadjMEQ3kv_pkNnglz4qcI4_-v8U5NWoRFuan4neyjmZivxaIKhDApmK6sixuMECB5NvCgJHZJV0uC7MqxVvr76hFMLShlkG0Z0w"/>
+</div>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Content -->
+<main class="pt-20 px-margin-mobile md:px-margin-desktop max-w-2xl mx-auto w-full pb-8">
+<div class="mb-6">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-on-surface">Add New Product</h1>
+<p class="font-body-sm text-on-surface-variant mt-1">Create a wholesale product listing for your catalog.</p>
+</div>
+<form class="space-y-6">
+<!-- Section 1: Product Information -->
+<section class="bg-surface rounded-xl p-5 border border-outline-variant/10 shadow-sm">
+<h2 class="font-headline-sm text-on-surface mb-4">Product Information</h2>
+<div class="space-y-4">
+<div>
+<label class="form-label" for="product_name">Name</label>
+<input class="form-input" id="product_name" type="text" value="Industrial LED Panel Light 18W"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="form-label" for="category">Category</label>
+<select class="form-input" id="category">
+<option selected="">Electrical &amp; Lighting</option>
+<option>Hardware</option>
+</select>
+</div>
+<div>
+<label class="form-label" for="subcategory">Subcategory</label>
+<select class="form-input" id="subcategory">
+<option selected="">LED Lighting</option>
+<option>Fixtures</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Product Identification -->
+<section class="bg-surface rounded-xl p-5 border border-outline-variant/10 shadow-sm">
+<h2 class="font-headline-sm text-on-surface mb-4">Product Identification</h2>
+<div>
+<label class="form-label" for="sku">SKU</label>
+<input class="form-input font-data-mono" id="sku" type="text" value="LED-18W-204"/>
+</div>
+</section>
+<!-- Section 3: Product Details -->
+<section class="bg-surface rounded-xl p-5 border border-outline-variant/10 shadow-sm">
+<h2 class="font-headline-sm text-on-surface mb-4">Product Details</h2>
+<div>
+<label class="form-label" for="description">Description</label>
+<textarea class="form-input" id="description" rows="4">18W commercial LED panel light suitable for offices, retail spaces and institutional installations.</textarea>
+</div>
+</section>
+<!-- Section 4: Product Images -->
+<section class="bg-surface rounded-xl p-5 border border-outline-variant/10 shadow-sm">
+<h2 class="font-headline-sm text-on-surface mb-4">Product Images</h2>
+<div class="grid grid-cols-4 gap-3">
+<div class="col-span-1 aspect-square rounded border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center text-outline cursor-pointer hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined mb-1">add_photo_alternate</span>
+<span class="font-label-md">Upload</span>
+</div>
+<div class="col-span-1 aspect-square rounded overflow-hidden border border-outline-variant/10 relative group">
+<img class="w-full h-full object-cover" data-alt="A professional product shot of an industrial LED flood light mounted on a wooden shipping pallet, surrounded by identical branded cardboard boxes, high contrast, clean white background, studio lighting, highly detailed." src="https://lh3.googleusercontent.com/aida/AEtjO1X-j_d0ZmTKIxGtP8-f59aEVP8zih10QNBqfnQ0_2xZ6u7GE83gnMLBA56bsrScYslVef1bCxx6MNj_Fy6F8rsZJqJ6qvNMP8q10IhSec_ZIpBIfZlC3upU3MHQCL0c3IxPy37_bfh9WDQb2DmdgiVACl3-XeKf-CNoEZR7D42UjJpWSyiG023lK1R1cLOTovSWS65jkkeYVyLS2Lp7uJC8PiuKAVCZSe8Pssl3h29qUPh5RKame4vkwa2o"/>
+<button class="absolute top-1 right-1 bg-surface/80 rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[16px]">close</span></button>
+</div>
+<div class="col-span-1 aspect-square rounded overflow-hidden border border-outline-variant/10 relative group">
+<img class="w-full h-full object-cover" data-alt="A close up view of an industrial 18W LED panel light packaging, showcasing wholesale quantities, clean professional B2B presentation, neutral background, crisp lighting." src="https://lh3.googleusercontent.com/aida/AEtjO1X-j_d0ZmTKIxGtP8-f59aEVP8zih10QNBqfnQ0_2xZ6u7GE83gnMLBA56bsrScYslVef1bCxx6MNj_Fy6F8rsZJqJ6qvNMP8q10IhSec_ZIpBIfZlC3upU3MHQCL0c3IxPy37_bfh9WDQb2DmdgiVACl3-XeKf-CNoEZR7D42UjJpWSyiG023lK1R1cLOTovSWS65jkkeYVyLS2Lp7uJC8PiuKAVCZSe8Pssl3h29qUPh5RKame4vkwa2o"/>
+<button class="absolute top-1 right-1 bg-surface/80 rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[16px]">close</span></button>
+</div>
+<div class="col-span-1 aspect-square rounded overflow-hidden border border-outline-variant/10 relative group">
+<img class="w-full h-full object-cover" data-alt="An angled view of multiple boxes of LED lighting products stacked for wholesale distribution, demonstrating volume, clean studio setup, highly detailed product photography." src="https://lh3.googleusercontent.com/aida/AEtjO1X-j_d0ZmTKIxGtP8-f59aEVP8zih10QNBqfnQ0_2xZ6u7GE83gnMLBA56bsrScYslVef1bCxx6MNj_Fy6F8rsZJqJ6qvNMP8q10IhSec_ZIpBIfZlC3upU3MHQCL0c3IxPy37_bfh9WDQb2DmdgiVACl3-XeKf-CNoEZR7D42UjJpWSyiG023lK1R1cLOTovSWS65jkkeYVyLS2Lp7uJC8PiuKAVCZSe8Pssl3h29qUPh5RKame4vkwa2o"/>
+<button class="absolute top-1 right-1 bg-surface/80 rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"><span class="material-symbols-outlined text-[16px]">close</span></button>
+</div>
+</div>
+</section>
+<!-- Section 5: Wholesale Terms -->
+<section class="bg-surface rounded-xl p-5 border border-outline-variant/10 shadow-sm">
+<h2 class="font-headline-sm text-on-surface mb-4">Wholesale Terms</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div>
+<label class="form-label" for="base_price">Factory-gate base price (₹)</label>
+<input class="form-input font-data-mono" id="base_price" type="number" value="620"/>
+</div>
+<div>
+<label class="form-label" for="moq">Minimum order quantity</label>
+<input class="form-input font-data-mono" id="moq" type="number" value="50"/>
+</div>
+<div>
+<label class="form-label" for="unit">Unit</label>
+<select class="form-input" id="unit">
+<option selected="">Piece</option>
+<option>Box</option>
+<option>Pallet</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Section 6: Inventory -->
+<section class="bg-surface rounded-xl p-5 border border-outline-variant/10 shadow-sm">
+<h2 class="font-headline-sm text-on-surface mb-4">Inventory</h2>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="form-label" for="stock">Available stock</label>
+<input class="form-input font-data-mono" id="stock" type="number" value="500"/>
+</div>
+<div>
+<label class="form-label" for="low_stock">Low-stock threshold</label>
+<input class="form-input font-data-mono" id="low_stock" type="number" value="50"/>
+</div>
+</div>
+</section>
+<!-- Section 7: Fulfilment -->
+<section class="bg-surface rounded-xl p-5 border border-outline-variant/10 shadow-sm">
+<h2 class="font-headline-sm text-on-surface mb-4">Fulfilment</h2>
+<div>
+<label class="form-label" for="lead_time">Dispatch lead time</label>
+<select class="form-input" id="lead_time">
+<option selected="">3–5 days</option>
+<option>1–2 weeks</option>
+<option>Made to order (3+ weeks)</option>
+</select>
+</div>
+</section>
+<!-- Section 8: Listing Status (Actions) -->
+<div class="pt-4 flex gap-4">
+<button class="flex-1 py-3 px-4 rounded border border-outline-variant/50 text-on-surface font-label-md hover:bg-surface-container-low transition-colors" type="button">
+          Save as draft
+        </button>
+<button class="flex-1 py-3 px-4 rounded bg-[#B5924D] text-white font-label-md hover:bg-[#a18143] transition-colors shadow-sm" type="button">
+          Publish product
+        </button>
+</div>
+</form>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant/10 flex justify-around items-center px-2 py-3 pb-safe z-50 md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md mt-1">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#B5924D] p-2" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory</span>
+<span class="font-label-md mt-1">Products</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">request_quote</span>
+<span class="font-label-md mt-1">RFQs</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md mt-1">Account</span>
+</a>
+</nav>
+</body></html>

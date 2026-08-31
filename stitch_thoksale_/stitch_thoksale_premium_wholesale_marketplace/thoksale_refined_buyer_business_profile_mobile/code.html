@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Business Profile - THOKSALE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#68dba9",
+                        "on-tertiary-container": "#069669",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#e8c177",
+                        "outline": "#76777d",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "primary-container": "#131b2e",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary": "#775a1a",
+                        "tertiary": "#000000",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f8f4", /* Adjusted to Porcelain per prompt */
+                        "on-surface-variant": "#45464d",
+                        "on-background": "#0b1c30",
+                        "secondary-fixed": "#ffdea4",
+                        "tertiary-fixed": "#85f8c4",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "surface-dim": "#cbdbf5",
+                        "secondary-container": "#fdd488",
+                        "on-tertiary-fixed": "#002114",
+                        "on-primary-fixed": "#131b2e",
+                        "surface-bright": "#f8f9ff",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#dce9ff",
+                        "on-secondary-fixed": "#261900",
+                        "tertiary-container": "#002114",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#0f172a", /* Slate */
+                        "primary": "#0f172a", /* Slate */
+                        "surface-tint": "#565e74",
+                        "background": "#f9f8f4", /* Porcelain */
+                        "inverse-surface": "#213145",
+                        "primary-fixed": "#dae2fd",
+                        "inverse-primary": "#bec6e0",
+                        "surface-container": "#e5eeff",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "on-secondary-container": "#785a1b",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#e2e8f0", /* Lighter outline */
+                        "on-primary-container": "#7c839b",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-low": "#eff4ff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-variant": "#d3e4fe",
+                        "thoksale-gold": "#B5924D"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "max-width": "1440px",
+                        "margin-desktop": "48px",
+                        "sm": "1rem",
+                        "lg": "2.5rem",
+                        "xs": "0.5rem",
+                        "md": "1.5rem",
+                        "margin-mobile": "16px",
+                        "xl": "4rem",
+                        "gutter": "24px",
+                        "pb-safe": "env(safe-area-inset-bottom, 16px)"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "data-mono": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "label-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-sm": ["20px", {"lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "data-mono": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}]
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05)'
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #F9F8F4; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased pb-24">
+<!-- Sticky Header -->
+<header class="fixed top-0 w-full z-50 bg-white border-b border-outline-variant flex items-center justify-between px-margin-mobile h-16 shadow-soft">
+<button aria-label="Go back" class="p-2 -ml-2 text-primary hover:opacity-80 transition-opacity rounded-full active:scale-95 flex items-center justify-center w-10 h-10">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<img alt="THOKSALE Logo" class="h-8 object-contain absolute left-1/2 -translate-x-1/2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQvgsmpRX5QMvaG4F17tV-suLmkESf6di2laxIKSIlynPGGmw_ZFQcoWZDuWTKwp7PTL6rfqCVCt9JO8e1EXCaRv9q2S8rc2iU_xQd2QFJx5MD21JdlauTZQew9h2sDrujJ1HPgedhJ2czjLpH5Nc41Uxq0h9YL7wqHtN-VJl03wppkjwlrvRPtokjVsNg1PhYXddL5nDlIG8MSNds3JIqgKKWmApugROFImsAWzE0S5TaH3amfYJPVbJScoyCx8dOweA"/>
+<div class="w-10 h-10"></div>
+</header>
+<main class="pt-20 px-margin-mobile max-w-lg mx-auto">
+<!-- Page Title -->
+<div class="mb-6">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-1">Business Profile</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage your business information and verification details.</p>
+</div>
+<!-- Business Identity Card -->
+<div class="bg-white rounded-lg border border-outline-variant shadow-soft p-4 mb-6">
+<div class="flex items-start justify-between mb-3">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary mb-1">Apex Electrical Traders</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Electrical &amp; Lighting • Pune, Maharashtra</p>
+</div>
+</div>
+<div class="inline-flex items-center bg-green-50 px-2 py-1 rounded-DEFAULT border border-green-200">
+<span class="material-symbols-outlined fill text-on-tertiary-container text-[16px] mr-1">verified</span>
+<span class="font-label-md text-label-md text-on-tertiary-container">Verified business</span>
+</div>
+</div>
+<!-- Profile Completeness -->
+<div class="bg-white rounded-lg border border-outline-variant shadow-soft p-4 mb-6">
+<div class="flex justify-between items-end mb-2">
+<span class="font-label-md text-label-md text-primary uppercase">Profile Completeness</span>
+<span class="font-data-mono text-data-mono text-thoksale-gold">80%</span>
+</div>
+<div class="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden mb-2">
+<div class="h-full bg-thoksale-gold w-[80%] rounded-full"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-xs">Complete your business profile to improve account readiness.</p>
+</div>
+<!-- Business Details Section -->
+<section class="bg-white rounded-lg border border-outline-variant shadow-soft mb-6 overflow-hidden">
+<div class="px-4 py-3 bg-slate-50 border-b border-outline-variant">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Business Details</h3>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant mb-1">Business Type</span>
+<span class="font-body-sm text-body-sm text-primary">Wholesale Trader</span>
+</div>
+<div class="h-px bg-outline-variant w-full"></div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant mb-1">Primary Category</span>
+<span class="font-body-sm text-body-sm text-primary">Electrical &amp; Lighting</span>
+</div>
+<div class="h-px bg-outline-variant w-full"></div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant mb-1">Buyer Tier</span>
+<span class="font-body-sm text-body-sm text-primary">Tier A • Standard GST Buyer</span>
+</div>
+<div class="h-px bg-outline-variant w-full"></div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant mb-1">GSTIN</span>
+<span class="font-data-mono text-data-mono text-primary">27AABCA1234A1Z5</span>
+</div>
+</div>
+</section>
+<!-- Verification Section -->
+<section class="bg-white rounded-lg border border-outline-variant shadow-soft mb-6 overflow-hidden">
+<div class="px-4 py-3 bg-slate-50 border-b border-outline-variant">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Verification</h3>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant mb-1">Business verification</span>
+<div class="flex items-center text-emerald-600">
+<span class="material-symbols-outlined text-[16px] mr-1">check_circle</span>
+<span class="font-body-sm text-body-sm font-medium">Verified</span>
+</div>
+</div>
+<div class="h-px bg-outline-variant w-full"></div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant mb-1">GST verification</span>
+<div class="flex items-center text-emerald-600">
+<span class="material-symbols-outlined text-[16px] mr-1">check_circle</span>
+<span class="font-body-sm text-body-sm font-medium">Verified</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Business Address Section -->
+<section class="bg-white rounded-lg border border-outline-variant shadow-soft mb-6 overflow-hidden">
+<div class="px-4 py-3 bg-slate-50 border-b border-outline-variant">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Business address</h3>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant mb-1">Registered address</span>
+<span class="font-body-sm text-body-sm text-primary">Shop 18, Industrial Trade Centre Bhosari MIDC, Pune, Maharashtra 411026</span>
+</div>
+<div class="h-px bg-outline-variant w-full"></div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant mb-1">Operational location</span>
+<span class="font-body-sm text-body-sm text-primary">Pune, Maharashtra</span>
+</div>
+</div>
+</section>
+<!-- Business Contact Section -->
+<section class="bg-white rounded-lg border border-outline-variant shadow-soft mb-6 overflow-hidden">
+<div class="px-4 py-3 bg-slate-50 border-b border-outline-variant">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Business contact</h3>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant mb-1">Business phone</span>
+<span class="font-body-sm text-body-sm text-primary">+91 98765 43210</span>
+</div>
+<div class="h-px bg-outline-variant w-full"></div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant mb-1">Business email</span>
+<span class="font-body-sm text-body-sm text-primary">sales@apexelectrical.example</span>
+</div>
+</div>
+</section>
+<!-- Action Button -->
+<div class="flex justify-center mb-8">
+<button class="bg-white text-thoksale-gold border border-thoksale-gold font-label-md text-label-md py-3 px-6 rounded-DEFAULT w-full flex items-center justify-center hover:bg-slate-50 active:scale-95 transition-all">
+                Edit business details
+            </button>
+</div>
+<!-- Footer Note -->
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center px-4 mb-8 text-xs">
+            Keep your business information accurate. Some changes may require verification before they take effect.
+        </p>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center py-2 px-2 pb-safe bg-white border-t border-outline-variant/20 shadow-sm z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-thoksale-gold transition-colors active:scale-90 w-16" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-md text-label-md text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-thoksale-gold transition-colors active:scale-90 w-16" href="#">
+<span class="material-symbols-outlined mb-1">grid_view</span>
+<span class="font-label-md text-label-md text-[10px]">Categories</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-thoksale-gold transition-colors active:scale-90 w-16" href="#">
+<span class="material-symbols-outlined mb-1">request_quote</span>
+<span class="font-label-md text-label-md text-[10px]">RFQ</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-thoksale-gold transition-colors active:scale-90 w-16" href="#">
+<span class="material-symbols-outlined mb-1">shopping_bag</span>
+<span class="font-label-md text-label-md text-[10px]">Orders</span>
+</a>
+<!-- Active Tab -->
+<a class="flex flex-col items-center justify-center text-[#B5924D] font-bold bg-[#B5924D]/10 rounded-full px-3 py-1 active:scale-90 transition-transform min-w-16" href="#">
+<span class="material-symbols-outlined fill mb-1">person</span>
+<span class="font-label-md text-label-md text-[10px]">Account</span>
+</a>
+</nav>
+</body></html>

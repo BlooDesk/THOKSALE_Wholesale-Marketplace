@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>THOKSALE - Edit Product</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f8f9ff",
+                        "tertiary": "#000000",
+                        "on-surface-variant": "#45464d",
+                        "surface-container-high": "#dce9ff",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#002114",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "outline-variant": "#c6c6cd",
+                        "on-primary-container": "#7c839b",
+                        "tertiary-fixed": "#85f8c4",
+                        "on-tertiary-container": "#069669",
+                        "on-surface": "#0b1c30",
+                        "outline": "#76777d",
+                        "surface-tint": "#565e74",
+                        "primary": "#000000",
+                        "surface-container-low": "#eff4ff",
+                        "primary-fixed": "#dae2fd",
+                        "primary-container": "#131b2e",
+                        "surface-container": "#e5eeff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-tertiary-fixed": "#002114",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "on-background": "#0b1c30",
+                        "secondary-fixed-dim": "#e8c177",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#261900",
+                        "secondary-container": "#fdd488",
+                        "inverse-surface": "#213145",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "secondary": "#775a1a",
+                        "on-secondary-container": "#785a1b",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-fixed": "#ffdea4",
+                        "inverse-primary": "#bec6e0",
+                        "background": "#f8f9ff",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary-fixed-dim": "#68dba9",
+                        "on-primary-fixed": "#131b2e",
+                        "surface-variant": "#d3e4fe",
+                        "brand-bg": "#F9F8F4",
+                        "brand-surface": "#FFFFFF",
+                        "brand-gold": "#B5924D",
+                        "brand-slate": "#0F172A",
+                        "brand-border": "rgba(15, 23, 42, 0.15)"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "max-width": "1440px",
+                        "gutter": "24px",
+                        "xl": "4rem",
+                        "xs": "0.5rem",
+                        "lg": "2.5rem",
+                        "md": "1.5rem",
+                        "sm": "1rem",
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "safe": "env(safe-area-inset-bottom)"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "data-mono": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-sm": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "data-mono": ["14px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-shadow { box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05); }
+        .input-focus:focus-within { border-color: #B5924D; box-shadow: 0 0 0 2px rgba(181, 146, 77, 0.2); }
+    </style>
+</head>
+<body class="bg-brand-bg text-brand-slate font-body-md antialiased pb-32">
+<!-- Sticky Header -->
+<header class="sticky top-0 w-full bg-brand-surface z-40 border-b border-brand-border h-16 flex items-center justify-between px-margin-mobile">
+<button aria-label="Go back" class="p-2 -ml-2 text-brand-slate active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</button>
+<div class="flex-1 flex justify-center">
+<img alt="THOKSALE Logo" class="h-8 object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XYGTl2h5TzojXSCWEWm_EBwYM0EgI_vJsdgslzgeam_tAnPdflOjyo010XjDw09A_5c8bmhNIGXnB9Qc3wLh-NdGQvYwWiuHQ-TNaOFgXYnYXAwhNZVjPJOCJdq9JOiKCWkbMQj5G7QQr_V2BXg1iqvadjMEQ3kv_pkNnglz4qcI4_-v8U5NWoRFuan4neyjmZivxaIKhDApmK6sixuMECB5NvCgJHZJV0uC7MqxVvr76hFMLShlkG0Z0w"/>
+</div>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Content -->
+<main class="px-margin-mobile pt-sm pb-xl flex flex-col gap-sm">
+<!-- Header Section -->
+<section class="mb-sm">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-brand-slate">Edit Product</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Update your wholesale product information.</p>
+<div class="mt-4 p-3 bg-brand-surface border border-brand-border rounded-lg custom-shadow flex items-center gap-3">
+<span class="material-symbols-outlined text-brand-gold" style="font-variation-settings: 'FILL' 1;">package</span>
+<div>
+<p class="font-body-sm text-body-sm font-semibold text-brand-slate">18W Industrial LED Panel Light</p>
+<p class="font-data-mono text-data-mono text-on-surface-variant text-xs mt-0.5">SKU: LED-18W-204</p>
+</div>
+</div>
+</section>
+<!-- Product Information -->
+<section class="bg-brand-surface p-4 rounded-lg border border-brand-border custom-shadow flex flex-col gap-4">
+<h2 class="font-headline-sm text-headline-sm text-brand-slate border-b border-brand-border pb-2">Product Information</h2>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Product Name</label>
+<div class="border border-outline-variant rounded-md p-3 input-focus bg-white">
+<input class="w-full bg-transparent outline-none font-body-md text-brand-slate p-0 border-0 focus:ring-0" type="text" value="18W Industrial LED Panel Light"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Category</label>
+<div class="border border-outline-variant rounded-md p-3 input-focus bg-white relative">
+<select class="w-full bg-transparent outline-none font-body-md text-brand-slate appearance-none p-0 border-0 focus:ring-0">
+<option value="electrical">Electrical &amp; Lighting</option>
+<option value="hardware">Hardware</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline-variant">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Subcategory</label>
+<div class="border border-outline-variant rounded-md p-3 input-focus bg-white relative">
+<select class="w-full bg-transparent outline-none font-body-md text-brand-slate appearance-none p-0 border-0 focus:ring-0">
+<option value="led">LED Lighting</option>
+<option value="cables">Cables &amp; Wires</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline-variant">expand_more</span>
+</div>
+</div>
+</section>
+<!-- Product Identification -->
+<section class="bg-brand-surface p-4 rounded-lg border border-brand-border custom-shadow flex flex-col gap-4">
+<h2 class="font-headline-sm text-headline-sm text-brand-slate border-b border-brand-border pb-2">Product Identification</h2>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">SKU</label>
+<div class="border border-outline-variant/50 rounded-md p-3 bg-brand-bg">
+<input class="w-full bg-transparent outline-none font-data-mono text-brand-slate p-0 border-0 text-on-surface-variant" readonly="" type="text" value="LED-18W-204"/>
+</div>
+<p class="font-body-sm text-[11px] text-outline mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">info</span> Your internal product code.</p>
+</div>
+</section>
+<!-- Product Details -->
+<section class="bg-brand-surface p-4 rounded-lg border border-brand-border custom-shadow flex flex-col gap-4">
+<h2 class="font-headline-sm text-headline-sm text-brand-slate border-b border-brand-border pb-2">Product Details</h2>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Description</label>
+<div class="border border-outline-variant rounded-md p-3 input-focus bg-white">
+<textarea class="w-full bg-transparent outline-none font-body-sm text-brand-slate p-0 border-0 focus:ring-0 resize-none" rows="4">18W commercial LED panel light suitable for offices, retail spaces and institutional installations. High efficiency and durable build quality for bulk institutional use.</textarea>
+</div>
+</div>
+</section>
+<!-- Product Images -->
+<section class="bg-brand-surface p-4 rounded-lg border border-brand-border custom-shadow flex flex-col gap-4">
+<div class="flex items-center justify-between border-b border-brand-border pb-2">
+<h2 class="font-headline-sm text-headline-sm text-brand-slate">Product Images</h2>
+<span class="font-label-md text-label-md text-on-surface-variant">1 / 5</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- Primary Image -->
+<div class="relative aspect-square border border-brand-border rounded-md overflow-hidden group">
+<img alt="Primary Product Image" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1X-j_d0ZmTKIxGtP8-f59aEVP8zih10QNBqfnQ0_2xZ6u7GE83gnMLBA56bsrScYslVef1bCxx6MNj_Fy6F8rsZJqJ6qvNMP8q10IhSec_ZIpBIfZlC3upU3MHQCL0c3IxPy37_bfh9WDQb2DmdgiVACl3-XeKf-CNoEZR7D42UjJpWSyiG023lK1R1cLOTovSWS65jkkeYVyLS2Lp7uJC8PiuKAVCZSe8Pssl3h29qUPh5RKame4vkwa2o"/>
+<div class="absolute top-2 left-2 bg-brand-gold text-white font-label-md text-[10px] px-1.5 py-0.5 rounded-sm uppercase tracking-wider">Primary</div>
+<button class="absolute top-2 right-2 bg-white/90 text-brand-slate p-1 rounded-full shadow-sm active:scale-95">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Add Image Tile -->
+<button class="aspect-square border-2 border-dashed border-outline-variant rounded-md flex flex-col items-center justify-center gap-2 text-on-surface-variant hover:bg-brand-bg transition-colors active:scale-95">
+<span class="material-symbols-outlined text-2xl">add_photo_alternate</span>
+<span class="font-label-md text-label-md">Add Image</span>
+</button>
+</div>
+</section>
+<!-- Wholesale Terms -->
+<section class="bg-brand-surface p-4 rounded-lg border border-brand-border custom-shadow flex flex-col gap-4">
+<h2 class="font-headline-sm text-headline-sm text-brand-slate border-b border-brand-border pb-2">Wholesale Terms</h2>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Factory-gate Base Price</label>
+<div class="border border-outline-variant rounded-md p-3 input-focus bg-white flex items-center">
+<span class="font-data-mono text-on-surface-variant mr-2">₹</span>
+<input class="w-full bg-transparent outline-none font-data-mono text-brand-slate p-0 border-0 focus:ring-0" type="number" value="620"/>
+</div>
+<p class="font-body-sm text-[11px] text-outline mt-1">Required, exclusive of GST and shipping.</p>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Min. Order Qty (MOQ)</label>
+<div class="border border-outline-variant rounded-md p-3 input-focus bg-white">
+<input class="w-full bg-transparent outline-none font-data-mono text-brand-slate p-0 border-0 focus:ring-0" type="number" value="50"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Unit</label>
+<div class="border border-outline-variant rounded-md p-3 input-focus bg-white relative">
+<select class="w-full bg-transparent outline-none font-body-md text-brand-slate appearance-none p-0 border-0 focus:ring-0">
+<option value="piece">Piece</option>
+<option value="box">Box</option>
+<option value="carton">Carton</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline-variant">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Inventory Settings -->
+<section class="bg-brand-surface p-4 rounded-lg border border-brand-border custom-shadow flex flex-col gap-4">
+<div class="flex items-center justify-between border-b border-brand-border pb-2">
+<h2 class="font-headline-sm text-headline-sm text-brand-slate">Inventory Settings</h2>
+<a class="font-label-md text-brand-gold flex items-center gap-1 hover:underline" href="#">Manage inventory <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Current Stock</label>
+<div class="border border-outline-variant/50 rounded-md p-3 bg-brand-bg flex items-center justify-between">
+<span class="font-data-mono text-brand-slate">500 Pieces</span>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">lock</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Low-stock Threshold</label>
+<div class="border border-outline-variant rounded-md p-3 input-focus bg-white">
+<input class="w-full bg-transparent outline-none font-data-mono text-brand-slate p-0 border-0 focus:ring-0" type="number" value="50"/>
+</div>
+</div>
+</section>
+<!-- Fulfilment & Listing -->
+<section class="bg-brand-surface p-4 rounded-lg border border-brand-border custom-shadow flex flex-col gap-4"><h2 class="font-headline-sm text-headline-sm text-brand-slate border-b border-brand-border pb-2">Fulfilment</h2><div class="flex flex-col gap-1.5"><label class="font-label-md text-label-md text-on-surface-variant">Dispatch Lead Time</label><div class="border border-outline-variant rounded-md p-3 input-focus bg-white relative"><select class="w-full bg-transparent outline-none font-body-md text-brand-slate appearance-none p-0 border-0 focus:ring-0"><option value="1-2">1-2 days</option><option selected="" value="3-5">3-5 days</option><option value="5-7">5-7 days</option><option value="7-14">7-14 days</option></select><span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline-variant">expand_more</span></div></div></section><section class="bg-brand-surface p-4 rounded-lg border border-brand-border custom-shadow flex flex-col gap-4"><h2 class="font-headline-sm text-headline-sm text-brand-slate border-b border-brand-border pb-2">Listing Status</h2><div class="flex flex-col gap-1.5 mt-2"><label class="font-label-md text-label-md text-on-surface-variant">Listing Status</label><div class="flex items-center gap-3"><div class="relative inline-block w-12 h-6 rounded-full bg-on-tertiary-container transition-colors cursor-pointer"><input checked="" class="opacity-0 w-0 h-0 absolute" type="checkbox"/><span class="absolute inset-y-1 left-1 w-4 h-4 bg-white rounded-full transition-transform translate-x-6"></span></div><span class="font-body-md text-brand-slate font-medium">Active</span></div></div></section>
+</main>
+<!-- Sticky Bottom Actions -->
+<div class="fixed bottom-[72px] left-0 w-full bg-brand-surface border-t border-brand-border p-4 flex gap-3 z-40 custom-shadow">
+<button class="flex-1 py-3 px-4 border border-brand-slate text-brand-slate font-label-md text-label-md rounded-md active:bg-brand-bg transition-colors uppercase tracking-wide">
+            Cancel
+        </button>
+<button class="flex-1 py-3 px-4 bg-brand-gold text-white font-label-md text-label-md rounded-md active:opacity-90 transition-opacity uppercase tracking-wide">
+            Save Changes
+        </button>
+</div>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 h-[72px] bg-surface-container-lowest border-t border-outline-variant/10 shadow-sm z-50 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant pt-2 hover:text-secondary transition-colors w-[20%]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-label-md text-label-md mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant pt-2 hover:text-secondary transition-colors w-[20%]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">package_2</span>
+<span class="font-label-md text-label-md mt-1">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#B5924D] border-t-2 border-[#B5924D] pt-2 w-[20%]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-label-md text-label-md mt-1">Products</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant pt-2 hover:text-secondary transition-colors w-[20%]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">request_quote</span>
+<span class="font-label-md text-label-md mt-1">RFQs</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant pt-2 hover:text-secondary transition-colors w-[20%]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+<span class="font-label-md text-label-md mt-1">Account</span>
+</a>
+</nav>
+</body></html>
