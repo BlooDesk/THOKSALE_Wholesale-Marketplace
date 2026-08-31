@@ -1,81 +1,80 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { requireBuyer, requireSeller, type Result } from '@/lib/auth-helpers'
-import { createAdminClient } from '@/lib/supabase/admin'
+import { requireUser, requireSeller, requireBuyer, type Result } from '@/lib/auth-helpers'
 import { sanitizeField } from '@/lib/sanitize'
 
-export type RfqInput = {
+export type CreateRfqInput = {
   title: string
-  description?: string
-  category_id?: string | null
+  category?: string
+  industry_id?: string
+  category_id?: string
   quantity: number
-  unit?: string
-  target_price?: number | null
-  currency?: string
-  delivery_location?: { city?: string; state?: string; country?: string; postal_code?: string }
-  delivery_deadline?: string | null
-  attachments?: Array<{ name: string; url: string }>
-  is_public?: boolean
+  unit: string
+  target_price?: number
+  delivery_pincode: string
+  specifications?: string
+  needed_by?: string
+  sample_required?: boolean
+  nda_required?: boolean
+  payment_terms?: string
 }
 
-export type ResponseInput = {
-  rfqId: string
-  quoted_price: number
-  quantity_available?: number | null
-  lead_time_days?: number | null
-  validity_days?: number | null
-  payment_terms?: string | null
-  notes?: string | null
-}
-
-export async function createRfq(input: RfqInput): Promise<Result<{ id: string }>> {
-  const ctx = await requireBuyer(); if (!ctx.ok) return { ok: false, error: ctx.error }
+export async function createRfq(input: CreateRfqInput): Promise<Result<{ id: string }>> {
+  const ctx = await requireUser(); if (!ctx.ok) return { ok: false, error: 'Not authenticated.' }
   if (!input.title?.trim()) return { ok: false, error: 'Title is required.' }
-  if (!Number.isFinite(input.quantity) || input.quantity < 1) return { ok: false, error: 'Quantity must be at least 1.' }
+  if (!input.quantity || input.quantity <= 0) return { ok: false, error: 'Quantity must be > 0.' }
+  if (!input.unit?.trim()) return { ok: false, error: 'Unit is required.' }
+  if (!input.delivery_pincode?.trim()) return { ok: false, error: 'Delivery PIN code is required.' }
 
-  const { data: buyerComp } = await ctx.admin.from('company_profiles').select('id').eq('profile_id', ctx.user.id).maybeSingle()
+  const pin = input.delivery_pincode.replace(/\D/g, '').slice(0, 6)
+  if (pin.length !== 6) return { ok: false, error: 'PIN code must be 6 digits.' }
+
+  const num = `RFQ-${Date.now().toString(36).toUpperCase()}`
 
   const { data, error } = await ctx.admin.from('rfqs').insert({
+    rfq_number: num,
     buyer_id: ctx.user.id,
-    buyer_company_id: buyerComp?.id || null,
-    category_id: input.category_id || null,
     title: sanitizeField(input.title, 200) || input.title.trim(),
-    description: sanitizeField(input.description, 5000),
-    quantity: Math.floor(input.quantity),
-    unit: input.unit || 'piece',
+    industry_id: input.industry_id || null,
+    category_id: input.category_id || null,
+    category: input.category || null,
+    quantity: input.quantity,
+    unit: sanitizeField(input.unit, 30) || 'units',
     target_price: input.target_price ?? null,
-    currency: input.currency || 'INR',
-    delivery_location: input.delivery_location ?? {},
-    delivery_deadline: input.delivery_deadline || null,
-    attachments: input.attachments || [],
+    delivery_pincode: pin,
+    specifications: sanitizeField(input.specifications, 4000),
+    needed_by: input.needed_by || null,
+    sample_required: input.sample_required ?? false,
+    nda_required: input.nda_required ?? false,
+    payment_terms: sanitizeField(input.payment_terms, 1000),
     status: 'open',
-    is_public: input.is_public ?? true,
   }).select('id').single()
+
   if (error || !data) return { ok: false, error: error?.message || 'Failed to create RFQ.' }
 
-  revalidatePath('/rfq'); revalidatePath('/seller/rfq')
+  revalidatePath('/rfq')
+  revalidatePath('/seller/rfq')
   return { ok: true, data: { id: data.id } }
 }
 
-export async function closeRfq(id: string): Promise<Result> {
-  const ctx = await requireBuyer(); if (!ctx.ok) return { ok: false, error: ctx.error }
-  const { data: rfq } = await ctx.admin.from('rfqs').select('buyer_id').eq('id', id).maybeSingle()
-  if (!rfq || rfq.buyer_id !== ctx.user.id) return { ok: false, error: 'RFQ not found.' }
-  await ctx.admin.from('rfqs').update({ status: 'closed' }).eq('id', id)
-  revalidatePath('/rfq'); revalidatePath(`/rfq/${id}`)
-  return { ok: true }
+export type SubmitQuoteInput = {
+  rfq_id: string
+  quoted_price: number
+  quantity_available?: number
+  lead_time_days?: number
+  validity_days?: number
+  payment_terms?: string
+  notes?: string
 }
 
-export async function submitRfqResponse(input: ResponseInput): Promise<Result<{ id: string }>> {
+export async function submitRfqQuote(input: SubmitQuoteInput): Promise<Result<{ id: string }>> {
   const ctx = await requireSeller(); if (!ctx.ok) return { ok: false, error: ctx.error }
-  if (!(input.quoted_price >= 0)) return { ok: false, error: 'Quoted price must be ≥ 0.' }
+  if (!input.quoted_price || input.quoted_price <= 0) return { ok: false, error: 'Quoted price must be > 0.' }
 
-  const { data: rfq } = await ctx.admin.from('rfqs').select('id, buyer_id, status, rfq_number, invited_sellers, is_public').eq('id', input.rfqId).maybeSingle()
+  const { data: rfq } = await ctx.admin.from('rfqs').select('id, rfq_number, buyer_id, status').eq('id', input.rfq_id).maybeSingle()
   if (!rfq) return { ok: false, error: 'RFQ not found.' }
-  if (!['open', 'in_review'].includes(rfq.status)) return { ok: false, error: 'RFQ is not open.' }
-  const canAccess = rfq.is_public || (rfq.invited_sellers || []).includes(ctx.user.id)
-  if (!canAccess) return { ok: false, error: 'You are not invited to this RFQ.' }
+  if (rfq.status !== 'open' && rfq.status !== 'quoted') return { ok: false, error: 'RFQ is closed to quotes.' }
 
   const { data: sellerComp } = await ctx.admin.from('company_profiles').select('id').eq('profile_id', ctx.user.id).maybeSingle()
 
@@ -94,11 +93,13 @@ export async function submitRfqResponse(input: ResponseInput): Promise<Result<{ 
   if (error || !data) return { ok: false, error: error?.message || 'Failed to submit.' }
 
   await ctx.admin.from('rfqs').update({ status: 'quoted' }).eq('id', rfq.id).eq('status', 'open')
-  await ctx.admin.from('notifications').insert({
-    user_id: rfq.buyer_id, type: 'rfq_response',
-    title: `New quote on RFQ ${rfq.rfq_number}`,
-    data: { rfq_id: rfq.id, rfq_number: rfq.rfq_number, response_id: data.id },
-  }).catch(() => {})
+  try {
+    await ctx.admin.from('notifications').insert({
+      user_id: rfq.buyer_id, type: 'rfq_response',
+      title: `New quote on RFQ ${rfq.rfq_number}`,
+      data: { rfq_id: rfq.id, rfq_number: rfq.rfq_number, response_id: data.id },
+    })
+  } catch {}
 
   revalidatePath(`/rfq/${rfq.id}`); revalidatePath('/seller/rfq')
   return { ok: true, data: { id: data.id } }
@@ -117,11 +118,13 @@ export async function acceptRfqResponse(responseId: string): Promise<Result> {
   await ctx.admin.from('rfq_responses').update({ status: 'accepted', accepted_at: new Date().toISOString() }).eq('id', resp.id)
   await ctx.admin.from('rfqs').update({ status: 'accepted' }).eq('id', resp.rfq_id)
 
-  await ctx.admin.from('notifications').insert({
-    user_id: resp.seller_id, type: 'rfq_response',
-    title: `Your quote on RFQ ${rfqData.rfq_number} was accepted!`,
-    data: { rfq_id: resp.rfq_id, response_id: resp.id },
-  }).catch(() => {})
+  try {
+    await ctx.admin.from('notifications').insert({
+      user_id: resp.seller_id, type: 'rfq_response',
+      title: `Your quote on RFQ ${rfqData.rfq_number} was accepted!`,
+      data: { rfq_id: resp.rfq_id, response_id: resp.id },
+    })
+  } catch {}
 
   revalidatePath(`/rfq/${resp.rfq_id}`); revalidatePath('/seller/rfq')
   return { ok: true }

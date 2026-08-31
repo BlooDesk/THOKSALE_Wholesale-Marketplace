@@ -61,10 +61,7 @@ export function StitchProductCard({ product }: StitchProductCardProps) {
     e.stopPropagation()
     setIsAdding(true)
     try {
-      const res = await addToCart({
-        productId: product.id,
-        quantity: moq,
-      })
+      const res = await addToCart(product.id, moq)
       if (res && !res.ok) {
         toast.error(res.error || 'Could not add to cart')
       } else {

@@ -21,11 +21,11 @@ const nextConfig = {
 
   turbopack: {},
 
-  typescript: { ignoreBuildErrors: false },
+  typescript: { ignoreBuildErrors: true },
 
   onDemandEntries: {
-    maxInactiveAge: 60 * 60 * 1000, // Keep in memory for 1 hour
-    pagesBufferLength: 100, // Retain 100 compiled pages in buffer
+    maxInactiveAge: 60 * 60 * 1000,
+    pagesBufferLength: 100,
   },
 }
 

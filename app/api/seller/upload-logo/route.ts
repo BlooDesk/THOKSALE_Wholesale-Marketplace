@@ -63,7 +63,9 @@ export async function POST(request: NextRequest) {
       if (idx > -1) {
         const oldPath = existing.logo_url.slice(idx + marker.length)
         if (oldPath !== path) {
-          await admin.storage.from(BUCKET).remove([oldPath]).catch(() => {})
+          try {
+            await admin.storage.from(BUCKET).remove([oldPath])
+          } catch {}
         }
       }
     }

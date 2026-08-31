@@ -111,7 +111,9 @@ export async function deleteLogo(): Promise<Result> {
     const idx = company.logo_url.indexOf(marker)
     if (idx > -1) {
       const path = company.logo_url.slice(idx + marker.length)
-      await admin.storage.from('company-logos').remove([path]).catch(() => {})
+      try {
+        await admin.storage.from('company-logos').remove([path])
+      } catch {}
     }
   }
 

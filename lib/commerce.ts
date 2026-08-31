@@ -123,21 +123,12 @@ export function computeLine(opts: {
 
   // Fallback to dynamic tier pricing
   if (product) {
-    const quote: PriceQuote = computePrice({
-      base_price: basePrice,
-      tier_1_min_qty: product.tier_1_min_qty,
-      tier_1_price: product.tier_1_price,
-      tier_2_min_qty: product.tier_2_min_qty,
-      tier_2_price: product.tier_2_price,
-      tier_3_min_qty: product.tier_3_min_qty,
-      tier_3_price: product.tier_3_price,
-      quantity,
-    })
+    const quote: PriceQuote = computePrice(basePrice, quantity)
     return {
-      unitPrice: quote.unit_price,
-      subtotal: quote.total_price,
+      unitPrice: quote.unitPrice,
+      subtotal: quote.total,
       pricingSource: 'dynamic',
-      tierLabel: quote.tier_label,
+      tierLabel: quote.tier.label,
     }
   }
 

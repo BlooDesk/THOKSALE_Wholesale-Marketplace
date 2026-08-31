@@ -189,7 +189,9 @@ export async function deleteProductImage(imageId: string): Promise<Result> {
   const idx = img.url.indexOf(marker)
   if (idx > -1) {
     const path = img.url.slice(idx + marker.length)
-    await ctx.admin.storage.from('product-images').remove([path]).catch(() => {})
+    try {
+      await ctx.admin.storage.from('product-images').remove([path])
+    } catch {}
   }
 
   await ctx.admin.from('product_images').delete().eq('id', imageId)
