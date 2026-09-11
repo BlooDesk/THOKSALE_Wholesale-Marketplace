@@ -3,6 +3,8 @@ import { Badge } from '@/components/ui/badge'
 import { IndustryEditor, IndustryRowActions, NewIndustryButton } from './industries-client'
 import { Building2 } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdminIndustries() {
   const supabase = await createClient()
   const { data: industries } = await supabase

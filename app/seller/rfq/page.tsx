@@ -5,6 +5,8 @@ import { SellerShell } from '@/components/seller/seller-shell'
 import { Badge } from '@/components/ui/badge'
 import { FileText } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 export default async function SellerRfqInbox() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()

@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { StitchSellerNav } from '@/components/seller/stitch-seller-nav'
 
+export const dynamic = 'force-dynamic'
+
 const DEMO_SELLER_PRODUCTS = [
   {
     id: 'p-1',

@@ -3,6 +3,8 @@ import { createClient } from '@/lib/supabase/server'
 import { SellerShell } from '@/components/seller/seller-shell'
 import { CompanyProfileForm } from './company-form'
 
+export const dynamic = 'force-dynamic'
+
 export default async function SellerCompanyProfilePage() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()

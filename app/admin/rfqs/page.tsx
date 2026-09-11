@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { Badge } from '@/components/ui/badge'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdminRfqs() {
   const supabase = await createClient()
   const { data: rfqs } = await supabase.from('rfqs')

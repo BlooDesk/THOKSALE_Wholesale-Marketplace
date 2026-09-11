@@ -43,7 +43,7 @@ export default function InvoicesPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#F9F8F4] dark:bg-[#0B0B0F] text-[#0F172A] dark:text-slate-100 pb-32 font-sans">
+    <div className="min-h-screen bg-[#F9F8F4] dark:bg-[#0B0B0F] text-[#0F172A] dark:text-slate-100 pb-24 md:pb-8 font-sans">
       <StitchHeader />
 
       <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-6 flex flex-col gap-6">

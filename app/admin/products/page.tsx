@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button'
 import { ImageOff } from 'lucide-react'
 import { ProductRowActions } from './row-actions'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdminProducts(props: { searchParams: Promise<{ q?: string; status?: string }> }) {
   const sp = await props.searchParams
   const q = (sp.q || '').trim()

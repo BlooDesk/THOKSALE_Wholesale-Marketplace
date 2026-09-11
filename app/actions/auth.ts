@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { headers } from 'next/headers'
 
 export type Role = 'buyer' | 'seller'
 
@@ -17,17 +18,20 @@ export type SignUpInput = {
   gst_number?: string
 }
 
-export type ActionResult = { ok: true; error?: never } | { ok: false; error: string }
+export type ActionResult<T = undefined> =
+  | { ok: true; error?: never; data?: T }
+  | { ok: false; error: string; data?: never }
 
 function siteUrl() {
   return process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
 }
 
+const GSTIN_REGEX = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/
+
 export async function signUp(input: SignUpInput): Promise<ActionResult> {
   if (!input.email || !input.password) {
     return { ok: false, error: 'Email and password are required.' }
   }
-  // Email format validation (L5)
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   if (!emailRegex.test(input.email)) {
     return { ok: false, error: 'Please enter a valid email address.' }
@@ -35,15 +39,25 @@ export async function signUp(input: SignUpInput): Promise<ActionResult> {
   if (input.password.length < 8) {
     return { ok: false, error: 'Password must be at least 8 characters.' }
   }
-  // Password complexity (L6)
   if (!/[A-Z]/.test(input.password)) {
     return { ok: false, error: 'Password must contain at least one uppercase letter.' }
   }
   if (!/[0-9]/.test(input.password)) {
     return { ok: false, error: 'Password must contain at least one number.' }
   }
-  if (input.role === 'seller' && (!input.company_name || !input.gst_number)) {
-    return { ok: false, error: 'Company name and GST number are required for sellers.' }
+  if (!/[^A-Za-z0-9]/.test(input.password)) {
+    return { ok: false, error: 'Password must contain at least one special character.' }
+  }
+  if (input.role === 'seller') {
+    if (!input.company_name) {
+      return { ok: false, error: 'Company name is required for sellers.' }
+    }
+    if (!input.gst_number) {
+      return { ok: false, error: 'GSTIN is required for sellers.' }
+    }
+    if (!GSTIN_REGEX.test(input.gst_number.toUpperCase())) {
+      return { ok: false, error: 'Invalid GSTIN format. Expected format: 27AABCA1234F1Z5' }
+    }
   }
 
   const supabase = await createClient()
@@ -64,10 +78,9 @@ export async function signUp(input: SignUpInput): Promise<ActionResult> {
   })
 
   if (error) return { ok: false, error: error.message }
-  if (!data.user) return { ok: false, error: 'Signup failed. No user returned.' }
+  if (!data.user) return { ok: false, error: 'Signup failed. Please try again.' }
 
-  // Create profile + company_profile server-side using service role (bypasses RLS,
-  // works even before email confirmation).
+  // Create profile + company_profile server-side using service role (bypasses RLS)
   try {
     const admin = createAdminClient()
 
@@ -141,6 +154,12 @@ export async function updatePassword(newPassword: string): Promise<ActionResult>
   if (!newPassword || newPassword.length < 8) {
     return { ok: false, error: 'Password must be at least 8 characters.' }
   }
+  if (!/[A-Z]/.test(newPassword)) {
+    return { ok: false, error: 'Password must contain at least one uppercase letter.' }
+  }
+  if (!/[0-9]/.test(newPassword)) {
+    return { ok: false, error: 'Password must contain at least one number.' }
+  }
   const supabase = await createClient()
   const { error } = await supabase.auth.updateUser({ password: newPassword })
   if (error) return { ok: false, error: error.message }
@@ -156,4 +175,19 @@ export async function resendVerification(email: string): Promise<ActionResult> {
   })
   if (error) return { ok: false, error: error.message }
   return { ok: true }
+}
+
+export async function signInWithGoogle(): Promise<ActionResult<{ url: string }>> {
+  const supabase = await createClient()
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: `${siteUrl()}/auth/confirm?next=/account`,
+      queryParams: { access_type: 'offline', prompt: 'consent' },
+    },
+  })
+  if (error || !data.url) {
+    return { ok: false, error: error?.message || 'Google sign-in failed.' }
+  }
+  return { ok: true, data: { url: data.url } }
 }

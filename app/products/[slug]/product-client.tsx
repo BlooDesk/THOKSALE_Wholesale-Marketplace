@@ -137,22 +137,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
   }
 
   return (
-    <main className="max-w-4xl mx-auto px-4 sm:px-6 pt-4 pb-12 flex flex-col gap-6">
-      {/* Breadcrumb Navigation */}
-      <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-        <Link href="/" className="hover:underline">
-          Home
-        </Link>
-        <span className="material-symbols-outlined text-[12px]">chevron_right</span>
-        <Link href="/products" className="hover:underline">
-          Catalog
-        </Link>
-        <span className="material-symbols-outlined text-[12px]">chevron_right</span>
-        <span className="text-[#0F172A] dark:text-slate-200 font-semibold truncate max-w-[200px]">
-          {product.categories?.name || 'Wholesale Product'}
-        </span>
-      </div>
-
+    <main className="max-w-4xl mx-auto px-4 sm:px-6 pt-2 pb-32 flex flex-col gap-6">
       {/* Main Product Layout: Grid for Desktop / Stack for Mobile */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left Column: Image Gallery */}
@@ -428,31 +413,34 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
       </section>
 
       {/* Sticky Bottom Purchase Bar */}
-      <div className="fixed bottom-0 left-0 right-0 w-full bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 p-4 z-40 shadow-xl">
-        <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
-          <div>
-            <p className="text-[11px] text-slate-500 font-semibold">
+      <div
+        className="fixed bottom-0 left-0 right-0 w-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 px-4 py-3 z-40 shadow-xl"
+        style={{ paddingBottom: 'max(12px, env(safe-area-inset-bottom, 12px))' }}
+      >
+        <div className="max-w-4xl mx-auto flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <p className="text-[10px] sm:text-[11px] text-slate-500 font-semibold truncate">
               Total ({quantity} {unit} @ ₹{activeUnitPrice})
             </p>
-            <p className="text-base sm:text-xl font-black font-mono text-[#0F172A] dark:text-white">
+            <p className="text-base sm:text-xl font-black font-mono text-[#0F172A] dark:text-white leading-tight">
               ₹{totalPrice.toLocaleString('en-IN')}
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-shrink-0">
             <button
               onClick={handleAddToCart}
               disabled={isAdding}
-              className="px-4 sm:px-6 py-3 rounded-xl border border-[#0F172A] dark:border-white text-xs font-bold text-[#0F172A] dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all active:scale-95 disabled:opacity-50"
+              className="px-3 sm:px-6 py-2.5 sm:py-3 rounded-xl border border-[#0F172A] dark:border-white text-xs font-bold text-[#0F172A] dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all active:scale-95 disabled:opacity-50"
             >
-              Add to Cart
+              {isAdding ? 'Adding...' : 'Add to Cart'}
             </button>
             <button
               onClick={handleBuyNow}
               disabled={isBuying}
-              className="px-5 sm:px-8 py-3 rounded-xl bg-[#B5924D] hover:bg-[#96773a] text-white text-xs font-bold transition-all shadow-md active:scale-95 disabled:opacity-50"
+              className="px-4 sm:px-8 py-2.5 sm:py-3 rounded-xl bg-[#B5924D] hover:bg-[#96773a] text-white text-xs font-bold transition-all shadow-md active:scale-95 disabled:opacity-50"
             >
-              Buy Now
+              {isBuying ? 'Redirecting...' : 'Buy Now'}
             </button>
           </div>
         </div>

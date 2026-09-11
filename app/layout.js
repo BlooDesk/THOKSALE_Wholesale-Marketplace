@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
         {/* Guard: Safari sometimes serialises `PerformanceServerTiming` while cloning worker msgs */}
       </head>
-      <body className="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-accent/25 selection:text-accent-foreground pb-20 md:pb-0">
+      <body className="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-accent/25 selection:text-accent-foreground">
         <a href="#main" className="skip-link">Skip to main content</a>
         <Providers>
           <AuthProvider>

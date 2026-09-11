@@ -1,288 +1,348 @@
+// ============================================================
+// THOKSALE — Product Listing Page (Server Component)
+// Amazon-style: sidebar filters + sort bar + product grid
+// ============================================================
+
+import { Suspense } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { StitchHeader } from '@/components/marketplace/stitch-header'
 import { StitchBottomNav } from '@/components/marketplace/stitch-bottom-nav'
 import { StitchProductCard } from '@/components/marketplace/stitch-product-card'
+import { ProductFilters } from '@/components/marketplace/product-filters'
+import { MobileFilterDrawer } from '@/components/marketplace/mobile-filter-drawer'
+import { CategoryStrip } from '@/components/marketplace/category-strip'
+import { ProductSort } from '@/components/marketplace/product-sort'
 
-const PER_PAGE = 24
+export const dynamic = 'force-dynamic'
 
-const FALLBACK_PRODUCTS = [
-  {
-    id: 'prod-1',
-    title: '10000mAh PD Fast Charging Power Bank Type-C',
-    slug: '10000mah-pd-power-bank',
-    base_price: 850,
-    min_order_quantity: 100,
-    unit: 'pcs',
-    seller: { display_name: 'ElectroTech India', city: 'Delhi', kyc_status: 'verified' },
-    images: ['https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=500&auto=format&fit=crop&q=60'],
-    pricing_tiers: [
-      { min_quantity: 100, price: 850 },
-      { min_quantity: 500, price: 790 },
-      { min_quantity: 2000, price: 720 },
-    ],
-  },
-  {
-    id: 'prod-2',
-    title: 'Heavy Duty Clear Brown Packaging Tape 2-inch 65m',
-    slug: 'heavy-duty-packaging-tape',
-    base_price: 35,
-    min_order_quantity: 500,
-    unit: 'rolls',
-    seller: { display_name: 'Apex Packagings', city: 'Mumbai', kyc_status: 'verified' },
-    images: ['https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=500&auto=format&fit=crop&q=60'],
-    pricing_tiers: [
-      { min_quantity: 500, price: 35 },
-      { min_quantity: 2000, price: 32 },
-      { min_quantity: 5000, price: 29 },
-    ],
-  },
-  {
-    id: 'prod-3',
-    title: 'Industrial Grade 6204-2RS Deep Groove Ball Bearing',
-    slug: 'industrial-deep-groove-ball-bearing',
-    base_price: 120,
-    min_order_quantity: 200,
-    unit: 'pcs',
-    seller: { display_name: 'SteelMax Corp', city: 'Ludhiana', kyc_status: 'verified' },
-    images: ['https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=500&auto=format&fit=crop&q=60'],
-    pricing_tiers: [
-      { min_quantity: 200, price: 120 },
-      { min_quantity: 1000, price: 108 },
-      { min_quantity: 5000, price: 95 },
-    ],
-  },
-  {
-    id: 'prod-4',
-    title: '50W Commercial Outdoor LED Floodlight IP66 Waterproof',
-    slug: '50w-commercial-led-floodlight',
-    base_price: 450,
-    min_order_quantity: 50,
-    unit: 'pcs',
-    seller: { display_name: 'Lumina Electricals', city: 'Pune', kyc_status: 'verified' },
-    images: ['https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500&auto=format&fit=crop&q=60'],
-    pricing_tiers: [
-      { min_quantity: 50, price: 450 },
-      { min_quantity: 200, price: 410 },
-      { min_quantity: 500, price: 375 },
-    ],
-  },
-  {
-    id: 'prod-5',
-    title: '100% Combed Cotton Knitted Bio-Washed Fabric 180 GSM',
-    slug: 'combed-cotton-knitted-fabric',
-    base_price: 260,
-    min_order_quantity: 100,
-    unit: 'kg',
-    seller: { display_name: 'Surat Textiles Hub', city: 'Surat', kyc_status: 'verified' },
-    images: ['https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=500&auto=format&fit=crop&q=60'],
-    pricing_tiers: [
-      { min_quantity: 100, price: 260 },
-      { min_quantity: 500, price: 245 },
-      { min_quantity: 2000, price: 230 },
-    ],
-  },
-  {
-    id: 'prod-6',
-    title: 'Corrugated 5-Ply Heavy Industrial Master Carton Box',
-    slug: 'corrugated-5-ply-industrial-box',
-    base_price: 42,
-    min_order_quantity: 250,
-    unit: 'boxes',
-    seller: { display_name: 'EcoPack Ahmedabad', city: 'Ahmedabad', kyc_status: 'verified' },
-    images: ['https://images.unsplash.com/photo-1530587191325-3db32d826c18?w=500&auto=format&fit=crop&q=60'],
-    pricing_tiers: [
-      { min_quantity: 250, price: 42 },
-      { min_quantity: 1000, price: 38 },
-      { min_quantity: 5000, price: 34 },
-    ],
-  },
+const SORT_OPTIONS = [
+  { value: 'newest',     label: 'Newest First' },
+  { value: 'price_asc',  label: 'Price: Low → High' },
+  { value: 'price_desc', label: 'Price: High → Low' },
+  { value: 'moq_asc',    label: 'MOQ: Low → High' },
 ]
 
-export default async function ProductsPage(props: {
-  searchParams: Promise<{
-    q?: string
-    category?: string
-    industry?: string
-    sort?: string
-    page?: string
-    moq?: string
-    verified?: string
-  }>
+const INDIAN_STATES = [
+  'Andhra Pradesh','Assam','Bihar','Delhi','Gujarat','Haryana',
+  'Jharkhand','Karnataka','Kerala','Madhya Pradesh','Maharashtra',
+  'Odisha','Punjab','Rajasthan','Tamil Nadu','Telangana',
+  'Uttar Pradesh','Uttarakhand','West Bengal',
+]
+
+const SUPPLIER_TYPES = [
+  { value: 'manufacturer',           label: 'Manufacturer' },
+  { value: 'oem_manufacturer',       label: 'OEM Manufacturer' },
+  { value: 'wholesaler',             label: 'Wholesaler' },
+  { value: 'distributor',            label: 'Distributor' },
+  { value: 'private_label_manufacturer', label: 'Private Label' },
+]
+
+type SearchParams = {
+  q?: string
+  industry?: string
+  category?: string
+  sort?: string
+  min?: string
+  max?: string
+  moq?: string
+  state?: string
+  supplierType?: string
+  sample?: string
+  oem?: string
+  page?: string
+}
+
+function Skeleton() {
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+      {Array.from({ length: 6 }).map((_, i) => (
+        <div key={i} className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 animate-pulse">
+          <div className="aspect-[4/3] bg-slate-100 dark:bg-slate-800" />
+          <div className="p-3 space-y-2">
+            <div className="h-3 bg-slate-100 dark:bg-slate-800 rounded w-3/4" />
+            <div className="h-3 bg-slate-100 dark:bg-slate-800 rounded w-1/2" />
+            <div className="h-4 bg-slate-100 dark:bg-slate-800 rounded w-1/3" />
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export default async function ProductsPage({
+  searchParams: rawParams,
+}: {
+  searchParams: Promise<SearchParams>
 }) {
-  const sp = await props.searchParams
-  const q = (sp.q || '').trim()
-  const categoryId = sp.category || ''
-  const sort = sp.sort || 'newest'
-  const page = Math.max(1, parseInt(sp.page || '1', 10) || 1)
-  const moqFilter = sp.moq || ''
-  const verifiedFilter = sp.verified || ''
+  const searchParams = await rawParams
+  const supabase = await createClient()
+  const PAGE_SIZE = 24
+  const page = Math.max(1, Number(searchParams.page ?? 1))
+  const offset = (page - 1) * PAGE_SIZE
 
-  let products = FALLBACK_PRODUCTS
-  let categories: any[] = []
-  let totalCount = FALLBACK_PRODUCTS.length
+  // ── Build Supabase query ──────────────────────────────────────────────────
+  let query = supabase
+    .from('products')
+    .select(`
+      id, name, slug, base_price, factory_gate_price, moq, unit,
+      mfg_location_city, mfg_location_state, supplier_type,
+      sample_available, oem_available,
+      product_media ( public_url_or_reference, is_primary ),
+      brands ( name ),
+      company_profiles!products_seller_id_fkey ( display_name, kyc_status )
+    `, { count: 'exact' })
+    .eq('status', 'active')
+    .is('deleted_at', null)
+    .range(offset, offset + PAGE_SIZE - 1)
 
-  try {
-    const supabase = await createClient()
-    const [{ data: rawCats }] = await Promise.all([
-      supabase.from('categories').select('id, name, slug').limit(12),
-    ])
-
-    if (rawCats) categories = rawCats
-
-    let query: any = supabase
-      .from('products')
-      .select(`
-        id, name, slug, factory_gate_price, moq, unit, category_id,
-        product_media ( public_url_or_reference, is_primary ),
-        brand:brands ( name )
-      `, { count: 'exact' })
-
-    if (q) query = query.ilike('name', `%${q}%`)
-    if (categoryId && categoryId !== 'all') query = query.eq('category_id', categoryId)
-
-    const from = (page - 1) * PER_PAGE
-    const to = from + PER_PAGE - 1
-    query = query.range(from, to).order('created_at', { ascending: false })
-
-    const { data: dbProducts, count } = await query
-    if (dbProducts && dbProducts.length > 0) {
-      products = dbProducts.map((p, idx) => ({
-        id: p.id,
-        title: p.name,
-        slug: p.slug || p.id,
-        base_price: p.factory_gate_price || 100,
-        min_order_quantity: p.moq || 10,
-        unit: (p.unit || 'units').toLowerCase(),
-        seller: { display_name: p.brand?.name || 'Verified Factory', city: 'India', kyc_status: 'verified' },
-        images: p.product_media && p.product_media.length > 0
-          ? p.product_media.map((m: any) => m.public_url_or_reference)
-          : [FALLBACK_PRODUCTS[idx % FALLBACK_PRODUCTS.length].images[0]],
-        pricing_tiers: [
-          { min_quantity: p.moq || 10, price: p.factory_gate_price || 100 },
-          { min_quantity: (p.moq || 10) * 5, price: Math.round((p.factory_gate_price || 100) * 0.92) },
-          { min_quantity: (p.moq || 10) * 20, price: Math.round((p.factory_gate_price || 100) * 0.85) },
-        ],
-      }))
-      totalCount = count || dbProducts.length
-    }
-  } catch (err) {
-    console.error('Products page load fallback:', err)
+  if (searchParams.q) {
+    query = query.ilike('name', `%${searchParams.q}%`)
+  }
+  if (searchParams.industry) {
+    query = query.eq('industry_id', searchParams.industry)
+  }
+  if (searchParams.category) {
+    query = query.eq('category_id', searchParams.category)
+  }
+  if (searchParams.min) {
+    query = query.gte('base_price', Number(searchParams.min))
+  }
+  if (searchParams.max) {
+    query = query.lte('base_price', Number(searchParams.max))
+  }
+  if (searchParams.moq) {
+    query = query.lte('moq', Number(searchParams.moq))
+  }
+  if (searchParams.state) {
+    query = query.eq('mfg_location_state', searchParams.state)
+  }
+  if (searchParams.supplierType) {
+    query = query.eq('supplier_type', searchParams.supplierType)
+  }
+  if (searchParams.sample === '1') {
+    query = query.eq('sample_available', true)
+  }
+  if (searchParams.oem === '1') {
+    query = query.eq('oem_available', true)
   }
 
-  // Filter in-memory if using fallback or supplementary filters
-  let displayedProducts = products
-  if (q && products === FALLBACK_PRODUCTS) {
-    displayedProducts = displayedProducts.filter((p) => p.title.toLowerCase().includes(q.toLowerCase()))
-  }
+  // Sort
+  const sort = searchParams.sort ?? 'newest'
+  if (sort === 'price_asc')  query = query.order('base_price', { ascending: true })
+  else if (sort === 'price_desc') query = query.order('base_price', { ascending: false })
+  else if (sort === 'moq_asc')   query = query.order('moq', { ascending: true })
+  else                            query = query.order('created_at', { ascending: false })
+
+  // ── Industries for strip ──────────────────────────────────────────────────
+  const [productsRes, industriesRes] = await Promise.allSettled([query, supabase.from('industries').select('id, name, slug').eq('is_active', true).order('sort_order').limit(12)])
+
+  const products = productsRes.status === 'fulfilled' ? productsRes.value.data ?? [] : []
+  const totalCount = productsRes.status === 'fulfilled' ? productsRes.value.count ?? 0 : 0
+  const industries = industriesRes.status === 'fulfilled' ? industriesRes.value.data ?? [] : []
+  const totalPages = Math.ceil(totalCount / PAGE_SIZE)
+
+  const normalizeProduct = (p: any) => ({
+    id: p.id,
+    name: p.name,
+    slug: p.slug,
+    base_price: p.factory_gate_price ?? p.base_price,
+    factory_gate_price: p.factory_gate_price,
+    moq: p.moq ?? 1,
+    unit: (p.unit ?? 'pcs').toLowerCase(),
+    sample_available: p.sample_available ?? false,
+    oem_available: p.oem_available ?? false,
+    mfg_location_city: p.mfg_location_city,
+    product_media: p.product_media ?? [],
+    seller: {
+      display_name: p.company_profiles?.display_name ?? p.brands?.name ?? 'Supplier',
+      city: p.mfg_location_city ?? p.mfg_location_state ?? 'India',
+      kyc_status: p.company_profiles?.kyc_status ?? 'pending',
+    },
+  })
+
+  const hasFilters = !!(searchParams.q || searchParams.industry || searchParams.category || searchParams.state || searchParams.supplierType || searchParams.sample || searchParams.oem)
 
   return (
-    <div className="min-h-screen bg-[#F9F8F4] dark:bg-[#0B0B0F] text-[#0F172A] dark:text-slate-100 pb-24 font-sans">
+    <div className="min-h-screen bg-[#F4F6FA] dark:bg-[#0A0D14] pb-24 md:pb-8 font-sans">
       <StitchHeader />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-        {/* Breadcrumbs & Header */}
-        <div className="flex flex-col gap-1 mb-4">
-          <div className="flex items-center gap-1 text-[11px] font-semibold text-slate-500">
-            <Link href="/" className="hover:underline">
-              Home
-            </Link>
-            <span className="material-symbols-outlined text-[12px]">chevron_right</span>
-            <span className="text-[#0F172A] dark:text-slate-200">Wholesale Catalog</span>
-          </div>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8">
 
-          <div className="flex justify-between items-baseline mt-1">
-            <h1 className="text-xl sm:text-2xl font-black text-[#0F172A] dark:text-white tracking-tight">
-              {q ? `Results for "${q}"` : 'Wholesale Product Catalog'}
+        {/* Industry strip */}
+        <div className="mb-5">
+          <CategoryStrip industries={industries} />
+        </div>
+
+        {/* Search + sort bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <div>
+            <h1 className="text-xl font-black text-[#0F172A] dark:text-white tracking-tight">
+              {searchParams.q ? `Results for "${searchParams.q}"` : 'Wholesale Catalog'}
             </h1>
-            <span className="text-xs font-semibold text-slate-500">
-              {totalCount} Verified Products
-            </span>
-          </div>
-        </div>
-
-        {/* Filter Chips Bar */}
-        <div className="flex gap-2 overflow-x-auto pb-3 mb-4 hide-scrollbar">
-          <Link
-            href="/products"
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
-              !categoryId && !moqFilter && !verifiedFilter
-                ? 'bg-[#0F172A] text-white'
-                : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-[#B5924D]'
-            }`}
-          >
-            All Categories
-          </Link>
-
-          <Link
-            href={`/products?verified=true${q ? `&q=${q}` : ''}`}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
-              verifiedFilter
-                ? 'bg-[#0F172A] text-white'
-                : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-[#B5924D]'
-            }`}
-          >
-            <span
-              className="material-symbols-outlined text-[14px] text-emerald-500"
-              style={{ fontVariationSettings: "'FILL' 1" }}
-            >
-              verified
-            </span>
-            Verified Suppliers Only
-          </Link>
-
-          <Link
-            href={`/products?moq=low${q ? `&q=${q}` : ''}`}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
-              moqFilter === 'low'
-                ? 'bg-[#0F172A] text-white'
-                : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-[#B5924D]'
-            }`}
-          >
-            <span className="material-symbols-outlined text-[14px]">inventory_2</span>
-            Low MOQ (&lt; 100 pcs)
-          </Link>
-
-          {categories.map((c) => (
-            <Link
-              key={c.id}
-              href={`/products?category=${c.id}${q ? `&q=${q}` : ''}`}
-              className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
-                categoryId === c.id
-                  ? 'bg-[#0F172A] text-white'
-                  : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-[#B5924D]'
-              }`}
-            >
-              {c.name}
-            </Link>
-          ))}
-        </div>
-
-        {/* Product Grid */}
-        {displayedProducts.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
-            {displayedProducts.map((product) => (
-              <StitchProductCard key={product.id} product={product as any} />
-            ))}
-          </div>
-        ) : (
-          <div className="bg-white dark:bg-slate-900 rounded-3xl p-12 text-center border border-slate-200 dark:border-slate-800 my-8">
-            <span className="material-symbols-outlined text-5xl text-slate-400 mb-3">search_off</span>
-            <h3 className="text-base font-bold text-[#0F172A] dark:text-white mb-1">No products found</h3>
-            <p className="text-xs text-slate-500 mb-4">
-              Try adjusting your keywords or clearing filters to see more wholesale results.
+            <p className="text-xs text-slate-500 mt-0.5">
+              {totalCount.toLocaleString('en-IN')} products found
             </p>
-            <Link
-              href="/products"
-              className="inline-block bg-[#0F172A] text-white text-xs font-bold px-4 py-2 rounded-xl"
-            >
-              Clear All Filters
-            </Link>
           </div>
-        )}
+
+          <div className="flex items-center gap-2">
+            {/* Mobile filter button + drawer */}
+            <MobileFilterDrawer
+              states={INDIAN_STATES}
+              supplierTypes={SUPPLIER_TYPES}
+              searchParams={searchParams}
+            />
+            {/* Sort */}
+            <ProductSort options={SORT_OPTIONS} defaultValue={sort} />
+          </div>
+        </div>
+
+        {/* Layout: sidebar + grid */}
+        <div className="flex gap-6">
+
+          {/* Sidebar filters (desktop) */}
+          <aside className="hidden lg:block w-64 flex-shrink-0">
+            <ProductFilters
+              states={INDIAN_STATES}
+              supplierTypes={SUPPLIER_TYPES}
+              searchParams={searchParams}
+            />
+          </aside>
+
+          {/* Product grid */}
+          <div className="flex-1 min-w-0">
+            {/* Active filter chips */}
+            {hasFilters && (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {searchParams.q && (
+                  <FilterChip label={`Search: "${searchParams.q}"`} remove="q" searchParams={searchParams} />
+                )}
+                {searchParams.state && (
+                  <FilterChip label={searchParams.state} remove="state" searchParams={searchParams} />
+                )}
+                {searchParams.supplierType && (
+                  <FilterChip label={SUPPLIER_TYPES.find(t => t.value === searchParams.supplierType)?.label ?? searchParams.supplierType} remove="supplierType" searchParams={searchParams} />
+                )}
+                {searchParams.sample === '1' && (
+                  <FilterChip label="Sample Available" remove="sample" searchParams={searchParams} />
+                )}
+                {searchParams.oem === '1' && (
+                  <FilterChip label="OEM Available" remove="oem" searchParams={searchParams} />
+                )}
+                <Link
+                  href="/products"
+                  className="text-xs font-bold text-red-600 hover:underline flex items-center gap-0.5 px-2 py-1"
+                >
+                  Clear All
+                </Link>
+              </div>
+            )}
+
+            <Suspense fallback={<Skeleton />}>
+              {products.length === 0 ? (
+                <EmptyState searchParams={searchParams} />
+              ) : (
+                <>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {products.map((p) => (
+                      <StitchProductCard key={p.id} product={normalizeProduct(p)} />
+                    ))}
+                  </div>
+
+                  {/* Pagination */}
+                  {totalPages > 1 && (
+                    <Pagination
+                      currentPage={page}
+                      totalPages={totalPages}
+                      searchParams={searchParams}
+                    />
+                  )}
+                </>
+              )}
+            </Suspense>
+          </div>
+        </div>
+
       </main>
 
       <StitchBottomNav />
+    </div>
+  )
+}
+
+// ── Sub-components ──────────────────────────────────────────────────────────
+
+function FilterChip({ label, remove, searchParams }: { label: string; remove: string; searchParams: SearchParams }) {
+  const params = new URLSearchParams(searchParams as any)
+  params.delete(remove)
+  params.delete('page')
+  return (
+    <Link
+      href={`/products?${params.toString()}`}
+      className="inline-flex items-center gap-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full px-3 py-1 text-xs font-bold text-slate-700 dark:text-slate-200 hover:border-red-400 hover:text-red-600 transition-colors"
+    >
+      {label}
+      <span className="material-symbols-outlined text-[13px]">close</span>
+    </Link>
+  )
+}
+
+function EmptyState({ searchParams }: { searchParams: SearchParams }) {
+  return (
+    <div className="flex flex-col items-center justify-center py-20 text-center">
+      <span className="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-700 mb-4">
+        search_off
+      </span>
+      <h3 className="text-lg font-bold text-slate-700 dark:text-slate-300">No products found</h3>
+      <p className="text-sm text-slate-500 mt-1 mb-4">
+        {searchParams.q ? `No results for "${searchParams.q}"` : 'Try adjusting your filters'}
+      </p>
+      <Link href="/products" className="bg-[#0F172A] dark:bg-white text-white dark:text-[#0F172A] font-bold text-sm px-6 py-2.5 rounded-xl hover:bg-[#B5924D] dark:hover:bg-[#B5924D] dark:hover:text-white transition-all">
+        Clear Filters
+      </Link>
+    </div>
+  )
+}
+
+function Pagination({ currentPage, totalPages, searchParams }: { currentPage: number; totalPages: number; searchParams: SearchParams }) {
+  const getHref = (p: number) => {
+    const params = new URLSearchParams(searchParams as any)
+    params.set('page', String(p))
+    return `/products?${params.toString()}`
+  }
+
+  const pages = Array.from({ length: Math.min(totalPages, 7) }, (_, i) => {
+    if (totalPages <= 7) return i + 1
+    if (currentPage <= 4) return i + 1
+    if (currentPage >= totalPages - 3) return totalPages - 6 + i
+    return currentPage - 3 + i
+  })
+
+  return (
+    <div className="flex justify-center items-center gap-1.5 mt-8">
+      {currentPage > 1 && (
+        <Link href={getHref(currentPage - 1)} className="w-9 h-9 flex items-center justify-center rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:border-[#B5924D] transition-colors">
+          <span className="material-symbols-outlined text-[18px]">chevron_left</span>
+        </Link>
+      )}
+      {pages.map((p) => (
+        <Link
+          key={p}
+          href={getHref(p)}
+          className={`w-9 h-9 flex items-center justify-center rounded-xl text-sm font-bold transition-colors ${
+            p === currentPage
+              ? 'bg-[#0F172A] dark:bg-white text-white dark:text-[#0F172A]'
+              : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-[#B5924D]'
+          }`}
+        >
+          {p}
+        </Link>
+      ))}
+      {currentPage < totalPages && (
+        <Link href={getHref(currentPage + 1)} className="w-9 h-9 flex items-center justify-center rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:border-[#B5924D] transition-colors">
+          <span className="material-symbols-outlined text-[18px]">chevron_right</span>
+        </Link>
+      )}
     </div>
   )
 }

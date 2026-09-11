@@ -4,222 +4,209 @@ import { createClient } from '@/lib/supabase/server'
 import { StitchHeader } from '@/components/marketplace/stitch-header'
 import { StitchBottomNav } from '@/components/marketplace/stitch-bottom-nav'
 import { AccountSignOutButton } from './sign-out-btn'
+import { getBuyerOrderStats } from '@/services/order.service'
+import { getKycBadge } from '@/services/profile.service'
+
+export const dynamic = 'force-dynamic'
+
+const ACCOUNT_NAV = [
+  { href: '/orders',               icon: 'inventory_2',          label: 'My Orders',       sub: 'Track & manage orders' },
+  { href: '/account/invoices',     icon: 'receipt_long',         label: 'Invoices',         sub: 'GST-compliant invoices' },
+  { href: '/account/wallet',       icon: 'account_balance_wallet', label: 'Promo Wallet',   sub: 'Credits & rewards' },
+  { href: '/rfq',                  icon: 'request_quote',        label: 'My RFQs',          sub: 'Quote requests' },
+  { href: '/account/business',     icon: 'business',             label: 'Business Profile', sub: 'Company & KYC details' },
+  { href: '/account/applications', icon: 'description',          label: 'Applications',     sub: 'Seller & credit apps' },
+  { href: '/account/addresses',    icon: 'location_on',          label: 'Addresses',        sub: 'Delivery addresses' },
+  { href: '/notifications',        icon: 'notifications',        label: 'Notifications',    sub: 'Alerts & updates' },
+]
 
 export default async function AccountPage() {
   const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const { data: { user } } = await supabase.auth.getUser()
 
   if (!user) {
     redirect('/login?next=/account')
   }
 
-  let profile: any = null
-  let company: any = null
-
-  const [{ data: p }, { data: cp }] = await Promise.all([
-    supabase.from('profiles').select('id, full_name, phone, status').eq('id', user.id).maybeSingle(),
-    supabase.from('company_profiles').select('*').eq('profile_id', user.id).maybeSingle(),
+  const [profileRes, companyRes, ordersRes, notifsRes] = await Promise.allSettled([
+    supabase.from('profiles').select('id, full_name, phone, role, avatar_url').eq('id', user.id).maybeSingle(),
+    supabase.from('company_profiles').select('id, display_name, legal_name, kyc_status, city, state, tax_id').eq('profile_id', user.id).maybeSingle(),
+    getBuyerOrderStats(user.id),
+    supabase.from('notifications').select('id', { count: 'exact', head: true }).eq('user_id', user.id).eq('is_read', false),
   ])
-  profile = p
-  company = cp
 
-  const fullName = profile?.full_name || user.user_metadata?.full_name || user.email?.split('@')[0] || 'Wholesale Member'
-  const email = user.email || ''
-  const phone = profile?.phone || user.user_metadata?.phone || 'Not registered'
-  const businessName = company?.display_name || company?.legal_name || user.user_metadata?.company_name || 'Registered Wholesale Entity'
-  const role = (user.user_metadata?.role as string) || 'buyer'
+  const profile  = profileRes.status  === 'fulfilled' ? profileRes.value.data  : null
+  const company  = companyRes.status  === 'fulfilled' ? companyRes.value.data  : null
+  const orders   = ordersRes.status   === 'fulfilled' ? ordersRes.value        : { total: 0, active: 0, completed: 0 }
+  const unread   = notifsRes.status   === 'fulfilled' ? (notifsRes.value.count ?? 0) : 0
+
+  const fullName     = profile?.full_name || user.user_metadata?.full_name || user.email?.split('@')[0] || 'Wholesale Member'
+  const email        = user.email ?? ''
+  const phone        = profile?.phone || user.user_metadata?.phone || ''
+  const businessName = company?.display_name || company?.legal_name || user.user_metadata?.company_name || null
+  const kyc          = getKycBadge(company?.kyc_status ?? 'pending')
+  const role         = profile?.role || user.user_metadata?.role || 'buyer'
+  const location     = [company?.city, company?.state].filter(Boolean).join(', ')
+  const isKycVerified = company?.kyc_status === 'verified'
 
   return (
-    <div className="min-h-screen bg-[#F9F8F4] dark:bg-[#0B0B0F] text-[#0F172A] dark:text-slate-100 pb-32 font-sans">
+    <div className="min-h-screen bg-[#F4F6FA] dark:bg-[#0A0D14] text-[#0F172A] dark:text-slate-100 font-sans">
       <StitchHeader />
 
-      <main className="max-w-2xl mx-auto px-4 sm:px-6 pt-6 flex flex-col gap-5">
-        {/* Title */}
-        <div>
-          <h1 className="text-xl sm:text-2xl font-black text-[#0F172A] dark:text-white tracking-tight">
-            Account & Business Hub
-          </h1>
-          <p className="text-xs text-slate-500 font-semibold mt-0.5">
-            Manage corporate identity, GST tax details, orders, and credit limits.
-          </p>
-        </div>
+      <main className="max-w-2xl mx-auto px-4 sm:px-6 pt-4 pb-24 flex flex-col gap-4">
 
-        {/* Identity Card */}
-        <section className="bg-white dark:bg-slate-900 rounded-3xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-xs flex items-center gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-[#0F172A] text-white flex items-center justify-center font-black text-xl shrink-0 border border-[#B5924D]/40">
-            {fullName.charAt(0).toUpperCase()}
+        {/* ── Profile Card ──────────────────────────────────────────────── */}
+        <section className="bg-gradient-to-br from-[#0F172A] via-[#162032] to-[#1e293b] rounded-3xl px-5 pt-5 pb-4 shadow-lg relative overflow-hidden">
+          {/* Decorative blobs */}
+          <div className="absolute -top-10 -right-10 w-36 h-36 bg-[#B5924D]/10 rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute bottom-0 left-1/2 w-64 h-20 bg-indigo-900/10 rounded-full blur-3xl pointer-events-none" />
+
+          {/* Avatar + Info */}
+          <div className="relative flex items-start gap-4">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#B5924D]/20 border-2 border-[#B5924D]/30 flex items-center justify-center font-black text-2xl text-[#B5924D] flex-shrink-0 select-none">
+              {fullName.charAt(0).toUpperCase()}
+            </div>
+            <div className="flex-1 min-w-0 pt-0.5">
+              <h1 className="text-base sm:text-lg font-extrabold text-white truncate leading-tight">{fullName}</h1>
+              <p className="text-[11px] text-slate-400 truncate mt-0.5">{email}</p>
+              {phone && <p className="text-[11px] text-slate-400 mt-0.5">{phone}</p>}
+              <div className="flex flex-wrap items-center gap-1.5 mt-2">
+                {/* Role badge */}
+                <span className="inline-flex items-center gap-1 bg-indigo-600/20 text-indigo-300 border border-indigo-500/20 text-[10px] font-bold px-2 py-0.5 rounded-full capitalize">
+                  <span className="material-symbols-outlined text-[10px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+                    {role === 'seller' ? 'factory' : 'shopping_bag'}
+                  </span>
+                  {role === 'seller' ? 'Seller' : 'Buyer'}
+                </span>
+                {/* KYC badge */}
+                <span className={`inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                  isKycVerified
+                    ? 'bg-emerald-600/20 text-emerald-300 border-emerald-500/20'
+                    : 'bg-amber-600/20 text-amber-300 border-amber-500/20'
+                }`}>
+                  <span className="material-symbols-outlined text-[10px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+                    {isKycVerified ? 'verified' : 'hourglass_empty'}
+                  </span>
+                  {kyc.label}
+                </span>
+              </div>
+            </div>
+            <Link
+              href="/account/business"
+              className="flex-shrink-0 w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors mt-0.5"
+              title="Edit Profile"
+            >
+              <span className="material-symbols-outlined text-white text-[17px]">edit</span>
+            </Link>
           </div>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2">
-              <h2 className="text-base sm:text-lg font-bold text-[#0F172A] dark:text-white truncate">{fullName}</h2>
-              <span
-                className="material-symbols-outlined text-emerald-600 text-base"
-                style={{ fontVariationSettings: "'FILL' 1" }}
-                title="KYC Verified"
-              >
-                verified
-              </span>
+
+          {/* Business info row */}
+          <div className="relative mt-4 pt-3.5 border-t border-white/10 flex items-center gap-2.5">
+            <span className="material-symbols-outlined text-[16px] text-slate-400 flex-shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>
+              business
+            </span>
+            <div className="flex-1 min-w-0">
+              {businessName ? (
+                <>
+                  <p className="text-sm font-bold text-white truncate">{businessName}</p>
+                  {location && <p className="text-[11px] text-slate-400">{location}</p>}
+                </>
+              ) : (
+                <Link href="/account/business" className="text-sm font-bold text-[#B5924D] hover:underline">
+                  + Register Your Business
+                </Link>
+              )}
             </div>
-            <p className="text-xs text-slate-500 font-semibold truncate mt-0.5">{businessName}</p>
-            <div className="flex items-center gap-2 mt-1">
-              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#B5924D]/15 text-[#775a1a] dark:text-[#B5924D]">
-                {role === 'seller' ? 'Verified Manufacturer' : 'Wholesale Buyer'}
+            {company?.tax_id && (
+              <span className="flex-shrink-0 text-[9px] font-mono text-slate-500 bg-white/5 px-2 py-0.5 rounded-lg hidden sm:block">
+                GSTIN: {company.tax_id}
               </span>
-              <span className="text-[10px] text-slate-400 font-mono">UID: {user.id.slice(0, 8)}</span>
-            </div>
+            )}
           </div>
         </section>
 
-        {/* Quick KPI Stat Pills */}
+        {/* ── Stats Row ─────────────────────────────────────────────────── */}
         <section className="grid grid-cols-3 gap-3">
-          <Link
-            href="/orders"
-            className="bg-white dark:bg-slate-900 rounded-2xl p-3.5 border border-slate-200 dark:border-slate-800 shadow-xs text-center hover:border-[#B5924D] transition-colors"
-          >
-            <span className="font-mono text-base sm:text-lg font-extrabold text-[#0F172A] dark:text-white block">
-              3
-            </span>
-            <span className="text-[10px] font-bold uppercase text-slate-500 tracking-wider">Orders</span>
-          </Link>
-
-          <Link
-            href="/rfq"
-            className="bg-white dark:bg-slate-900 rounded-2xl p-3.5 border border-slate-200 dark:border-slate-800 shadow-xs text-center hover:border-[#B5924D] transition-colors"
-          >
-            <span className="font-mono text-base sm:text-lg font-extrabold text-[#0F172A] dark:text-white block">
-              4
-            </span>
-            <span className="text-[10px] font-bold uppercase text-slate-500 tracking-wider">RFQs</span>
-          </Link>
-
-          <Link
-            href="/account/wallet"
-            className="bg-white dark:bg-slate-900 rounded-2xl p-3.5 border border-slate-200 dark:border-slate-800 shadow-xs text-center hover:border-[#B5924D] transition-colors"
-          >
-            <span className="font-mono text-base sm:text-lg font-extrabold text-[#B5924D] block">
-              ₹5.0L
-            </span>
-            <span className="text-[10px] font-bold uppercase text-slate-500 tracking-wider">Trade Credit</span>
-          </Link>
+          {[
+            { label: 'Total Orders',  value: orders.total,     icon: 'inventory_2',     color: 'text-indigo-500 dark:text-indigo-400',  bg: 'bg-indigo-50  dark:bg-indigo-950/40' },
+            { label: 'Active',        value: orders.active,    icon: 'pending_actions',  color: 'text-amber-500  dark:text-amber-400',   bg: 'bg-amber-50   dark:bg-amber-950/40'  },
+            { label: 'Completed',     value: orders.completed, icon: 'task_alt',         color: 'text-emerald-500 dark:text-emerald-400', bg: 'bg-emerald-50 dark:bg-emerald-950/40' },
+          ].map((s) => (
+            <Link
+              key={s.label}
+              href="/orders"
+              className="bg-white dark:bg-slate-900 rounded-2xl p-3.5 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-[#B5924D]/40 hover:shadow-md transition-all text-center active:scale-95"
+            >
+              <div className={`w-9 h-9 ${s.bg} rounded-xl flex items-center justify-center mx-auto mb-2`}>
+                <span className={`material-symbols-outlined text-[20px] ${s.color}`} style={{ fontVariationSettings: "'FILL' 1" }}>
+                  {s.icon}
+                </span>
+              </div>
+              <div className="text-xl font-black text-[#0F172A] dark:text-white tabular-nums">{s.value}</div>
+              <div className="text-[10px] text-slate-500 font-semibold mt-0.5 leading-tight">{s.label}</div>
+            </Link>
+          ))}
         </section>
 
-        {/* Navigation Modules List */}
-        <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xs overflow-hidden divide-y divide-slate-100 dark:divide-slate-800">
-          <Link
-            href="/account/business"
-            className="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group"
-          >
-            <div className="flex items-center gap-3.5">
-              <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-200 group-hover:bg-[#B5924D]/15 group-hover:text-[#775a1a] transition-colors">
-                <span className="material-symbols-outlined text-[20px]">badge</span>
-              </div>
-              <div>
-                <h3 className="text-xs sm:text-sm font-bold text-[#0F172A] dark:text-white">
-                  Corporate Profile & GSTIN
-                </h3>
-                <p className="text-[11px] text-slate-500">Registered entity, PAN, and billing address</p>
-              </div>
-            </div>
-            <span className="material-symbols-outlined text-slate-400 text-[18px]">chevron_right</span>
-          </Link>
-
-          <Link
-            href="/account/deliveries"
-            className="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group"
-          >
-            <div className="flex items-center gap-3.5">
-              <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-200 group-hover:bg-[#B5924D]/15 group-hover:text-[#775a1a] transition-colors">
-                <span className="material-symbols-outlined text-[20px]">local_shipping</span>
-              </div>
-              <div>
-                <h3 className="text-xs sm:text-sm font-bold text-[#0F172A] dark:text-white">
-                  Deliveries & Freight Tracker
-                </h3>
-                <p className="text-[11px] text-slate-500">Live multi-carrier logistics tracking & AWBs</p>
-              </div>
-            </div>
-            <span className="material-symbols-outlined text-slate-400 text-[18px]">chevron_right</span>
-          </Link>
-
-          <Link
-            href="/account/invoices"
-            className="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group"
-          >
-            <div className="flex items-center gap-3.5">
-              <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-200 group-hover:bg-[#B5924D]/15 group-hover:text-[#775a1a] transition-colors">
-                <span className="material-symbols-outlined text-[20px]">receipt_long</span>
-              </div>
-              <div>
-                <h3 className="text-xs sm:text-sm font-bold text-[#0F172A] dark:text-white">
-                  Tax Invoices & GST ITC
-                </h3>
-                <p className="text-[11px] text-slate-500">GSTR-2B reconciled tax invoices and downloads</p>
-              </div>
-            </div>
-            <span className="material-symbols-outlined text-slate-400 text-[18px]">chevron_right</span>
-          </Link>
-
-          <Link
-            href="/account/wallet"
-            className="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group"
-          >
-            <div className="flex items-center gap-3.5">
-              <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-200 group-hover:bg-[#B5924D]/15 group-hover:text-[#775a1a] transition-colors">
-                <span className="material-symbols-outlined text-[20px]">account_balance_wallet</span>
-              </div>
-              <div>
-                <h3 className="text-xs sm:text-sm font-bold text-[#0F172A] dark:text-white">
-                  Trade Credit & Promo Wallet
-                </h3>
-                <p className="text-[11px] text-slate-500">Revolving credit lines and promotional coins</p>
-              </div>
-            </div>
-            <span className="material-symbols-outlined text-slate-400 text-[18px]">chevron_right</span>
-          </Link>
-
-          <Link
-            href="/distribution"
-            className="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group"
-          >
-            <div className="flex items-center gap-3.5">
-              <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-200 group-hover:bg-[#B5924D]/15 group-hover:text-[#775a1a] transition-colors">
-                <span className="material-symbols-outlined text-[20px]">handshake</span>
-              </div>
-              <div>
-                <h3 className="text-xs sm:text-sm font-bold text-[#0F172A] dark:text-white">
-                  Dealership Opportunities
-                </h3>
-                <p className="text-[11px] text-slate-500">Exclusive regional territory dealerships</p>
-              </div>
-            </div>
-            <span className="material-symbols-outlined text-slate-400 text-[18px]">chevron_right</span>
-          </Link>
-
-          <Link
-            href="/account/applications"
-            className="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group"
-          >
-            <div className="flex items-center gap-3.5">
-              <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-200 group-hover:bg-[#B5924D]/15 group-hover:text-[#775a1a] transition-colors">
-                <span className="material-symbols-outlined text-[20px]">assignment</span>
-              </div>
-              <div>
-                <h3 className="text-xs sm:text-sm font-bold text-[#0F172A] dark:text-white">
-                  My Dealership Applications
-                </h3>
-                <p className="text-[11px] text-slate-500">Track pending brand partnership agreements</p>
-              </div>
-            </div>
-            <span className="material-symbols-outlined text-slate-400 text-[18px]">chevron_right</span>
-          </Link>
+        {/* ── Navigation Menu ───────────────────────────────────────────── */}
+        <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+          <div className="divide-y divide-slate-100 dark:divide-slate-800">
+            {ACCOUNT_NAV.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex items-center gap-3.5 px-4 py-3.5 hover:bg-slate-50 dark:hover:bg-slate-800/50 active:bg-slate-100 dark:active:bg-slate-800 transition-colors group"
+              >
+                <div className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center flex-shrink-0 group-hover:bg-[#B5924D]/10 transition-colors">
+                  <span
+                    className="material-symbols-outlined text-[18px] text-slate-500 dark:text-slate-400 group-hover:text-[#B5924D] transition-colors"
+                    style={{ fontVariationSettings: "'FILL' 1" }}
+                  >
+                    {item.icon}
+                  </span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-sm font-bold text-[#0F172A] dark:text-white">{item.label}</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">{item.sub}</div>
+                </div>
+                {/* Notification badge */}
+                {item.href === '/notifications' && unread > 0 && (
+                  <span className="flex-shrink-0 bg-red-500 text-white text-[10px] font-black px-1.5 py-0.5 rounded-full min-w-[20px] text-center">
+                    {unread > 9 ? '9+' : unread}
+                  </span>
+                )}
+                <span className="material-symbols-outlined text-[18px] text-slate-300 dark:text-slate-700 group-hover:text-[#B5924D] group-hover:translate-x-0.5 transition-all flex-shrink-0">
+                  chevron_right
+                </span>
+              </Link>
+            ))}
+          </div>
         </section>
 
-        {/* Sign Out Button */}
-        <div className="pt-2">
-          <AccountSignOutButton />
-        </div>
+        {/* ── Sell on THOKSALE CTA ──────────────────────────────────────── */}
+        {(role === 'buyer' || role === 'admin') && (
+          <section className="bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-indigo-950/30 dark:to-blue-950/30 rounded-2xl border border-indigo-200/60 dark:border-indigo-800/30 p-4 flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center flex-shrink-0">
+              <span className="material-symbols-outlined text-[22px] text-indigo-600 dark:text-indigo-400" style={{ fontVariationSettings: "'FILL' 1" }}>
+                storefront
+              </span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-bold text-indigo-900 dark:text-indigo-200 leading-tight">Want to sell on THOKSALE?</p>
+              <p className="text-[11px] text-indigo-500 dark:text-indigo-400 mt-0.5">Apply to become a verified supplier</p>
+            </div>
+            <Link
+              href="/account/applications"
+              className="flex-shrink-0 text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white px-3.5 py-2 rounded-xl transition-colors shadow-sm"
+            >
+              Apply
+            </Link>
+          </section>
+        )}
+
+        {/* ── Sign Out ──────────────────────────────────────────────────── */}
+        <AccountSignOutButton />
+
       </main>
 
       <StitchBottomNav />

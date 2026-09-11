@@ -1,200 +1,231 @@
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { StitchHeader } from '@/components/marketplace/stitch-header'
 import { StitchBottomNav } from '@/components/marketplace/stitch-bottom-nav'
+import { getStatusLabel, getStatusColor, ORDER_TIMELINE_STEPS } from '@/services/order.service'
 
-export default async function OrderDetailPage(props: { params: Promise<{ id: string }> }) {
-  const { id } = await props.params
+function formatCurrency(n: number) {
+  return `₹${n.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`
+}
 
-  const order = {
-    id: id || 'TS-20260829-4821',
-    created_at: '2026-08-29T14:30:00Z',
-    status: 'shipped',
-    carrier: 'TCI Freight Logistics Rail (Express Corridor)',
-    tracking_number: 'TCI-BLR-9842104',
-    seller: {
-      display_name: 'TechAudio Manufacturing Ltd',
-      city: 'Pune',
-      state: 'Maharashtra',
-      gstin: '27AABCT9981F1Z2',
-    },
-    buyer: {
-      company_name: 'Apex Retailers & Wholesalers Pvt Ltd',
-      full_name: 'Rahul Sharma',
-      phone: '+91 98765 43210',
-      address: 'Unit 402, Trade Square Logistics Park, Hinjewadi Phase 1, Pune, MH - 411057',
-      gstin: '27AABCA1234F1Z5',
-    },
-    items: [
-      {
-        id: 'oi-1',
-        title: '10000mAh PD Fast Charging Power Bank Type-C Dual Output',
-        sku: 'PWR-10K-PD-IND',
-        quantity: 50,
-        unit: 'pcs',
-        unit_price: 850,
-        subtotal: 42500,
-        hsn: '85076000',
-        image_url: 'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=500&auto=format&fit=crop&q=60',
-      },
-    ],
-    subtotal: 42500,
-    gst_tax: 7650,
-    freight: 0,
-    total_amount: 50150,
-  }
+const STATUS_COLORS: Record<string, string> = {
+  green:  'bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400',
+  blue:   'bg-blue-100 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400',
+  yellow: 'bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-500',
+  red:    'bg-red-100 text-red-700 dark:bg-red-950/60 dark:text-red-400',
+  gray:   'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400',
+}
 
-  const timelineSteps = [
-    { label: 'Order Confirmed & Escrow Held', time: 'Aug 29, 02:30 PM', done: true },
-    { label: 'Supplier Packaging & Quality Inspection', time: 'Aug 29, 05:45 PM', done: true },
-    { label: 'Pallet Dispatched via TCI Freight', time: 'Aug 30, 09:15 AM', done: true },
-    { label: 'In Transit — Western Transit Hub (Pune Hub)', time: 'Aug 31, 01:20 PM', current: true },
-    { label: 'Out for Delivery to Destination Warehouse', time: 'Est. Sep 01', done: false },
-    { label: 'Goods Received & Escrow Settlement', time: 'Pending Delivery', done: false },
-  ]
+// Resolve numeric step index from status string
+function getStepIndex(status: string): number {
+  const idx = ORDER_TIMELINE_STEPS.findIndex((s) => s.key === status)
+  return idx >= 0 ? idx : 0
+}
+
+export default async function OrderTrackingPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  const { data: order, error } = await supabase
+    .from('orders')
+    .select(`
+      *,
+      order_items (
+        id, product_name, product_sku, quantity, unit, unit_price, subtotal,
+        products ( slug, product_media ( public_url_or_reference, is_primary ) )
+      ),
+      freight_quotes ( status, quoted_amount, carrier, transit_days, pickup_date, delivery_date ),
+      company_profiles!orders_buyer_company_id_fkey ( display_name, legal_name ),
+      company_profiles!orders_seller_company_id_fkey ( display_name, legal_name, city, state )
+    `)
+    .eq('id', id)
+    .maybeSingle()
+
+  if (error || !order) notFound()
+
+  const colorKey = getStatusColor(order.status)
+  const colorClass = STATUS_COLORS[colorKey]
+  const currentStep = getStepIndex(order.status)
+  const freight = order.freight_quotes?.[0]
 
   return (
-    <div className="min-h-screen bg-[#F9F8F4] dark:bg-[#0B0B0F] text-[#0F172A] dark:text-slate-100 pb-32 font-sans">
+    <div className="min-h-screen bg-[#F4F6FA] dark:bg-[#0A0D14] pb-24 md:pb-8 font-sans">
       <StitchHeader />
 
-      <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-6 flex flex-col gap-6">
-        {/* Top Breadcrumb & Status */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Link href="/orders" className="text-xs font-bold text-slate-500 hover:text-[#0F172A] flex items-center gap-1">
-              <span className="material-symbols-outlined text-[16px]">arrow_back</span>
-              <span>All Orders</span>
-            </Link>
-            <span className="text-xs text-slate-400">•</span>
-            <span className="font-mono text-xs font-bold text-[#0F172A] dark:text-white">#{order.id}</span>
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 pt-5 pb-12 flex flex-col gap-5">
+
+        {/* Header */}
+        <div className="flex items-center gap-3">
+          <Link href="/orders" className="w-9 h-9 flex items-center justify-center rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs hover:border-[#B5924D] transition-colors">
+            <span className="material-symbols-outlined text-[20px] text-slate-600 dark:text-slate-300">arrow_back</span>
+          </Link>
+          <div>
+            <h1 className="text-lg font-black text-[#0F172A] dark:text-white">
+              Order #{order.id.slice(-8).toUpperCase()}
+            </h1>
+            <p className="text-xs text-slate-500">
+              Placed {new Date(order.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
+            </p>
           </div>
-          <span className="text-xs font-bold text-amber-600 bg-amber-50 dark:bg-amber-950 px-3 py-1 rounded-full uppercase tracking-wider">
-            In Transit
-          </span>
+          <div className="ml-auto">
+            <span className={`text-xs font-bold px-3 py-1.5 rounded-full ${colorClass}`}>
+              {getStatusLabel(order.status)}
+            </span>
+          </div>
         </div>
 
-        {/* Live Dispatch Status Hero */}
-        <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-xs space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <div>
-              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
-                Logistics Carrier & Tracking AWB
-              </span>
-              <h2 className="text-sm sm:text-base font-extrabold text-[#0F172A] dark:text-white mt-0.5">
-                {order.carrier}
-              </h2>
-              <p className="font-mono text-xs font-bold text-[#B5924D] mt-0.5">{order.tracking_number}</p>
-            </div>
-            <button className="text-xs font-bold px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center justify-center gap-1.5">
-              <span className="material-symbols-outlined text-[16px]">download</span>
-              <span>e-Way Bill / Invoice PDF</span>
-            </button>
-          </div>
+        {/* ── Timeline ─────────────────────────────────────────────────── */}
+        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xs p-5 sm:p-6">
+          <h2 className="text-sm font-black text-[#0F172A] dark:text-white mb-5">Order Progress</h2>
 
-          {/* Vertical Dispatch Timeline */}
-          <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-4">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500">Live Shipment Timeline</h3>
-            <div className="space-y-4 relative pl-6 border-l-2 border-slate-200 dark:border-slate-700 ml-2">
-              {timelineSteps.map((step, idx) => (
-                <div key={idx} className="relative">
-                  <span
-                    className={`absolute -left-[31px] top-0.5 w-4 h-4 rounded-full border-2 ${
-                      step.done
-                        ? 'bg-emerald-600 border-white dark:border-slate-900'
-                        : step.current
-                        ? 'bg-[#B5924D] border-white dark:border-slate-900 ring-4 ring-[#B5924D]/20 animate-pulse'
-                        : 'bg-slate-200 dark:bg-slate-700 border-white dark:border-slate-900'
-                    }`}
-                  ></span>
-                  <p
-                    className={`text-xs font-bold ${
-                      step.current
-                        ? 'text-[#B5924D]'
-                        : step.done
-                        ? 'text-[#0F172A] dark:text-white'
-                        : 'text-slate-400'
-                    }`}
-                  >
-                    {step.label}
-                  </p>
-                  <p className="text-[10px] text-slate-500 mt-0.5">{step.time}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+          <div className="relative">
+            {/* Vertical track */}
+            <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-slate-100 dark:bg-slate-800" />
 
-        {/* Itemized Order & Tax Invoice Section */}
-        <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-xs space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500">Itemized Pallet Breakdown</h3>
-            <span className="text-xs text-slate-500 font-semibold">Supplier: {order.seller.display_name}</span>
-          </div>
+            {ORDER_TIMELINE_STEPS.map((step, idx) => {
+              const isDone = idx < currentStep
+              const isCurrent = idx === currentStep
+              const isFuture = idx > currentStep
 
-          <div className="divide-y divide-slate-100 dark:divide-slate-800">
-            {order.items.map((it) => (
-              <div key={it.id} className="py-3 flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-14 h-14 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 overflow-hidden flex-shrink-0 p-1 flex items-center justify-center">
-                    <img src={it.image_url} alt="" className="w-full h-full object-contain" />
+              return (
+                <div key={step.key} className="relative flex items-start gap-4 pb-6 last:pb-0">
+                  {/* Circle */}
+                  <div className={`relative z-10 w-8 h-8 flex-shrink-0 rounded-full border-2 flex items-center justify-center transition-all ${
+                    isDone ? 'bg-emerald-500 border-emerald-500' :
+                    isCurrent ? 'bg-[#B5924D] border-[#B5924D]' :
+                    'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700'
+                  }`}>
+                    {isDone ? (
+                      <span className="material-symbols-outlined text-white text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>check</span>
+                    ) : isCurrent ? (
+                      <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />
+                    ) : (
+                      <span className="w-2 h-2 bg-slate-200 dark:bg-slate-700 rounded-full" />
+                    )}
                   </div>
-                  <div>
-                    <h4 className="text-xs sm:text-sm font-bold text-[#0F172A] dark:text-white line-clamp-1">{it.title}</h4>
-                    <p className="text-[11px] text-slate-500">
-                      HSN: {it.hsn} • SKU: {it.sku} • {it.quantity} {it.unit} @ ₹{it.unit_price}
+
+                  {/* Label */}
+                  <div className="flex-1 pt-0.5 min-w-0">
+                    <p className={`text-sm font-bold leading-tight ${
+                      isFuture ? 'text-slate-400 dark:text-slate-600' :
+                      isCurrent ? 'text-[#B5924D]' :
+                      'text-[#0F172A] dark:text-white'
+                    }`}>
+                      {step.label}
+                    </p>
+                    {isCurrent && (
+                      <p className="text-[11px] text-[#B5924D]/80 mt-0.5">Current status</p>
+                    )}
+                  </div>
+
+                  {/* Timestamp (when done) */}
+                  {isDone && (
+                    <div className="text-[10px] text-slate-400 flex-shrink-0 pt-0.5">
+                      Completed
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* ── Order Items ──────────────────────────────────────────────── */}
+        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xs overflow-hidden">
+          <div className="px-5 sm:px-6 py-4 border-b border-slate-100 dark:border-slate-800">
+            <h2 className="text-sm font-black text-[#0F172A] dark:text-white">
+              Items ({order.order_items?.length ?? 0})
+            </h2>
+          </div>
+          <div className="divide-y divide-slate-50 dark:divide-slate-800">
+            {(order.order_items ?? []).map((item: any) => {
+              const media = item.products?.product_media ?? []
+              const imgUrl = media.find((m: any) => m.is_primary)?.public_url_or_reference ?? media[0]?.public_url_or_reference
+              return (
+                <div key={item.id} className="flex items-center gap-4 px-5 sm:px-6 py-4">
+                  {imgUrl ? (
+                    <img src={imgUrl} alt={item.product_name} className="w-14 h-14 rounded-xl object-cover border border-slate-100 dark:border-slate-800 flex-shrink-0" />
+                  ) : (
+                    <div className="w-14 h-14 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center flex-shrink-0">
+                      <span className="material-symbols-outlined text-[24px] text-slate-400">inventory_2</span>
+                    </div>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-bold text-[#0F172A] dark:text-white line-clamp-2">{item.product_name}</p>
+                    <p className="text-xs text-slate-500 mt-0.5">
+                      {item.quantity.toLocaleString('en-IN')} {item.unit ?? 'pcs'} × {formatCurrency(item.unit_price)}
                     </p>
                   </div>
+                  <div className="text-sm font-black text-[#0F172A] dark:text-white flex-shrink-0">
+                    {formatCurrency(item.subtotal)}
+                  </div>
                 </div>
-                <span className="font-mono text-xs sm:text-sm font-bold text-[#0F172A] dark:text-white">
-                  ₹{it.subtotal.toLocaleString('en-IN')}
-                </span>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* ── Price Breakdown ──────────────────────────────────────────── */}
+        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xs p-5 sm:p-6">
+          <h2 className="text-sm font-black text-[#0F172A] dark:text-white mb-4">Price Breakdown</h2>
+          <div className="space-y-2.5">
+            {[
+              { label: 'Product Subtotal', value: order.subtotal ?? 0 },
+              { label: 'Freight / Logistics', value: freight?.quoted_amount ?? order.freight_total ?? 0 },
+              { label: 'Platform Fee (3%)', value: (order.subtotal ?? 0) * 0.03 },
+              { label: 'GST on Fee (18%)', value: (order.subtotal ?? 0) * 0.03 * 0.18 },
+            ].map((row) => (
+              <div key={row.label} className="flex justify-between items-center">
+                <span className="text-xs text-slate-500">{row.label}</span>
+                <span className="text-xs font-bold text-slate-700 dark:text-slate-300">{formatCurrency(row.value)}</span>
               </div>
             ))}
+            <div className="border-t border-slate-100 dark:border-slate-800 pt-2.5 flex justify-between items-center">
+              <span className="text-sm font-black text-[#0F172A] dark:text-white">Grand Total</span>
+              <span className="text-lg font-black text-[#0F172A] dark:text-white">{formatCurrency(order.grand_total ?? 0)}</span>
+            </div>
           </div>
+        </div>
 
-          {/* Pricing Breakdown */}
-          <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2 text-xs">
-            <div className="flex justify-between text-slate-600 dark:text-slate-300">
-              <span>Goods Subtotal</span>
-              <span className="font-mono font-semibold">₹{order.subtotal.toLocaleString('en-IN')}</span>
+        {/* ── Seller Info ──────────────────────────────────────────────── */}
+        {order['company_profiles!orders_seller_company_id_fkey'] && (
+          <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs p-5 flex items-center gap-4">
+            <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-black text-slate-600 dark:text-slate-300 text-lg border border-slate-200 dark:border-slate-700">
+              {(order['company_profiles!orders_seller_company_id_fkey']?.display_name ?? 'S').charAt(0)}
             </div>
-            <div className="flex justify-between text-slate-600 dark:text-slate-300">
-              <span>GST 18% (Eligible for Input Tax Credit)</span>
-              <span className="font-mono font-semibold">₹{order.gst_tax.toLocaleString('en-IN')}</span>
+            <div>
+              <p className="text-xs text-slate-500 font-medium">Supplied by</p>
+              <p className="text-sm font-bold text-[#0F172A] dark:text-white">
+                {order['company_profiles!orders_seller_company_id_fkey']?.display_name ??
+                 order['company_profiles!orders_seller_company_id_fkey']?.legal_name}
+              </p>
+              <p className="text-xs text-slate-400">
+                {order['company_profiles!orders_seller_company_id_fkey']?.city},&nbsp;
+                {order['company_profiles!orders_seller_company_id_fkey']?.state}
+              </p>
             </div>
-            <div className="flex justify-between text-slate-600 dark:text-slate-300">
-              <span>Freight (Consolidated Direct Rail)</span>
-              <span className="font-mono font-semibold text-emerald-600">FREE</span>
-            </div>
-            <div className="pt-2 border-t border-slate-100 dark:border-slate-800 flex justify-between items-baseline text-sm font-extrabold text-[#0F172A] dark:text-white">
-              <span>Total Paid</span>
-              <span className="font-mono text-base sm:text-lg">₹{order.total_amount.toLocaleString('en-IN')}</span>
-            </div>
+            <Link href="/messages" className="ml-auto text-xs font-bold text-[#B5924D] hover:underline flex items-center gap-1">
+              <span className="material-symbols-outlined text-[16px]">chat</span>
+              Message
+            </Link>
           </div>
-        </section>
+        )}
 
-        {/* Delivery Address & Entities */}
-        <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-xs grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
-              Consignee (Delivery Address)
-            </span>
-            <p className="text-xs font-bold text-[#0F172A] dark:text-white">{order.buyer.company_name}</p>
-            <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5">{order.buyer.address}</p>
-            <p className="text-[11px] text-slate-500 mt-1 font-mono">GSTIN: {order.buyer.gstin}</p>
-          </div>
-          <div>
-            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
-              Consignor (Supplier)
-            </span>
-            <p className="text-xs font-bold text-[#0F172A] dark:text-white">{order.seller.display_name}</p>
-            <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5">
-              {order.seller.city}, {order.seller.state}
-            </p>
-            <p className="text-[11px] text-slate-500 mt-1 font-mono">GSTIN: {order.seller.gstin}</p>
-          </div>
-        </section>
+        {/* ── Action buttons ───────────────────────────────────────────── */}
+        <div className="flex gap-3">
+          {order.status === 'delivered' && (
+            <Link href={`/orders/${id}/dispute`} className="flex-1 text-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-bold text-sm px-4 py-3 rounded-xl hover:border-red-400 hover:text-red-600 transition-colors">
+              Raise Dispute
+            </Link>
+          )}
+          <Link href={`/account/invoices`} className="flex-1 text-center bg-[#0F172A] dark:bg-white text-white dark:text-[#0F172A] font-bold text-sm px-4 py-3 rounded-xl hover:bg-[#B5924D] dark:hover:bg-[#B5924D] dark:hover:text-white transition-colors">
+            <span className="material-symbols-outlined text-[16px] mr-1 align-middle">receipt_long</span>
+            View Invoice
+          </Link>
+        </div>
+
       </main>
 
       <StitchBottomNav />

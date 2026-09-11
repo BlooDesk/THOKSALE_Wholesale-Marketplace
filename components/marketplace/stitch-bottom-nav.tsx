@@ -2,110 +2,62 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useAuth } from '@/components/auth/auth-provider'
+
+const NAV_ITEMS = [
+  { href: '/',         icon: 'home',          label: 'Home',    exact: true  },
+  { href: '/products', icon: 'storefront',    label: 'Catalog', exact: false },
+  { href: '/rfq/new',  icon: 'request_quote', label: 'RFQ',     exact: false },
+  { href: '/orders',   icon: 'inventory_2',   label: 'Orders',  exact: false },
+  { href: '/account',  icon: 'person',        label: 'Account', exact: false },
+]
 
 export function StitchBottomNav() {
   const pathname = usePathname()
-  const { user, profile } = useAuth()
 
-  const isHome = pathname === '/'
-  const isProducts = pathname.startsWith('/products') || pathname.startsWith('/categories')
-  const isRfq = pathname.startsWith('/rfq')
-  const isCart = pathname.startsWith('/cart') || pathname.startsWith('/checkout')
-  const isAccount = pathname.startsWith('/account') || pathname.startsWith('/seller')
+  const isActive = (item: typeof NAV_ITEMS[0]) => {
+    if (item.exact) return pathname === item.href
+    return pathname === item.href || pathname.startsWith(item.href)
+  }
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 w-full z-50 flex justify-around items-center px-4 py-2 border-t border-[#c6c6cd]/20 bg-[#ffffff] dark:bg-[#0F172A] shadow-lg rounded-t-2xl pb-safe md:max-w-md md:left-1/2 md:-translate-x-1/2 md:bottom-3 md:rounded-2xl md:border">
-      {/* Home */}
-      <Link
-        href="/"
-        className={`flex flex-col items-center justify-center rounded-xl px-3 py-1.5 transition-all duration-150 ${
-          isHome
-            ? 'text-[#775a1a] dark:text-[#e8c177] bg-[#fdd488]/30 font-semibold'
-            : 'text-[#45464d] dark:text-[#c6c6cd] hover:text-[#775a1a]'
-        }`}
-      >
-        <span
-          className="material-symbols-outlined text-[22px] leading-none mb-0.5"
-          style={isHome ? { fontVariationSettings: "'FILL' 1" } : undefined}
-        >
-          home
-        </span>
-        <span className="text-[11px] font-medium leading-tight">Home</span>
-      </Link>
-
-      {/* Categories / Products */}
-      <Link
-        href="/products"
-        className={`flex flex-col items-center justify-center rounded-xl px-3 py-1.5 transition-all duration-150 ${
-          isProducts
-            ? 'text-[#775a1a] dark:text-[#e8c177] bg-[#fdd488]/30 font-semibold'
-            : 'text-[#45464d] dark:text-[#c6c6cd] hover:text-[#775a1a]'
-        }`}
-      >
-        <span
-          className="material-symbols-outlined text-[22px] leading-none mb-0.5"
-          style={isProducts ? { fontVariationSettings: "'FILL' 1" } : undefined}
-        >
-          grid_view
-        </span>
-        <span className="text-[11px] font-medium leading-tight">Catalog</span>
-      </Link>
-
-      {/* Floating Center RFQ CTA */}
-      <Link
-        href="/rfq"
-        className="flex flex-col items-center justify-center text-white bg-[#0F172A] dark:bg-[#B5924D] hover:bg-[#B5924D] rounded-full w-14 h-14 -mt-7 shadow-lg shadow-black/20 transition-transform active:scale-95 border-2 border-white dark:border-slate-900"
-      >
-        <span
-          className="material-symbols-outlined text-[22px] leading-none mb-0.5"
-          style={{ fontVariationSettings: "'FILL' 1" }}
-        >
-          request_quote
-        </span>
-        <span className="text-[9px] font-bold uppercase tracking-tighter">RFQ</span>
-      </Link>
-
-      {/* Cart */}
-      <Link
-        href="/cart"
-        className={`flex flex-col items-center justify-center rounded-xl px-3 py-1.5 transition-all duration-150 relative ${
-          isCart
-            ? 'text-[#775a1a] dark:text-[#e8c177] bg-[#fdd488]/30 font-semibold'
-            : 'text-[#45464d] dark:text-[#c6c6cd] hover:text-[#775a1a]'
-        }`}
-      >
-        <div className="relative">
-          <span
-            className="material-symbols-outlined text-[22px] leading-none mb-0.5"
-            style={isCart ? { fontVariationSettings: "'FILL' 1" } : undefined}
-          >
-            shopping_cart
-          </span>
-          <span className="absolute -top-0.5 -right-1 w-2 h-2 bg-[#B5924D] rounded-full"></span>
-        </div>
-        <span className="text-[11px] font-medium leading-tight">Cart</span>
-      </Link>
-
-      {/* Account / Seller Hub */}
-      <Link
-        href={profile?.role === 'seller' ? '/seller' : user ? '/account' : '/login'}
-        className={`flex flex-col items-center justify-center rounded-xl px-3 py-1.5 transition-all duration-150 ${
-          isAccount
-            ? 'text-[#775a1a] dark:text-[#e8c177] bg-[#fdd488]/30 font-semibold'
-            : 'text-[#45464d] dark:text-[#c6c6cd] hover:text-[#775a1a]'
-        }`}
-      >
-        <span
-          className="material-symbols-outlined text-[22px] leading-none mb-0.5"
-          style={isAccount ? { fontVariationSettings: "'FILL' 1" } : undefined}
-        >
-          {profile?.role === 'seller' ? 'storefront' : 'person'}
-        </span>
-        <span className="text-[11px] font-medium leading-tight">
-          {profile?.role === 'seller' ? 'Seller' : 'Account'}
-        </span>
-      </Link>
+    <nav
+      className="fixed bottom-0 inset-x-0 z-40 md:hidden bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+    >
+      <div className="flex items-center justify-around px-1" style={{ height: '56px' }}>
+        {NAV_ITEMS.map((item) => {
+          const active = isActive(item)
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`relative flex flex-col items-center justify-center gap-0.5 flex-1 h-full rounded-xl transition-all duration-150 ${
+                active ? 'text-[#B5924D]' : 'text-slate-400 dark:text-slate-500'
+              }`}
+            >
+              <span
+                className={`material-symbols-outlined transition-all duration-150 ${
+                  active ? 'text-[24px]' : 'text-[22px]'
+                }`}
+                style={{ fontVariationSettings: active ? "'FILL' 1" : "'FILL' 0" }}
+              >
+                {item.icon}
+              </span>
+              <span
+                className={`text-[9px] font-bold tracking-tight leading-none transition-all ${
+                  active ? 'text-[#B5924D]' : 'text-slate-400 dark:text-slate-500'
+                }`}
+              >
+                {item.label}
+              </span>
+              {/* Active dot indicator */}
+              {active && (
+                <span className="absolute bottom-1 w-1 h-1 rounded-full bg-[#B5924D]" />
+              )}
+            </Link>
+          )
+        })}
+      </div>
     </nav>
   )
 }

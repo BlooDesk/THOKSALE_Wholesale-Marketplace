@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
 import { UserRowActions } from './row-actions'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdminUsers(props: { searchParams: Promise<{ q?: string; role?: string }> }) {
   const sp = await props.searchParams
   const q = (sp.q || '').trim()

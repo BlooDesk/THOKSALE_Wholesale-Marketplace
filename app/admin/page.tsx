@@ -5,6 +5,8 @@ import { STATUS_LABELS, STATUS_COLORS, type OrderStatus } from '@/lib/commerce'
 import { StatCard } from '@/components/ui/stat-card'
 import { Users, Store, Package, Receipt, TrendingUp, FileText } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 async function count(supabase: any, table: string, filters: Record<string, any> = {}): Promise<number> {
   let q = supabase.from(table).select('*', { head: true, count: 'exact' })
   for (const [k, v] of Object.entries(filters)) q = q.eq(k, v)

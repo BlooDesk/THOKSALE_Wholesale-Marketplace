@@ -5,12 +5,14 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { toast } from 'sonner'
 import { resendVerification } from '@/app/actions/auth'
+import { AuthShell } from '@/components/auth/auth-shell'
 
 function VerifyEmailInner() {
   const params = useSearchParams()
   const email = params.get('email') || ''
   const [pending, start] = useTransition()
   const [sent, setSent] = useState(false)
+  const [cooldown, setCooldown] = useState(0)
 
   function resend() {
     if (!email) {
@@ -25,70 +27,115 @@ function VerifyEmailInner() {
       }
       setSent(true)
       toast.success('Verification email sent!')
+      // 60 second cooldown
+      let sec = 60
+      setCooldown(sec)
+      const interval = setInterval(() => {
+        sec -= 1
+        setCooldown(sec)
+        if (sec <= 0) clearInterval(interval)
+      }, 1000)
     })
   }
 
+  const maskedEmail = email
+    ? email.replace(/(.{2})(.*)(?=@)/, (_, a, b) => a + '*'.repeat(b.length))
+    : ''
+
   return (
-    <div className="text-center space-y-5">
-      <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-950/60 rounded-full flex items-center justify-center mx-auto text-emerald-600 ring-8 ring-emerald-50 dark:ring-emerald-900/20">
-        <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>
-          mark_email_read
-        </span>
+    <div className="space-y-6">
+      {/* Icon */}
+      <div className="flex justify-center">
+        <div className="relative">
+          <div className="w-20 h-20 rounded-2xl bg-emerald-100 dark:bg-emerald-950/60 border-2 border-emerald-200 dark:border-emerald-800 flex items-center justify-center text-emerald-600">
+            <span className="material-symbols-outlined text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>
+              mark_email_read
+            </span>
+          </div>
+          <div className="absolute -top-1 -right-1 w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center">
+            <span className="material-symbols-outlined text-white text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+              check
+            </span>
+          </div>
+        </div>
       </div>
 
-      <div>
-        <h1 className="text-xl font-black text-[#0F172A] dark:text-white tracking-tight">
-          Verify Your Corporate Email
+      {/* Copy */}
+      <div className="text-center space-y-2">
+        <h1 className="text-2xl font-black text-[#0F172A] dark:text-white tracking-tight">
+          Verify Your Email
         </h1>
-        <p className="text-xs text-slate-500 mt-1.5 leading-relaxed max-w-sm mx-auto">
-          We have dispatched an activation link to{' '}
-          {email ? <strong className="text-[#0F172A] dark:text-white">{email}</strong> : 'your email'}. Click the link to complete trade authorization.
+        <p className="text-sm text-slate-500 leading-relaxed">
+          We've sent an activation link to
         </p>
+        {email && (
+          <p className="text-sm font-black text-[#0F172A] dark:text-white bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 inline-block">
+            {maskedEmail}
+          </p>
+        )}
+        <p className="text-xs text-slate-400">Click the link in the email to activate your trade account.</p>
       </div>
 
-      <div className="space-y-2 pt-2">
+      {/* Steps */}
+      <div className="space-y-2.5">
+        {[
+          { icon: 'inbox', label: 'Open your email inbox' },
+          { icon: 'mail_outline', label: 'Look for an email from THOKSALE' },
+          { icon: 'link', label: 'Click "Verify my email" in the email' },
+          { icon: 'verified_user', label: 'Start trading on THOKSALE' },
+        ].map((step, i) => (
+          <div key={step.label} className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50">
+            <div className="w-7 h-7 rounded-lg bg-[#B5924D]/10 border border-[#B5924D]/20 flex items-center justify-center flex-shrink-0">
+              <span className="text-[10px] font-black text-[#B5924D]">{i + 1}</span>
+            </div>
+            <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">{step.label}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Actions */}
+      <div className="space-y-3 pt-1">
         <button
           onClick={resend}
-          disabled={pending || sent}
-          className="w-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-[#0F172A] dark:text-white text-xs font-bold py-3 rounded-xl transition-all disabled:opacity-50"
+          disabled={pending || cooldown > 0}
+          className="w-full py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-[#B5924D] disabled:opacity-50 text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-[#B5924D] transition-all flex items-center justify-center gap-2"
         >
-          {sent ? 'Verification Email Resent' : pending ? 'Sending...' : 'Resend Verification Link'}
+          <span className="material-symbols-outlined text-[16px]">refresh</span>
+          {cooldown > 0
+            ? `Resend in ${cooldown}s`
+            : sent
+            ? 'Resend Again'
+            : 'Resend Verification Email'}
         </button>
 
         <Link
           href="/login"
-          className="block w-full bg-[#0F172A] hover:bg-[#B5924D] text-white text-xs font-bold py-3 rounded-xl transition-all shadow-xs"
+          className="block w-full text-center py-3 rounded-xl bg-[#0F172A] hover:bg-[#B5924D] text-white text-sm font-bold transition-all shadow-sm hover:shadow-md"
         >
           Proceed to Sign In →
         </Link>
       </div>
+
+      <p className="text-center text-xs text-slate-400">
+        Wrong email address?{' '}
+        <Link href="/register" className="font-bold text-[#B5924D] hover:underline">
+          Register again
+        </Link>
+      </p>
     </div>
   )
 }
 
 export default function VerifyEmailPage() {
   return (
-    <div className="min-h-screen bg-[#F9F8F4] dark:bg-[#0B0B0F] text-[#0F172A] dark:text-slate-100 flex flex-col justify-center items-center px-4 py-12 font-sans">
-      <div className="w-full max-w-md bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-        <div className="text-center">
-          <Link href="/" className="inline-flex items-center gap-2 mb-2">
-            <span className="font-mono text-2xl font-black tracking-tighter text-[#0F172A] dark:text-white">
-              THOK<span className="text-[#B5924D]">SALE</span>
-            </span>
-          </Link>
+    <AuthShell>
+      <Suspense fallback={
+        <div className="flex items-center justify-center h-64">
+          <div className="w-8 h-8 rounded-full border-2 border-[#B5924D] border-t-transparent animate-spin" />
         </div>
-
-        <Suspense fallback={<div className="p-4 text-center text-xs">Loading...</div>}>
-          <VerifyEmailInner />
-        </Suspense>
-
-        <div className="text-center pt-2 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500">
-          Wrong email address?{' '}
-          <Link href="/register" className="font-bold text-[#B5924D] hover:underline">
-            Register with another email
-          </Link>
-        </div>
-      </div>
-    </div>
+      }>
+        <VerifyEmailInner />
+      </Suspense>
+    </AuthShell>
   )
 }

@@ -4,6 +4,8 @@ import { formatCurrency } from '@/lib/pricing'
 import { STATUS_LABELS, STATUS_COLORS, type OrderStatus } from '@/lib/commerce'
 import { Button } from '@/components/ui/button'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdminOrders(props: { searchParams: Promise<{ status?: string }> }) {
   const sp = await props.searchParams
   const status = sp.status || 'all'

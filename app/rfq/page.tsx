@@ -3,6 +3,8 @@ import { createClient } from '@/lib/supabase/server'
 import { StitchHeader } from '@/components/marketplace/stitch-header'
 import { StitchBottomNav } from '@/components/marketplace/stitch-bottom-nav'
 
+export const dynamic = 'force-dynamic'
+
 const DEMO_RFQS = [
   {
     id: 'RFQ-2026-0914',
@@ -89,7 +91,7 @@ export default async function RfqWorkspacePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F9F8F4] dark:bg-[#0B0B0F] text-[#0F172A] dark:text-slate-100 pb-32 font-sans">
+    <div className="min-h-screen bg-[#F9F8F4] dark:bg-[#0B0B0F] text-[#0F172A] dark:text-slate-100 pb-24 md:pb-8 font-sans">
       <StitchHeader />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 pt-6 flex flex-col gap-6">

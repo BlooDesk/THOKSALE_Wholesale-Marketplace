@@ -7,6 +7,8 @@ import { Badge } from '@/components/ui/badge'
 import { Plus, Ticket } from 'lucide-react'
 import { CodeRowActions } from './row-actions'
 
+export const dynamic = 'force-dynamic'
+
 export default async function PartnerCodesPage() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()

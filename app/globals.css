@@ -127,6 +127,20 @@
   }
 
   ::selection { background-color: hsl(var(--accent) / 0.35); color: hsl(var(--foreground)); }
+
+  /* Input styling reset */
+  input, textarea, select, button {
+    font-family: inherit;
+  }
+}
+
+/* ── Page bottom padding for bottom nav presence ─────────────────────────── */
+/* On mobile, pages must clear the 56px bottom nav + safe-area-inset.
+   Add this class to the root div of any page that uses StitchBottomNav. */
+@layer utilities {
+  .page-layout {
+    @apply min-h-screen;
+  }
 }
 
 @layer components {
@@ -302,10 +316,12 @@
     font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
 
-  .hide-scrollbar::-webkit-scrollbar {
+  .hide-scrollbar::-webkit-scrollbar,
+  .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
-  .hide-scrollbar {
+  .hide-scrollbar,
+  .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
@@ -313,5 +329,10 @@
   .input-glow:focus-within {
     border-color: #B5924D;
     box-shadow: 0 0 0 2px rgba(181, 146, 77, 0.2);
+  }
+
+  /* iOS safe area for bottom nav */
+  .safe-area-pb {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
   }
 }

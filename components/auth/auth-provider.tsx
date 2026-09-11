@@ -93,26 +93,53 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let mounted = true
 
-    supabase.auth.getSession().then(async ({ data }) => {
-      if (!mounted) return
-      setSession(data.session)
-      const u = data.session?.user ?? null
-      setUser(u)
-      await loadProfileForUser(u)
-      setLoading(false)
-    })
+    // Safety timeout: loading state must never hang permanently
+    const timeout = setTimeout(() => {
+      if (mounted) setLoading(false)
+    }, 1000)
+
+    const initAuth = async () => {
+      try {
+        const { data, error } = await supabase.auth.getSession()
+        if (!mounted) return
+        if (error) {
+          setLoading(false)
+          return
+        }
+        setSession(data.session)
+        const u = data.session?.user ?? null
+        setUser(u)
+        if (u) {
+          await loadProfileForUser(u)
+        }
+      } catch (e) {
+        console.warn('[AuthProvider] getSession error:', e)
+      } finally {
+        if (mounted) {
+          clearTimeout(timeout)
+          setLoading(false)
+        }
+      }
+    }
+
+    initAuth()
 
     const { data: sub } = supabase.auth.onAuthStateChange(async (_event, s) => {
       if (!mounted) return
       setSession(s)
       const u = s?.user ?? null
       setUser(u)
-      await loadProfileForUser(u)
+      if (u) {
+        await loadProfileForUser(u)
+      } else {
+        setProfile(null)
+      }
       setLoading(false)
     })
 
     return () => {
       mounted = false
+      clearTimeout(timeout)
       sub.subscription.unsubscribe()
     }
   }, [])
