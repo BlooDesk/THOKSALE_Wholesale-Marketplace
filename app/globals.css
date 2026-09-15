@@ -317,11 +317,13 @@
   }
 
   .hide-scrollbar::-webkit-scrollbar,
-  .no-scrollbar::-webkit-scrollbar {
+  .no-scrollbar::-webkit-scrollbar,
+  .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
   .hide-scrollbar,
-  .no-scrollbar {
+  .no-scrollbar,
+  .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
