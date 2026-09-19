@@ -328,21 +328,8 @@ export default async function Home() {
 
         <div className="max-w-screen-xl mx-auto">
 
-          {/* BUSINESS ESSENTIALS — 4x2 image tile grid */}
-          <section className="px-4 pt-5 pb-2">
-            <SectionHeader title="Business Essentials" label="Source Direct" href="/products" />
-            <div className="grid grid-cols-4 gap-2">
-              {BUSINESS_ESSENTIALS.map((cat) => (
-                <CategoryTile key={cat.slug} {...cat} />
-              ))}
-            </div>
-          </section>
-
-          {/* Divider */}
-          <div className="h-px bg-slate-200 mx-4 my-5" />
-
-          {/* HOT WHOLESALE DEALS — horizontal scroll */}
-          <section className="pb-2">
+          {/* HOT WHOLESALE DEALS — horizontal scroll (moved above Business Essentials) */}
+          <section className="pb-2 pt-4">
             <div className="px-4 flex items-start justify-between mb-3">
               <div>
                 <span className="text-[10px] uppercase font-black tracking-widest text-[#C4973A] block mb-0.5">
@@ -386,6 +373,58 @@ export default async function Home() {
                   <span className="text-[11px] font-bold text-slate-500 group-hover:text-[#0F172A] transition-colors">See all deals</span>
                 </Link>
               </div>
+            </div>
+          </section>
+
+          {/* Divider */}
+          <div className="h-px bg-slate-200 mx-4 my-5" />
+
+          {/* DIRECT FROM FACTORY & WHOLESALE — brand value banner */}
+          <section className="px-4 pb-2">
+            <div className="relative bg-[#FDFCF9] border border-[#B5924D]/15 rounded-2xl px-6 py-8 text-center overflow-hidden">
+              {/* Subtle gold accent line */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-[2px] bg-gradient-to-r from-transparent via-[#B5924D] to-transparent" />
+              <h2 className="text-[15px] sm:text-[18px] font-extrabold tracking-widest uppercase text-[#0F172A] leading-tight">
+                Direct from Factory &amp; Wholesale
+              </h2>
+              <p className="text-[11px] sm:text-[13px] text-slate-500 mt-2.5 max-w-sm mx-auto leading-relaxed">
+                Source products directly from verified manufacturers and wholesalers with transparent wholesale pricing.
+              </p>
+              {/* Bottom accent */}
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-[2px] bg-gradient-to-r from-transparent via-[#B5924D] to-transparent" />
+            </div>
+          </section>
+
+          {/* Divider */}
+          <div className="h-px bg-slate-200 mx-4 my-5" />
+
+          {/* BUSINESS ESSENTIALS — horizontal scrolling cards */}
+          <section className="pb-2">
+            <div className="px-4">
+              <SectionHeader title="Business Essentials" label="Source Direct" href="/products" />
+            </div>
+            <div className="flex gap-3 overflow-x-auto scrollbar-hide px-4 pb-2 snap-x snap-mandatory">
+              {BUSINESS_ESSENTIALS.map((cat) => (
+                <Link key={cat.slug} href={cat.slug} className="flex-shrink-0 w-[120px] snap-start group">
+                  <div
+                    className="w-full rounded-xl overflow-hidden relative shadow-sm"
+                    style={{ aspectRatio: '3/4', backgroundColor: cat.bg }}
+                  >
+                    <Image
+                      src={cat.image}
+                      alt={cat.name}
+                      fill
+                      className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
+                      sizes="120px"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent pt-6 pb-2 px-2">
+                      <p className="text-[10px] text-white text-center font-bold leading-tight truncate">
+                        {cat.name}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
           </section>
 
