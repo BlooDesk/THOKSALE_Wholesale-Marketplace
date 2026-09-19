@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ThokSaleLogo } from '@/components/marketplace/thoksale-logo'
 
 const TRUST_ITEMS = [
   { icon: 'verified_user', label: 'KYC-Verified B2B Network' },
@@ -34,12 +35,7 @@ export function AuthShell({ children }: { children: React.ReactNode }) {
         <div className="relative z-10 flex flex-col h-full p-10 xl:p-12">
           {/* Logo */}
           <Link href="/" className="inline-flex items-center gap-2 group">
-            <span className="font-mono text-2xl font-black tracking-tighter text-white">
-              THOK<span className="text-[#B5924D]">SALE</span>
-            </span>
-            <span className="text-[10px] font-bold text-slate-400 border border-slate-700 rounded-full px-2 py-0.5">
-              B2B
-            </span>
+            <ThokSaleLogo size="md" dark />
           </Link>
 
           {/* Headline */}
@@ -85,9 +81,7 @@ export function AuthShell({ children }: { children: React.ReactNode }) {
         {/* Mobile logo */}
         <div className="lg:hidden px-6 pt-8 pb-2">
           <Link href="/" className="inline-flex items-center gap-2">
-            <span className="font-mono text-xl font-black tracking-tighter text-[#0F172A] dark:text-white">
-              THOK<span className="text-[#B5924D]">SALE</span>
-            </span>
+            <ThokSaleLogo size="sm" />
           </Link>
         </div>
 

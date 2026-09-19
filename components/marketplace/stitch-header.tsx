@@ -6,6 +6,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import { useAuth } from '@/components/auth/auth-provider'
 import { toast } from 'sonner'
 import { createClient } from '@/lib/supabase/client'
+import { ThokSaleLogo } from '@/components/marketplace/thoksale-logo'
 
 export function StitchHeader() {
   const router = useRouter()
@@ -96,19 +97,9 @@ export function StitchHeader() {
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <div className="flex items-center h-14 gap-2">
 
-            {/* ── Logo (left-anchored on mobile) ──── */}
-            <Link href="/" className="flex items-center gap-1.5 flex-shrink-0 group mr-1">
-              <div className="w-7 h-7 rounded-lg bg-[#0F172A] text-white flex items-center justify-center font-black text-sm tracking-tighter border border-[#B5924D]/40 group-hover:scale-105 transition-transform">
-                T
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="text-[13px] font-extrabold tracking-tight text-[#0F172A] dark:text-white">
-                  THOK<span className="text-[#B5924D]">SALE</span>
-                </span>
-                <span className="text-[8px] tracking-widest uppercase font-semibold text-[#64748B] mt-0.5">
-                  Wholesale
-                </span>
-              </div>
+            {/* ── Logo ──── */}
+            <Link href="/" className="flex-shrink-0 group mr-1" aria-label="ThokSale — Home">
+              <ThokSaleLogo size="sm" className="group-hover:opacity-90 transition-opacity" />
             </Link>
 
             {/* ── Location pill (desktop only) ──── */}
@@ -152,16 +143,7 @@ export function StitchHeader() {
             {/* ── Right Action Icons ──── */}
             <div className="flex items-center gap-0.5 sm:gap-1 flex-shrink-0">
 
-              {/* Mobile Search Toggle */}
-              <button
-                onClick={() => setShowMobileSearch(!showMobileSearch)}
-                className="md:hidden w-9 h-9 flex items-center justify-center rounded-full text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                aria-label="Search"
-              >
-                <span className="material-symbols-outlined text-[22px]">
-                  {showMobileSearch ? 'close' : 'search'}
-                </span>
-              </button>
+
 
               {/* Cart — only when logged in */}
               {user && (
@@ -362,30 +344,22 @@ export function StitchHeader() {
           </div>
         </div>
 
-        {/* Mobile Search Drawer */}
-        {showMobileSearch && (
-          <div className="md:hidden border-t border-slate-100 dark:border-slate-800 px-3 py-2 bg-white dark:bg-[#0F172A]">
-            <form onSubmit={handleSearch}>
-              <div className="flex items-center bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-full px-3 py-2 focus-within:border-[#B5924D] focus-within:ring-2 focus-within:ring-[#B5924D]/20 transition-all">
-                <span className="material-symbols-outlined text-slate-400 text-[18px] mr-2 flex-shrink-0">search</span>
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search products or suppliers..."
-                  autoFocus
-                  className="flex-1 min-w-0 bg-transparent text-sm text-[#0F172A] dark:text-slate-100 placeholder:text-slate-400 focus:outline-none"
-                />
-                <button
-                  type="submit"
-                  className="flex-shrink-0 text-xs font-bold text-[#B5924D] ml-2 px-2 py-0.5"
-                >
-                  Go
-                </button>
-              </div>
-            </form>
-          </div>
-        )}
+        {/* Search Bar — always visible below header, Blinkit-style */}
+        <div className="md:hidden border-t border-slate-100 dark:border-slate-800 px-3 py-2 bg-white dark:bg-[#0F172A]">
+          <form onSubmit={handleSearch}>
+            <div className="flex items-center bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-full px-3 py-2 focus-within:border-[#B5924D] focus-within:ring-2 focus-within:ring-[#B5924D]/20 transition-all">
+              <span className="material-symbols-outlined text-slate-400 text-[18px] mr-2 flex-shrink-0">search</span>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search products or suppliers..."
+                className="flex-1 min-w-0 bg-transparent text-sm text-[#0F172A] dark:text-slate-100 placeholder:text-slate-400 focus:outline-none"
+              />
+              <span className="material-symbols-outlined text-slate-400 text-[20px] ml-2 flex-shrink-0">mic</span>
+            </div>
+          </form>
+        </div>
       </header>
 
       {/* Location Modal */}

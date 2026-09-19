@@ -15,15 +15,15 @@ const manrope = Manrope({
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'),
   title: {
-    default: 'ThokSale — B2B Wholesale Marketplace',
-    template: '%s | ThokSale',
+    default: 'THOKSALE — Direct from Factory & Wholesaler',
+    template: '%s | THOKSALE',
   },
-  description: 'Buy and sell wholesale. Simple, verified, at scale — India\'s enterprise-grade B2B marketplace for manufacturers, wholesalers, distributors and retailers.',
-  applicationName: 'ThokSale',
-  keywords: ['B2B', 'wholesale', 'marketplace', 'India', 'manufacturer', 'distributor', 'RFQ'],
-  authors: [{ name: 'ThokSale' }],
+  description: 'THOKSALE — Direct from Factory & Wholesaler. India\'s enterprise-grade B2B wholesale marketplace connecting manufacturers, wholesalers, distributors and retailers at scale.',
+  applicationName: 'THOKSALE',
+  keywords: ['B2B', 'wholesale', 'marketplace', 'India', 'manufacturer', 'distributor', 'RFQ', 'THOKSALE'],
+  authors: [{ name: 'THOKSALE' }],
   formatDetection: { telephone: false, email: false, address: false },
-  openGraph: { type: 'website', locale: 'en_IN', siteName: 'ThokSale' },
+  openGraph: { type: 'website', locale: 'en_IN', siteName: 'THOKSALE' },
   robots: { index: true, follow: true },
 }
 

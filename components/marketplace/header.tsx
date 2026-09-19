@@ -4,19 +4,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Search, ShoppingCart, Bell, ChevronDown, Menu, Store, LayoutGrid, FileText, Package, User, Award, Shield } from 'lucide-react'
+import { ThokSaleLogo } from '@/components/marketplace/thoksale-logo'
 
-function Logo() {
-  return (
-    <span className="flex shrink-0 items-center gap-2">
-      <span className="grid h-9 w-9 place-items-center rounded-[12px] bg-gradient-to-tr from-zinc-950 to-zinc-800 text-white shadow-md dark:from-zinc-100 dark:to-white dark:text-zinc-950 border border-zinc-200/10">
-        <span className="h-2 w-2 rounded-full bg-[#B5924D] animate-pulse" />
-      </span>
-      <span className="text-[18px] font-black tracking-[-0.03em] text-zinc-950 dark:text-white">
-        Thok<span className="text-[#B5924D] font-extrabold">Sale</span>
-      </span>
-    </span>
-  )
-}
 
 export async function MarketplaceHeader({ q, showSearch = true }: { q?: string; showSearch?: boolean }) {
   const supabase = await createClient()
@@ -51,7 +40,7 @@ export async function MarketplaceHeader({ q, showSearch = true }: { q?: string; 
           </SheetTrigger>
           <SheetContent side="left" className="w-[85vw] max-w-xs rounded-r-[24px] border-r border-zinc-100 dark:border-zinc-800 p-6 bg-white dark:bg-zinc-950">
             <SheetHeader className="mb-6">
-              <SheetTitle className="text-left"><Logo /></SheetTitle>
+          <SheetTitle className="text-left"><ThokSaleLogo size="sm" /></SheetTitle>
             </SheetHeader>
             <nav className="space-y-1.5" aria-label="Main navigation">
               <MobileNavLink href="/products" icon={<Store className="h-4.5 w-4.5" />}>Marketplace</MobileNavLink>
@@ -77,7 +66,7 @@ export async function MarketplaceHeader({ q, showSearch = true }: { q?: string; 
         </Sheet>
 
         <Link href="/" className="shrink-0" aria-label="ThokSale — Home">
-          <Logo />
+          <ThokSaleLogo size="md" />
         </Link>
 
         {/* Primary nav — desktop only, highly-polished spacing */}
